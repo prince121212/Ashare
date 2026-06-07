@@ -13,6 +13,10 @@ on:
         description: 'Run even if not CN trade day'
         required: false
         default: 'false'
+      deploy_only:
+        description: 'Deploy existing public files without fetching/scoring'
+        required: false
+        default: 'false'
 
 permissions:
   contents: write
@@ -43,6 +47,10 @@ jobs:
           SITE_URL: ${{ secrets.SITE_URL || 'https://a.292828.xyz' }}
           PICK_DATE: ${{ github.event.inputs.pick_date }}
         run: |
+          if [ "${{ github.event.inputs.deploy_only }}" = "true" ]; then
+            echo "Deploy-only mode: skip AkShare fetch, scoring, and email."
+            exit 0
+          fi
           FORCE=""
           if [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
           python scripts/daily_pick.py --fetch-akshare --send-email $FORCE

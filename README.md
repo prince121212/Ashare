@@ -21,6 +21,7 @@
 - 发送邮件通知
 - GitHub Actions 自动提交数据和结果
 - Cloudflare Pages 部署静态网站
+- 首页是静态策略看板：各策略首选、策略切换、分数/成交额图表、完整候选表格和移动端卡片展示
 
 ## V1.2 收盘选股版改造说明
 
@@ -80,6 +81,12 @@ python scripts/daily_pick.py --fetch-akshare --date 2026-06-04 --force --no-emai
 ```
 
 历史选股可用 `/?date=YYYY-MM-DD` 查看，例如 `/?date=2026-06-03`。
+
+只修改页面样式、不需要重新拉行情时，可以手动触发 GitHub Actions 并设置：
+
+```text
+deploy_only=true
+```
 
 ## Cloudflare Pages
 
