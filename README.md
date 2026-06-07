@@ -9,6 +9,7 @@
 - 加载 LightGBM 模型：`models/win_classifier.txt`、`models/return_regressor.txt`
 - 计算全市场主板 00/60 股票特征和分数
 - 输出当天 Top10 到 `public/latest.json`
+- 若下一交易日数据已入库，会自动给历史 Top10 回填 `1日涨跌`
 - 发送邮件通知
 - GitHub Actions 自动提交数据和结果
 - Cloudflare Pages 部署静态网站
@@ -39,7 +40,12 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python scripts/daily_pick.py --no-fetch --no-email
+
+# 手动回填指定交易日，例如拉取 2026-06-04 并更新 2026-06-03 的 1日涨跌
+python scripts/daily_pick.py --fetch-akshare --date 2026-06-04 --force --no-email
 ```
+
+历史选股可用 `/?date=YYYY-MM-DD` 查看，例如 `/?date=2026-06-03`。
 
 ## Cloudflare Pages
 

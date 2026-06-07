@@ -1,7 +1,7 @@
 {
   "strategy": "主板双高猎手 T2 V1 - 每日Top1版",
   "date": "2026-06-03",
-  "generated_at": "2026-06-07T19:25:11.604800+08:00",
+  "generated_at": "2026-06-07T20:12:10.017139+08:00",
   "source": "cached rolling_ohlcv.parquet",
   "fetched_today": false,
   "alpha": 16.0,
@@ -20,7 +20,9 @@
       "close": 116.8,
       "amount": 1060857664.0,
       "turnover": 0.090672,
-      "daily_return": 0.013097
+      "daily_return": 0.013097,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.023758
     },
     {
       "rank": 2,
@@ -32,7 +34,9 @@
       "close": 15.0,
       "amount": 79085312.0,
       "turnover": 0.032516,
-      "daily_return": -0.021526
+      "daily_return": -0.021526,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.027241
     },
     {
       "rank": 3,
@@ -44,7 +48,9 @@
       "close": 6.78,
       "amount": 562370304.0,
       "turnover": 0.001556,
-      "daily_return": -0.005865
+      "daily_return": -0.005865,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.01004
     },
     {
       "rank": 4,
@@ -56,7 +62,9 @@
       "close": 107.82,
       "amount": 1867745792.0,
       "turnover": 0.004766,
-      "daily_return": -0.00645
+      "daily_return": -0.00645,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.010817
     },
     {
       "rank": 5,
@@ -68,7 +76,9 @@
       "close": 252.64,
       "amount": 3392945664.0,
       "turnover": 0.004272,
-      "daily_return": -0.007737
+      "daily_return": -0.007737,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.01039
     },
     {
       "rank": 6,
@@ -80,7 +90,9 @@
       "close": 18.69,
       "amount": 1780364800.0,
       "turnover": 0.000907,
-      "daily_return": -0.007962
+      "daily_return": -0.007962,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.006868
     },
     {
       "rank": 7,
@@ -92,7 +104,9 @@
       "close": 5.47,
       "amount": 898133696.0,
       "turnover": 0.003618,
-      "daily_return": -0.00726
+      "daily_return": -0.00726,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.021739
     },
     {
       "rank": 8,
@@ -104,7 +118,9 @@
       "close": 4.23,
       "amount": 469019680.0,
       "turnover": 0.007105,
-      "daily_return": -0.004706
+      "daily_return": -0.004706,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": 0.0
     },
     {
       "rank": 9,
@@ -116,7 +132,9 @@
       "close": 14.49,
       "amount": 1767124352.0,
       "turnover": 0.000869,
-      "daily_return": -0.014286
+      "daily_return": -0.014286,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.009434
     },
     {
       "rank": 10,
@@ -128,7 +146,10 @@
       "close": 42.62,
       "amount": 516247904.0,
       "turnover": 0.004903,
-      "daily_return": -0.009988
+      "daily_return": -0.009988,
+      "next_1d_date": "2026-06-04",
+      "next_1d_return": -0.018978
     }
-  ]
+  ],
+  "performance_updated_at": "2026-06-07T20:36:09.382702+08:00"
 }
