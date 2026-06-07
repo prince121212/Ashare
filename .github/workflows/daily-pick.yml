@@ -70,4 +70,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '3.114.17'
           command: pages deploy public --project-name=ashare-daily-picker --commit-dirty=true
