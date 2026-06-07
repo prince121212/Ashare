@@ -360,7 +360,7 @@ def main() -> None:
     if args.send_email and not args.no_email:
         ok = send_email(payload)
         if not ok:
-            sys.exit(2)
+            print("[WARN] email was not sent, but pick result was generated successfully")
 
 
 if __name__ == "__main__":
