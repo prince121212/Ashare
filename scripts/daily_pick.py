@@ -303,6 +303,10 @@ def send_email(payload: dict[str, Any]) -> bool:
         return False
     from_email = os.getenv("RESEND_FROM_EMAIL", "noreply@292828.xyz")
     from_name = os.getenv("RESEND_FROM_NAME", "A股每日选股")
+    api_key = api_key.strip().strip("\"").strip("\'")
+    if not api_key.startswith("re_") or not api_key.isascii():
+        print("[ERROR] RESEND_API_KEY format looks invalid; please set a real Resend API key in GitHub Secrets")
+        return False
     resp = requests.post(
         "https://api.resend.com/emails",
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
