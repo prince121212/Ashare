@@ -729,7 +729,103 @@ def refresh_history_forward_returns(rolling: pd.DataFrame) -> list[str]:
                     latest_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     if updated:
         print(f"[INFO] forward returns updated for: {', '.join(updated)}")
+        write_history_index()
     return updated
+
+
+def payload_strategy_groups(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return strategy-like groups for both new multi-strategy and old legacy JSON."""
+    strategies = payload.get("strategies")
+    if isinstance(strategies, list) and strategies:
+        return [s for s in strategies if isinstance(s, dict)]
+    return [
+        {
+            "id": payload.get("primary_strategy_id") or "legacy",
+            "name": payload.get("strategy") or "主策略",
+            "short_name": "主策略",
+            "items": payload.get("items") or [],
+        }
+    ]
+
+
+def one_day_stats_for_items(items: list[dict[str, Any]]) -> dict[str, Any]:
+    values: list[float] = []
+    dates: set[str] = set()
+    for item in items:
+        value = finite_float(item.get("next_1d_return"))
+        if value is None:
+            continue
+        values.append(value)
+        if item.get("next_1d_date"):
+            dates.add(str(item["next_1d_date"]))
+    if not values:
+        return {"count": 0, "avg_return": None, "win_rate": None, "next_dates": sorted(dates)}
+    arr = np.array(values, dtype=float)
+    return {
+        "count": int(len(values)),
+        "avg_return": round(float(arr.mean()), 6),
+        "win_rate": round(float((arr > 0).mean()), 6),
+        "best_return": round(float(arr.max()), 6),
+        "worst_return": round(float(arr.min()), 6),
+        "next_dates": sorted(dates),
+    }
+
+
+def write_history_index() -> dict[str, Any]:
+    """Write a static index so the website can offer a date selector."""
+    entries: list[dict[str, Any]] = []
+    latest_date: str | None = None
+    latest_path = PUBLIC_DIR / "latest.json"
+    if latest_path.exists():
+        try:
+            latest_payload = json.loads(latest_path.read_text(encoding="utf-8"))
+            latest_date = latest_payload.get("date")
+        except Exception:
+            latest_date = None
+
+    for path in sorted(HISTORY_DIR.glob("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].json")):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            print(f"[WARN] skip malformed history for index {path.name}: {exc}")
+            continue
+        date_str = payload.get("date") or path.stem
+        groups = payload_strategy_groups(payload)
+        all_items: list[dict[str, Any]] = []
+        strategy_summaries = []
+        for group in groups:
+            items = group.get("items") or []
+            if isinstance(items, list):
+                all_items.extend([x for x in items if isinstance(x, dict)])
+            stats = one_day_stats_for_items(items if isinstance(items, list) else [])
+            strategy_summaries.append(
+                {
+                    "id": group.get("id") or "legacy",
+                    "name": group.get("name") or group.get("short_name") or "主策略",
+                    "candidate_count": len(items) if isinstance(items, list) else 0,
+                    "one_day": stats,
+                }
+            )
+        entries.append(
+            {
+                "date": date_str,
+                "is_latest": bool(latest_date and date_str == latest_date),
+                "strategy_count": len(groups),
+                "candidate_count": len(all_items),
+                "generated_at": payload.get("generated_at"),
+                "one_day": one_day_stats_for_items(all_items),
+                "strategies": strategy_summaries,
+            }
+        )
+
+    entries = sorted(entries, key=lambda x: str(x["date"]), reverse=True)
+    out = {
+        "generated_at": now_cn().isoformat(),
+        "latest_date": latest_date or (entries[0]["date"] if entries else None),
+        "dates": entries,
+    }
+    (PUBLIC_DIR / "history_index.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out
 
 
 def finite_float(value: Any) -> float | None:
@@ -872,6 +968,7 @@ def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.D
     enrich_payload_display_prices(payload)
     (PUBLIC_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     (HISTORY_DIR / f"{latest_date}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_history_index()
     return payload
 
 

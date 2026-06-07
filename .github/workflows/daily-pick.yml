@@ -68,6 +68,9 @@ jobs:
           assert any(s.get("id") == "v12_close_only" and s.get("items") for s in payload["strategies"]), "V1.2 close-only strategy has no candidates"
           first = payload["strategies"][0]["items"][0]
           assert first.get("price_type") == "raw_unadjusted", "display price must be raw/unadjusted market price"
+          history_index = json.loads(Path("public/history_index.json").read_text(encoding="utf-8"))
+          assert history_index.get("dates"), "history date selector index is empty"
+          assert any(x.get("date") == payload["date"] for x in history_index["dates"]), "latest date missing from history index"
           PY
 
       - name: Commit data and result

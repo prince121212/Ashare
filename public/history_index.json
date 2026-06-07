@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-06-07T23:38:39.441453+08:00",
+  "latest_date": "2026-06-04",
+  "dates": [
+    {
+      "date": "2026-06-04",
+      "is_latest": true,
+      "strategy_count": 4,
+      "candidate_count": 30,
+      "generated_at": "2026-06-07T23:12:42.175259+08:00",
+      "one_day": {
+        "count": 0,
+        "avg_return": null,
+        "win_rate": null,
+        "next_dates": []
+      },
+      "strategies": [
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 5,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "is_latest": false,
+      "strategy_count": 1,
+      "candidate_count": 10,
+      "generated_at": "2026-06-07T20:12:10.017139+08:00",
+      "one_day": {
+        "count": 10,
+        "avg_return": -0.013926,
+        "win_rate": 0.0,
+        "best_return": 0.0,
+        "worst_return": -0.027241,
+        "next_dates": [
+          "2026-06-04"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "legacy",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.013926,
+            "win_rate": 0.0,
+            "best_return": 0.0,
+            "worst_return": -0.027241,
+            "next_dates": [
+              "2026-06-04"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
