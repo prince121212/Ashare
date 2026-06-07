@@ -1,0 +1,22 @@
+name: Setup Cloudflare Pages custom domain
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-domain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add custom domain to Pages project
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT_NAME: ashare-daily-picker
+          CUSTOM_DOMAIN: a.292828.xyz
+        run: |
+          set -e
+          curl -sS -X POST "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/pages/projects/${PROJECT_NAME}/domains" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data "{\"name\":\"${CUSTOM_DOMAIN}\"}" | tee response.json
+          cat response.json
