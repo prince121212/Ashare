@@ -55,8 +55,9 @@ jobs:
           from pathlib import Path
           payload = json.loads(Path("public/latest.json").read_text(encoding="utf-8"))
           assert payload.get("date"), "missing date"
-          assert len(payload.get("strategies", [])) >= 3, "expected multiple strategies"
+          assert len(payload.get("strategies", [])) >= 4, "expected four strategies"
           assert payload["strategies"][0]["items"], "primary strategy has no candidates"
+          assert any(s.get("id") == "v12_close_only" and s.get("items") for s in payload["strategies"]), "V1.2 close-only strategy has no candidates"
           first = payload["strategies"][0]["items"][0]
           assert first.get("price_type") == "raw_unadjusted", "display price must be raw/unadjusted market price"
           PY

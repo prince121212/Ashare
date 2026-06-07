@@ -39,6 +39,12 @@ FEATURE_COLS = json.loads((MODELS_DIR / "feature_cols.json").read_text(encoding=
 DUAL_HIGH_Q975_THRESHOLD = 0.42082220809320714
 WINRATE_H4_Q950_THRESHOLD = 0.2206216747927586
 WINRATE_H4_MODEL_PATH = MODELS_DIR / "win_h4.txt"
+V12_MIN_AMOUNT_MA20 = 30_000_000.0
+V12_MIN_CLOSE = 2.0
+V12_SKIP_TOP_RANKS = 3
+V12_RANGE_FILTER_RANK_LOW = 16
+V12_RANGE_FILTER_RANK_HIGH = 30
+V12_RANGE_FILTER_GT = 0.085
 
 STRATEGY_DEFS: list[dict[str, Any]] = [
     {
@@ -49,6 +55,12 @@ STRATEGY_DEFS: list[dict[str, Any]] = [
         "score_col": "dual_score",
         "pred_win_col": "dual_pred_win",
         "pred_ret_col": "dual_pred_ret",
+        "metric1_label": "胜率预测",
+        "metric1_col": "dual_pred_win",
+        "metric1_format": "pct",
+        "metric2_label": "收益预测",
+        "metric2_col": "dual_pred_ret",
+        "metric2_format": "pct",
         "threshold": None,
         "top_n": 10,
         "profile": "daily_top1_no_score_threshold_slots2",
@@ -71,6 +83,12 @@ STRATEGY_DEFS: list[dict[str, Any]] = [
         "score_col": "dual_score",
         "pred_win_col": "dual_pred_win",
         "pred_ret_col": "dual_pred_ret",
+        "metric1_label": "胜率预测",
+        "metric1_col": "dual_pred_win",
+        "metric1_format": "pct",
+        "metric2_label": "收益预测",
+        "metric2_col": "dual_pred_ret",
+        "metric2_format": "pct",
         "threshold": DUAL_HIGH_Q975_THRESHOLD,
         "top_n": 10,
         "profile": "dualhigh_alpha16_q975",
@@ -93,6 +111,12 @@ STRATEGY_DEFS: list[dict[str, Any]] = [
         "score_col": "pred_win_h4",
         "pred_win_col": "pred_win_h4",
         "pred_ret_col": None,
+        "metric1_label": "胜率预测",
+        "metric1_col": "pred_win_h4",
+        "metric1_format": "pct",
+        "metric2_label": "收益预测",
+        "metric2_col": None,
+        "metric2_format": "pct",
         "threshold": WINRATE_H4_Q950_THRESHOLD,
         "top_n": 10,
         "profile": "h4_q950",
@@ -106,6 +130,32 @@ STRATEGY_DEFS: list[dict[str, Any]] = [
             {"label": "2025回测", "href": "./reports/2025_high_winrate_h4_q950_report.html"},
             {"label": "2026回测", "href": "./reports/2026_ytd_high_winrate_h4_q950_report.html"},
         ],
+    },
+    {
+        "id": "v12_close_only",
+        "name": "V1.2 收盘选股版",
+        "short_name": "V1.2收盘",
+        "model_family": "rule_v12_close",
+        "score_col": "v12_score",
+        "pred_win_col": None,
+        "pred_ret_col": None,
+        "metric1_label": "V03A排名",
+        "metric1_col": "v12_rank_v03a",
+        "metric1_format": "int",
+        "metric2_label": "日振幅",
+        "metric2_col": "daily_range",
+        "metric2_format": "pct",
+        "threshold": None,
+        "top_n": 15,
+        "profile": "v12_close_only_no_open_gap",
+        "custom_filter": "v12_close_only",
+        "trade_rule": "T日收盘计算V03A分数并直接选股；取消原V1.2的T+1开盘gap择机触发；后续可按T+1开盘买入、T+2收盘卖出观察。",
+        "selection_note": "由原V1.2事件策略改造为收盘选股版：保留V03A打分、跳过前3名、成交额/价格过滤和振幅排除规则；不再等待开盘gap确认。",
+        "backtest": {
+            "2026_ytd_to_0603": {"cum_return": 0.575945, "annual_return": 2.22079, "max_drawdown": -0.110579, "trade_win_rate": 0.491132, "trades": 4398},
+            "note": "指标来自原V1.2事件策略回测；收盘选股版取消开盘gap后尚未单独重跑回测，仅作规则来源参考。",
+        },
+        "reports": [],
     },
 ]
 
@@ -535,6 +585,24 @@ def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.D
         print(f"[WARN] optional high-winrate model missing: {WINRATE_H4_MODEL_PATH}")
         latest["pred_win_h4"] = np.nan
 
+    # V1.2 close-only rule strategy: use the deterministic V03A score computed
+    # from same-day OHLCV.  Original V1.2 was an event strategy with T+1 open-gap
+    # entry timing; this close-only adaptation deliberately removes the open-gap
+    # trigger so it can be shown as an end-of-day stock-picking list.
+    latest["v12_score"] = latest["score_v03a_like"]
+    latest["v12_rank_v03a"] = latest["v12_score"].rank(method="first", ascending=False).astype(int)
+    latest["v12_range_excluded"] = latest["v12_rank_v03a"].between(
+        V12_RANGE_FILTER_RANK_LOW, V12_RANGE_FILTER_RANK_HIGH, inclusive="both"
+    ) & (latest["daily_range"] > V12_RANGE_FILTER_GT)
+    latest["v12_close_only_pass"] = (
+        (latest["v12_rank_v03a"] > V12_SKIP_TOP_RANKS)
+        & (~latest["v12_range_excluded"])
+        & (latest["amount_ma20"] >= V12_MIN_AMOUNT_MA20)
+        & (latest["close"] >= V12_MIN_CLOSE)
+        & (latest["volume"] > 0)
+        & (latest["amount"] > 0)
+    )
+
     latest["rank"] = latest["dual_score"].rank(method="first", ascending=False).astype(int)
     fallback_names = load_universe_names()
     if names is not None and not names.empty:
@@ -703,10 +771,14 @@ def build_strategy_items(scored: pd.DataFrame, strategy: dict[str, Any]) -> list
     score_col = strategy["score_col"]
     pred_win_col = strategy.get("pred_win_col")
     pred_ret_col = strategy.get("pred_ret_col")
+    metric1_col = strategy.get("metric1_col")
+    metric2_col = strategy.get("metric2_col")
     top_n = int(strategy.get("top_n") or TOP_N)
     threshold = strategy.get("threshold")
 
     df = scored.dropna(subset=[score_col]).copy()
+    if strategy.get("custom_filter") == "v12_close_only":
+        df = df[df["v12_close_only_pass"]].copy()
     if threshold is not None:
         df = df[df[score_col] >= float(threshold)].copy()
     df = df.sort_values(score_col, ascending=False).head(top_n)
@@ -715,6 +787,8 @@ def build_strategy_items(scored: pd.DataFrame, strategy: dict[str, Any]) -> list
     for i, r in enumerate(df.itertuples(index=False), start=1):
         pred_win = getattr(r, pred_win_col) if pred_win_col else np.nan
         pred_ret = getattr(r, pred_ret_col) if pred_ret_col else np.nan
+        metric1 = getattr(r, metric1_col) if metric1_col else pred_win
+        metric2 = getattr(r, metric2_col) if metric2_col else pred_ret
         item = {
             "rank": i,
             "code": str(r.code).zfill(6),
@@ -722,12 +796,23 @@ def build_strategy_items(scored: pd.DataFrame, strategy: dict[str, Any]) -> list
             "score": round(float(getattr(r, score_col)), 6),
             "pred_win": round_or_none(pred_win, 6),
             "pred_ret": round_or_none(pred_ret, 6),
+            "metric1": round_or_none(metric1, 6),
+            "metric2": round_or_none(metric2, 6),
             "amount": round(float(r.amount), 2),
             "turnover": round(float(r.turnover), 6),
             "daily_return": round(float(r.ret_1), 6) if pd.notna(r.ret_1) else None,
             "next_1d_date": None,
             "next_1d_return": None,
         }
+        if strategy.get("custom_filter") == "v12_close_only":
+            item.update(
+                {
+                    "v12_rank_v03a": int(getattr(r, "v12_rank_v03a")),
+                    "v12_score": round(float(getattr(r, "v12_score")), 6),
+                    "daily_range": round(float(getattr(r, "daily_range")), 6),
+                    "v12_rule": "close_only: rank_v03a>3; exclude 16<=rank<=30 & daily_range>8.5%; no T+1 open-gap trigger",
+                }
+            )
         item.update(row_price_fields(r))
         items.append(item)
     return items
@@ -746,6 +831,10 @@ def build_strategy_payloads(scored: pd.DataFrame) -> list[dict[str, Any]]:
                 "model_family": strategy["model_family"],
                 "score_column": strategy["score_col"],
                 "score_threshold": strategy.get("threshold"),
+                "metric1_label": strategy.get("metric1_label", "胜率预测"),
+                "metric1_format": strategy.get("metric1_format", "pct"),
+                "metric2_label": strategy.get("metric2_label", "收益预测"),
+                "metric2_format": strategy.get("metric2_format", "pct"),
                 "top_n": strategy.get("top_n", TOP_N),
                 "trade_rule": strategy["trade_rule"],
                 "selection_note": strategy["selection_note"],
@@ -791,10 +880,26 @@ def email_html(payload: dict[str, Any]) -> str:
         f = finite_float(v)
         return "" if f is None else f"{f:.2%}"
 
+    def fmt_metric(v: Any, kind: str | None) -> str:
+        f = finite_float(v)
+        if f is None:
+            return ""
+        if kind == "pct":
+            return f"{f:.2%}"
+        if kind == "int":
+            return f"{int(round(f))}"
+        if kind == "price":
+            return f"{f:.2f}"
+        return f"{f:.6f}"
+
     sections = []
     for strategy in payload.get("strategies", []) or [{"name": payload["strategy"], "items": payload["items"]}]:
+        metric1_label = strategy.get("metric1_label", "胜率分")
+        metric2_label = strategy.get("metric2_label", "收益预测")
+        metric1_format = strategy.get("metric1_format", "pct")
+        metric2_format = strategy.get("metric2_format", "pct")
         rows = "".join(
-            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{pct(x.get('pred_win'))}</td><td>{pct(x.get('pred_ret'))}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td></tr>"
+            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{fmt_metric(x.get('metric1', x.get('pred_win')), metric1_format)}</td><td>{fmt_metric(x.get('metric2', x.get('pred_ret')), metric2_format)}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td></tr>"
             for x in strategy.get("items", [])
         )
         if not rows:
@@ -803,7 +908,7 @@ def email_html(payload: dict[str, Any]) -> str:
             f"""
             <h3>{strategy['name']}</h3>
             <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px;margin-bottom:18px'>
-              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>胜率分</th><th>收益预测</th><th>行情价</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
+              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
               <tbody>{rows}</tbody>
             </table>
             """

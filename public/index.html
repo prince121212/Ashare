@@ -47,6 +47,13 @@ function fmtNum(x,d=2){ if(x===null||x===undefined||Number.isNaN(Number(x))) ret
 function pctCell(x){ if(x===null||x===undefined||Number.isNaN(Number(x))) return '<span class="muted">待更新</span>'; return fmtPct(x); }
 function pctClass(x){ if(x===null||x===undefined||Number.isNaN(Number(x))) return 'muted'; return Number(x)>=0?'pos':'neg'; }
 function metricPct(x){ return x===null||x===undefined ? '--' : fmtPct(x); }
+function fmtBy(x, kind){
+  if(x===null||x===undefined||Number.isNaN(Number(x))) return '--';
+  if(kind==='pct') return fmtPct(x);
+  if(kind==='int') return String(Math.round(Number(x)));
+  if(kind==='price') return fmtNum(x,2);
+  return fmtNum(x,4);
+}
 function reportsHtml(xs){ return (xs||[]).map(r=>`<a href="${r.href}" target="_blank" rel="noopener">${r.label}</a>`).join(''); }
 function btHtml(bt){
   const b = bt?.["2026_ytd_to_0603"] || bt?.["2026_ytd"] || bt?.["2025"] || {};
@@ -58,12 +65,12 @@ function btHtml(bt){
     <div class="mini"><div class="t">交易数</div><div class="v">${b.trades ?? '--'}</div></div>
   </div>`;
 }
-function rowsHtml(items){
+function rowsHtml(items, s){
   if(!items || !items.length) return `<tr><td colspan="10" class="empty">今日无股票达到该策略阈值。</td></tr>`;
   return items.map(x => `
     <tr>
       <td class="rank">${x.rank}</td><td><span class="pill">${x.code}</span></td><td>${x.name||''}</td>
-      <td class="score">${Number(x.score).toFixed(6)}</td><td>${fmtPct(x.pred_win)}</td><td>${fmtPct(x.pred_ret)}</td>
+      <td class="score">${Number(x.score).toFixed(6)}</td><td>${fmtBy(x.metric1 ?? x.pred_win, s.metric1_format || 'pct')}</td><td>${fmtBy(x.metric2 ?? x.pred_ret, s.metric2_format || 'pct')}</td>
       <td>${fmtNum(x.display_close ?? x.close,2)}</td><td>${fmtNum(x.amount/1e8,2)} 亿</td><td class="${pctClass(x.daily_return)}">${fmtPct(x.daily_return)}</td><td class="${pctClass(x.next_1d_return)}">${pctCell(x.next_1d_return)}</td>
     </tr>`).join('');
 }
@@ -77,8 +84,8 @@ function strategyCard(s, dataDate){
     ${btHtml(s.backtest)}
     <div class="table-wrap">
       <table>
-        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>胜率预测</th><th>收益预测</th><th>行情价</th><th>成交额</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
-        <tbody>${rowsHtml(s.items)}</tbody>
+        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>${s.metric1_label || '胜率预测'}</th><th>${s.metric2_label || '收益预测'}</th><th>行情价</th><th>成交额</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
+        <tbody>${rowsHtml(s.items, s)}</tbody>
       </table>
     </div>
     <p class="note">${dataDate} 收盘后候选。行情价为 AkShare 原始未复权价格，和普通行情软件显示一致；模型内部连续复权价仅用于打分。</p>
