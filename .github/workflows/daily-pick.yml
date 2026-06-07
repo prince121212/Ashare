@@ -47,6 +47,20 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
           python scripts/daily_pick.py --fetch-akshare --send-email $FORCE
 
+      - name: Validate generated site data
+        run: |
+          python -m json.tool public/latest.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path("public/latest.json").read_text(encoding="utf-8"))
+          assert payload.get("date"), "missing date"
+          assert len(payload.get("strategies", [])) >= 3, "expected multiple strategies"
+          assert payload["strategies"][0]["items"], "primary strategy has no candidates"
+          first = payload["strategies"][0]["items"][0]
+          assert first.get("price_type") == "raw_unadjusted", "display price must be raw/unadjusted market price"
+          PY
+
       - name: Commit data and result
         run: |
           git config user.name "github-actions[bot]"

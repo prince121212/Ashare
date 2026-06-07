@@ -10,14 +10,14 @@
     .wrap{max-width:1120px;margin:0 auto;padding:28px 18px 48px}.hero{background:linear-gradient(135deg,#172554,#0891b2);color:#fff;border-radius:24px;padding:30px 32px;box-shadow:0 18px 44px rgba(15,23,42,.18)}
     h1{margin:0 0 10px;font-size:32px}.hero p{margin:7px 0;color:#dbeafe;line-height:1.7}.tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px;margin-right:8px;margin-bottom:10px}
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.kpi,.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.05)}.kpi{padding:16px}.kpi .t{font-size:13px;color:var(--muted)}.kpi .v{font-size:24px;font-weight:760;margin-top:7px}
-    .card{padding:18px;margin-top:16px}.card h2{margin:0 0 12px;font-size:20px}.note{color:var(--muted);line-height:1.75}.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--border)}table{border-collapse:collapse;width:100%;background:#fff;min-width:980px}th{background:#f1f5f9;color:#334155;text-align:left;padding:12px;font-size:14px}td{padding:12px;border-top:1px solid #eef2f7;font-size:14px}.rank{font-weight:700;color:var(--blue)}.score{font-weight:750}.pos{color:var(--green)}.neg{color:var(--red)}.muted{color:var(--muted)}.footer{color:#94a3b8;font-size:12px;margin-top:22px;text-align:center}.pill{padding:4px 8px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:650}
+    .card{padding:18px;margin-top:16px}.card h2{margin:0 0 12px;font-size:20px}.note{color:var(--muted);line-height:1.75}.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--border)}table{border-collapse:collapse;width:100%;background:#fff;min-width:1040px}th{background:#f1f5f9;color:#334155;text-align:left;padding:12px;font-size:14px}td{padding:12px;border-top:1px solid #eef2f7;font-size:14px}.rank{font-weight:700;color:var(--blue)}.score{font-weight:750}.pos{color:var(--green)}.neg{color:var(--red)}.muted{color:var(--muted)}.footer{color:#94a3b8;font-size:12px;margin-top:22px;text-align:center}.pill{padding:4px 8px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:650}.strategy-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}.strategy-head h2{margin-bottom:4px}.links a{display:inline-flex;margin-left:8px;margin-bottom:8px;padding:6px 10px;border-radius:999px;background:#f8fafc;border:1px solid var(--border);color:#2563eb;text-decoration:none;font-size:13px}.mini-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0 14px}.mini{background:#f8fafc;border:1px solid #eef2f7;border-radius:12px;padding:10px}.mini .t{font-size:12px;color:var(--muted)}.mini .v{font-size:16px;font-weight:740;margin-top:4px}.empty{padding:18px;color:var(--muted);background:#fff;border-top:1px solid #eef2f7}
     @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}h1{font-size:26px}.hero{padding:24px 22px}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <div><span class="tag">A股主板 00/60</span><span class="tag">每日Top10</span><span class="tag">Cloudflare Pages</span></div>
+      <div><span class="tag">A股主板 00/60</span><span class="tag">多策略Top10</span><span class="tag">Cloudflare Pages 自动运行</span></div>
       <h1>A股每日选股</h1>
       <p id="subtitle">读取最新选股结果中...</p>
       <p>策略：T日收盘打分，次日开盘按候选顺序买入；若开盘涨停无法买入则顺位递补；目标T+2收盘卖出，跌停则顺延。</p>
@@ -25,27 +25,17 @@
 
     <div class="grid">
       <div class="kpi"><div class="t">选股日期</div><div class="v" id="k-date">--</div></div>
-      <div class="kpi"><div class="t">候选数量</div><div class="v" id="k-count">--</div></div>
-      <div class="kpi"><div class="t">Top1代码</div><div class="v" id="k-code">--</div></div>
+      <div class="kpi"><div class="t">策略数量</div><div class="v" id="k-count">--</div></div>
+      <div class="kpi"><div class="t">主策略Top1</div><div class="v" id="k-code">--</div></div>
       <div class="kpi"><div class="t">Top1分数</div><div class="v" id="k-score">--</div></div>
     </div>
 
-    <section class="card">
-      <h2 id="table-title">当天分数最高 Top10</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>排名</th><th>代码</th><th>名称</th><th>综合分</th><th>胜率预测</th><th>收益预测</th><th>收盘价</th><th>成交额</th><th>当日涨跌</th><th>1日涨跌</th></tr>
-          </thead>
-          <tbody id="tbody"><tr><td colspan="10">加载中...</td></tr></tbody>
-        </table>
-      </div>
-      <p class="note" id="note"></p>
-    </section>
+    <div id="strategies"><section class="card"><p class="note">加载中...</p></section></div>
 
     <section class="card">
       <h2>执行提醒</h2>
       <p class="note">收盘后生成的是候选名单。次日开盘时，如果排名靠前股票直接涨停无法买入，应按 Top10 顺序选择第一只未涨停且可成交的股票。该页面不构成投资建议。</p>
+      <p class="note" id="note"></p>
       <p class="note">数据源：<span id="source">--</span>；生成时间：<span id="generated">--</span></p>
     </section>
     <div class="footer">a.292828.xyz · Generated by GitHub Actions</div>
@@ -56,6 +46,44 @@ function fmtPct(x){ if(x===null||x===undefined||Number.isNaN(Number(x))) return 
 function fmtNum(x,d=2){ if(x===null||x===undefined||Number.isNaN(Number(x))) return '--'; return Number(x).toLocaleString('zh-CN',{maximumFractionDigits:d}); }
 function pctCell(x){ if(x===null||x===undefined||Number.isNaN(Number(x))) return '<span class="muted">待更新</span>'; return fmtPct(x); }
 function pctClass(x){ if(x===null||x===undefined||Number.isNaN(Number(x))) return 'muted'; return Number(x)>=0?'pos':'neg'; }
+function metricPct(x){ return x===null||x===undefined ? '--' : fmtPct(x); }
+function reportsHtml(xs){ return (xs||[]).map(r=>`<a href="${r.href}" target="_blank" rel="noopener">${r.label}</a>`).join(''); }
+function btHtml(bt){
+  const b = bt?.["2026_ytd_to_0603"] || bt?.["2026_ytd"] || bt?.["2025"] || {};
+  return `<div class="mini-grid">
+    <div class="mini"><div class="t">2026累计</div><div class="v ${Number(b.cum_return)>=0?'pos':'neg'}">${metricPct(b.cum_return)}</div></div>
+    <div class="mini"><div class="t">年化</div><div class="v ${Number(b.annual_return)>=0?'pos':'neg'}">${metricPct(b.annual_return)}</div></div>
+    <div class="mini"><div class="t">最大回撤</div><div class="v neg">${metricPct(b.max_drawdown)}</div></div>
+    <div class="mini"><div class="t">交易胜率</div><div class="v">${metricPct(b.trade_win_rate)}</div></div>
+    <div class="mini"><div class="t">交易数</div><div class="v">${b.trades ?? '--'}</div></div>
+  </div>`;
+}
+function rowsHtml(items){
+  if(!items || !items.length) return `<tr><td colspan="10" class="empty">今日无股票达到该策略阈值。</td></tr>`;
+  return items.map(x => `
+    <tr>
+      <td class="rank">${x.rank}</td><td><span class="pill">${x.code}</span></td><td>${x.name||''}</td>
+      <td class="score">${Number(x.score).toFixed(6)}</td><td>${fmtPct(x.pred_win)}</td><td>${fmtPct(x.pred_ret)}</td>
+      <td>${fmtNum(x.display_close ?? x.close,2)}</td><td>${fmtNum(x.amount/1e8,2)} 亿</td><td class="${pctClass(x.daily_return)}">${fmtPct(x.daily_return)}</td><td class="${pctClass(x.next_1d_return)}">${pctCell(x.next_1d_return)}</td>
+    </tr>`).join('');
+}
+function strategyCard(s, dataDate){
+  const th = s.score_threshold===null || s.score_threshold===undefined ? '无阈值' : Number(s.score_threshold).toFixed(6);
+  return `<section class="card">
+    <div class="strategy-head">
+      <div><h2>${s.name}</h2><p class="note">${s.selection_note || ''} 阈值：${th}</p></div>
+      <div class="links">${reportsHtml(s.reports)}</div>
+    </div>
+    ${btHtml(s.backtest)}
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>胜率预测</th><th>收益预测</th><th>行情价</th><th>成交额</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
+        <tbody>${rowsHtml(s.items)}</tbody>
+      </table>
+    </div>
+    <p class="note">${dataDate} 收盘后候选。行情价为 AkShare 原始未复权价格，和普通行情软件显示一致；模型内部连续复权价仅用于打分。</p>
+  </section>`;
+}
 async function main(){
   const params = new URLSearchParams(location.search);
   const date = params.get('date');
@@ -63,23 +91,19 @@ async function main(){
   const res = await fetch(url);
   if(!res.ok) throw new Error(date ? `history/${date}.json not found` : 'latest.json not found');
   const data = await res.json();
+  const strategies = data.strategies?.length ? data.strategies : [{id:'legacy',name:data.strategy,selection_note:data.note,score_threshold:null,reports:[],backtest:{},items:data.items||[]}];
+  const primary = strategies[0];
   document.getElementById('subtitle').textContent = `${data.strategy} · ${data.date}`;
-  document.getElementById('table-title').textContent = `${data.date} 分数最高 Top10`;
   document.getElementById('k-date').textContent = data.date;
-  document.getElementById('k-count').textContent = data.items.length;
-  document.getElementById('k-code').textContent = data.items[0]?.code || '--';
-  document.getElementById('k-score').textContent = data.items[0]?.score?.toFixed(4) || '--';
-  document.getElementById('note').textContent = (data.note || '') + ' 1日涨跌按下一交易日收盘价相对选股日收盘价计算；没有下一交易日数据时显示“待更新”。';
+  document.getElementById('k-count').textContent = strategies.length;
+  document.getElementById('k-code').textContent = primary.items?.[0]?.code || '--';
+  document.getElementById('k-score').textContent = primary.items?.[0]?.score?.toFixed(4) || '--';
+  document.getElementById('note').textContent = (data.note || '') + ' 1日涨跌按下一交易日收盘价相对选股日收盘价计算；没有下一交易日数据时显示“待更新”。' + (data.price_note ? ' ' + data.price_note : '');
   document.getElementById('source').textContent = data.source || '--';
   document.getElementById('generated').textContent = data.generated_at || '--';
-  document.getElementById('tbody').innerHTML = data.items.map(x => `
-    <tr>
-      <td class="rank">${x.rank}</td><td><span class="pill">${x.code}</span></td><td>${x.name||''}</td>
-      <td class="score">${Number(x.score).toFixed(6)}</td><td>${Number(x.pred_win).toFixed(4)}</td><td>${fmtPct(x.pred_ret)}</td>
-      <td>${fmtNum(x.close,2)}</td><td>${fmtNum(x.amount/1e8,2)} 亿</td><td class="${pctClass(x.daily_return)}">${fmtPct(x.daily_return)}</td><td class="${pctClass(x.next_1d_return)}">${pctCell(x.next_1d_return)}</td>
-    </tr>`).join('');
+  document.getElementById('strategies').innerHTML = strategies.map(s=>strategyCard(s, data.date)).join('');
 }
-main().catch(err => { document.getElementById('tbody').innerHTML = `<tr><td colspan="10">加载失败：${err.message}</td></tr>`; });
+main().catch(err => { document.getElementById('strategies').innerHTML = `<section class="card"><p class="note">加载失败：${err.message}</p></section>`; });
 </script>
 </body>
 </html>

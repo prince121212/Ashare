@@ -36,6 +36,79 @@ AKSHARE_HIST_RETRIES = int(os.getenv("AKSHARE_HIST_RETRIES", "3"))
 
 FEATURE_COLS = json.loads((MODELS_DIR / "feature_cols.json").read_text(encoding="utf-8"))
 
+DUAL_HIGH_Q975_THRESHOLD = 0.42082220809320714
+WINRATE_H4_Q950_THRESHOLD = 0.2206216747927586
+WINRATE_H4_MODEL_PATH = MODELS_DIR / "win_h4.txt"
+
+STRATEGY_DEFS: list[dict[str, Any]] = [
+    {
+        "id": "dualhigh_daily_top1_slots2",
+        "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+        "short_name": "每日Top1",
+        "model_family": "dual_high",
+        "score_col": "dual_score",
+        "pred_win_col": "dual_pred_win",
+        "pred_ret_col": "dual_pred_ret",
+        "threshold": None,
+        "top_n": 10,
+        "profile": "daily_top1_no_score_threshold_slots2",
+        "trade_rule": "T日收盘打分；T+1开盘按Top10顺序检查，选择第一只未涨停且可买入股票；T+2收盘前卖出，跌停则顺延。",
+        "selection_note": "保证每个可交易日尝试买入1只；这里展示Top10候选，实盘按顺位避开开盘涨停。",
+        "backtest": {
+            "2025": {"cum_return": 0.269454, "annual_return": 0.263237, "max_drawdown": -0.088978, "trade_win_rate": 0.493776, "trades": 241},
+            "2026_ytd_to_0603": {"cum_return": 0.249708, "annual_return": 0.718331, "max_drawdown": -0.100405, "trade_win_rate": 0.46875, "trades": 96},
+        },
+        "reports": [
+            {"label": "2025回测", "href": "./reports/2025_daily_top1_alpha16_slots2_report.html"},
+            {"label": "2026回测", "href": "./reports/2026_ytd_daily_top1_alpha16_slots2_report.html"},
+        ],
+    },
+    {
+        "id": "dualhigh_alpha16_q975",
+        "name": "主板双高猎手 T2 V1 - 高阈值版",
+        "short_name": "双高高阈值",
+        "model_family": "dual_high",
+        "score_col": "dual_score",
+        "pred_win_col": "dual_pred_win",
+        "pred_ret_col": "dual_pred_ret",
+        "threshold": DUAL_HIGH_Q975_THRESHOLD,
+        "top_n": 10,
+        "profile": "dualhigh_alpha16_q975",
+        "trade_rule": "T日收盘打分；只有综合分超过训练期97.5%阈值才入选；T+1开盘买入，T+2收盘前卖出，跌停顺延。",
+        "selection_note": "高胜率/高收益阈值版，交易次数更少；若当天无股票过阈值则显示空表。",
+        "backtest": {
+            "2025": {"cum_return": 0.191757, "annual_return": 0.187463, "max_drawdown": -0.106628, "trade_win_rate": 0.54386, "trades": 57},
+            "2026_ytd_to_0603": {"cum_return": 0.013726, "annual_return": 0.033662, "max_drawdown": -0.023247, "trade_win_rate": 0.777778, "trades": 9},
+        },
+        "reports": [
+            {"label": "2025回测", "href": "./reports/2025_dualhigh_alpha16_q975_report.html"},
+            {"label": "2026回测", "href": "./reports/2026_ytd_dualhigh_alpha16_q975_report.html"},
+        ],
+    },
+    {
+        "id": "high_winrate_h4_q950",
+        "name": "主板胜率猎手 V1 - H4高胜率版",
+        "short_name": "胜率猎手H4",
+        "model_family": "winrate_h4",
+        "score_col": "pred_win_h4",
+        "pred_win_col": "pred_win_h4",
+        "pred_ret_col": None,
+        "threshold": WINRATE_H4_Q950_THRESHOLD,
+        "top_n": 10,
+        "profile": "h4_q950",
+        "trade_rule": "T日收盘打分；T+1开盘买入；原始版本目标T+4收盘卖出，按胜率模型筛选。",
+        "selection_note": "最早训练的高胜率策略，偏向胜率和稳定性，展示超过95%训练期阈值的候选。",
+        "backtest": {
+            "2025": {"cum_return": 0.229011, "annual_return": 0.221818, "max_drawdown": -0.098581, "trade_win_rate": 0.647059, "trades": 51},
+            "2026_ytd_to_0603": {"cum_return": 0.20353, "annual_return": 0.568179, "max_drawdown": -0.150267, "trade_win_rate": 0.703704, "trades": 27},
+        },
+        "reports": [
+            {"label": "2025回测", "href": "./reports/2025_high_winrate_h4_q950_report.html"},
+            {"label": "2026回测", "href": "./reports/2026_ytd_high_winrate_h4_q950_report.html"},
+        ],
+    },
+]
+
 
 def now_cn() -> datetime:
     return datetime.now(pytz.timezone("Asia/Shanghai"))
@@ -121,7 +194,7 @@ def fetch_akshare_spot(date_str: str, rolling: pd.DataFrame) -> pd.DataFrame:
     # Qlib turnover is fraction, Eastmoney turnover is percent.
     df["turnover"] = df["turnover_pct"] / 100.0
     df["date"] = pd.Timestamp(date_str).normalize()
-    out = df[["code", "name", "date", "open", "high", "low", "close", "volume", "amount", "turnover", "raw_open", "raw_close", "raw_prev_close", "scale"]].copy()
+    out = df[["code", "name", "date", "open", "high", "low", "close", "volume", "amount", "turnover", "raw_open", "raw_high", "raw_low", "raw_close", "raw_prev_close", "scale"]].copy()
     return out.sort_values("code").reset_index(drop=True)
 
 
@@ -267,7 +340,7 @@ def fetch_akshare_hist_date(date_str: str, rolling: pd.DataFrame) -> pd.DataFram
     out = df[
         [
             "code", "name", "date", "open", "high", "low", "close", "volume", "amount", "turnover",
-            "raw_open", "raw_close", "raw_prev_date", "raw_prev_close", "scale",
+            "raw_open", "raw_high", "raw_low", "raw_close", "raw_prev_date", "raw_prev_close", "scale",
         ]
     ].copy()
     print(f"[INFO] historical rows usable for {date_str}: {len(out)}")
@@ -384,6 +457,61 @@ def load_universe_names() -> pd.DataFrame:
     return u[["code", "name"]].drop_duplicates("code")
 
 
+def load_raw_prices(date_str: str) -> pd.DataFrame:
+    """Load raw/unadjusted prices that match market software display prices."""
+    path = DAILY_DIR / f"{date_str}.csv"
+    cols = ["code", "raw_open", "raw_high", "raw_low", "raw_close", "raw_prev_close"]
+    if not path.exists():
+        return pd.DataFrame(columns=cols)
+    df = pd.read_csv(path, dtype={"code": str})
+    df["code"] = df["code"].astype(str).str.zfill(6)
+    for c in cols:
+        if c not in df.columns:
+            df[c] = np.nan
+    for c in cols[1:]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    return df[cols].drop_duplicates("code")
+
+
+def load_raw_close_for_date(date_str: str) -> pd.DataFrame:
+    """Return raw close for a date from same-day file or next-day raw_prev_close."""
+    direct = load_raw_prices(date_str)
+    if not direct.empty and direct["raw_close"].notna().any():
+        return direct[["code", "raw_open", "raw_high", "raw_low", "raw_close"]].copy()
+
+    frames: list[pd.DataFrame] = []
+    for path in sorted(DAILY_DIR.glob("*.csv")):
+        try:
+            df = pd.read_csv(path, dtype={"code": str})
+        except Exception:
+            continue
+        if "raw_prev_date" not in df.columns or "raw_prev_close" not in df.columns:
+            continue
+        df["raw_prev_date"] = pd.to_datetime(df["raw_prev_date"], errors="coerce").dt.strftime("%Y-%m-%d")
+        m = df[df["raw_prev_date"].eq(date_str)].copy()
+        if m.empty:
+            continue
+        m["code"] = m["code"].astype(str).str.zfill(6)
+        m["raw_close"] = pd.to_numeric(m["raw_prev_close"], errors="coerce")
+        m["raw_open"] = np.nan
+        m["raw_high"] = np.nan
+        m["raw_low"] = np.nan
+        frames.append(m[["code", "raw_open", "raw_high", "raw_low", "raw_close"]])
+    if not frames:
+        return pd.DataFrame(columns=["code", "raw_open", "raw_high", "raw_low", "raw_close"])
+    return pd.concat(frames, ignore_index=True).dropna(subset=["raw_close"]).drop_duplicates("code", keep="last")
+
+
+def payload_item_groups(payload: dict[str, Any]) -> list[list[dict[str, Any]]]:
+    item_groups: list[list[dict[str, Any]]] = []
+    if isinstance(payload.get("items"), list):
+        item_groups.append(payload["items"])
+    for strategy in payload.get("strategies", []) or []:
+        if isinstance(strategy.get("items"), list):
+            item_groups.append(strategy["items"])
+    return item_groups
+
+
 def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.DataFrame:
     latest_date = panel["date"].max()
     latest = panel[panel["date"].eq(latest_date)].dropna(subset=FEATURE_COLS).copy()
@@ -392,10 +520,22 @@ def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.D
     win_model = lgb.Booster(model_file=str(MODELS_DIR / "win_classifier.txt"))
     ret_model = lgb.Booster(model_file=str(MODELS_DIR / "return_regressor.txt"))
     x = latest[FEATURE_COLS]
-    latest["pred_win"] = win_model.predict(x)
-    latest["pred_ret"] = ret_model.predict(x)
-    latest["score"] = latest["pred_win"] + ALPHA * latest["pred_ret"].clip(-0.05, 0.12)
-    latest["rank"] = latest["score"].rank(method="first", ascending=False).astype(int)
+    latest["dual_pred_win"] = win_model.predict(x)
+    latest["dual_pred_ret"] = ret_model.predict(x)
+    latest["dual_score"] = latest["dual_pred_win"] + ALPHA * latest["dual_pred_ret"].clip(-0.05, 0.12)
+    # Backward-compatible aliases used by the primary strategy and older JSON.
+    latest["pred_win"] = latest["dual_pred_win"]
+    latest["pred_ret"] = latest["dual_pred_ret"]
+    latest["score"] = latest["dual_score"]
+
+    if WINRATE_H4_MODEL_PATH.exists():
+        win_h4_model = lgb.Booster(model_file=str(WINRATE_H4_MODEL_PATH))
+        latest["pred_win_h4"] = win_h4_model.predict(x)
+    else:
+        print(f"[WARN] optional high-winrate model missing: {WINRATE_H4_MODEL_PATH}")
+        latest["pred_win_h4"] = np.nan
+
+    latest["rank"] = latest["dual_score"].rank(method="first", ascending=False).astype(int)
     fallback_names = load_universe_names()
     if names is not None and not names.empty:
         merged_names = pd.concat([fallback_names, names[["code", "name"]]], ignore_index=True).drop_duplicates("code", keep="last")
@@ -405,41 +545,94 @@ def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.D
         latest = latest.merge(merged_names, on="code", how="left")
     else:
         latest["name"] = ""
-    return latest.sort_values("score", ascending=False).reset_index(drop=True)
+    latest_date_str = pd.Timestamp(latest_date).strftime("%Y-%m-%d")
+    raw_prices = load_raw_prices(latest_date_str)
+    if not raw_prices.empty:
+        latest = latest.merge(raw_prices, on="code", how="left")
+    else:
+        for c in ["raw_open", "raw_high", "raw_low", "raw_close", "raw_prev_close"]:
+            latest[c] = np.nan
+    return latest.sort_values("dual_score", ascending=False).reset_index(drop=True)
 
 
 def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFrame) -> bool:
     """Add next-trading-day close-to-close returns to a public payload when available."""
-    if not payload.get("date") or not payload.get("items"):
+    if not payload.get("date"):
         return False
     signal_date = pd.Timestamp(payload["date"]).normalize()
+    item_groups = payload_item_groups(payload)
+    if not item_groups:
+        return False
+
     dates = sorted(pd.to_datetime(rolling["date"]).dt.normalize().unique())
     next_dates = [pd.Timestamp(d).normalize() for d in dates if pd.Timestamp(d).normalize() > signal_date]
     if not next_dates:
-        for item in payload["items"]:
-            item.setdefault("next_1d_date", None)
-            item.setdefault("next_1d_return", None)
+        for items in item_groups:
+            for item in items:
+                item.setdefault("next_1d_date", None)
+                item.setdefault("next_1d_return", None)
         return False
 
     next_date = next_dates[0]
     signal_close = rolling[rolling["date"].eq(signal_date)].set_index("code")["close"]
     next_close = rolling[rolling["date"].eq(next_date)].set_index("code")["close"]
     changed = False
-    for item in payload["items"]:
-        code = str(item.get("code", "")).zfill(6)
-        base = signal_close.get(code, item.get("close"))
-        nxt = next_close.get(code, np.nan)
-        if pd.notna(base) and pd.notna(nxt) and float(base) > 0:
-            value = round(float(nxt) / float(base) - 1.0, 6)
-            if item.get("next_1d_return") != value or item.get("next_1d_date") != next_date.strftime("%Y-%m-%d"):
-                changed = True
-            item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
-            item["next_1d_return"] = value
-        else:
-            item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
-            item["next_1d_return"] = None
+    for items in item_groups:
+        for item in items:
+            code = str(item.get("code", "")).zfill(6)
+            base = signal_close.get(code, item.get("adjusted_close", item.get("close")))
+            nxt = next_close.get(code, np.nan)
+            if pd.notna(base) and pd.notna(nxt) and float(base) > 0:
+                value = round(float(nxt) / float(base) - 1.0, 6)
+                if item.get("next_1d_return") != value or item.get("next_1d_date") != next_date.strftime("%Y-%m-%d"):
+                    changed = True
+                item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
+                item["next_1d_return"] = value
+            else:
+                item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
+                item["next_1d_return"] = None
     if changed:
         payload["performance_updated_at"] = now_cn().isoformat()
+    return changed
+
+
+def enrich_payload_display_prices(payload: dict[str, Any]) -> bool:
+    """Backfill public JSON display prices with raw/unadjusted market prices."""
+    date_str = payload.get("date")
+    if not date_str:
+        return False
+    raw = load_raw_close_for_date(date_str)
+    if raw.empty:
+        return False
+    raw_map = raw.set_index("code").to_dict(orient="index")
+    changed = False
+    for items in payload_item_groups(payload):
+        for item in items:
+            code = str(item.get("code", "")).zfill(6)
+            info = raw_map.get(code)
+            if not info:
+                continue
+            raw_close = finite_float(info.get("raw_close"))
+            if raw_close is None or raw_close <= 0:
+                continue
+            if "adjusted_close" not in item:
+                old_close = finite_float(item.get("close"))
+                if old_close is not None:
+                    item["adjusted_close"] = round(old_close, 4)
+            for c in ["raw_open", "raw_high", "raw_low"]:
+                v = finite_float(info.get(c))
+                if v is not None:
+                    item[c] = round(v, 4)
+            new_close = round(raw_close, 4)
+            if item.get("close") != new_close or item.get("price_type") != "raw_unadjusted":
+                changed = True
+            item["raw_close"] = new_close
+            item["display_close"] = new_close
+            item["close"] = new_close
+            item["price_type"] = "raw_unadjusted"
+    if changed:
+        payload["price_updated_at"] = now_cn().isoformat()
+        payload["price_note"] = "网页展示的 close/display_close/raw_close 均优先使用 AkShare 原始未复权行情价，与普通行情软件看到的价格一致；模型内部特征仍使用连续复权价。"
     return changed
 
 
@@ -453,6 +646,7 @@ def refresh_history_forward_returns(rolling: pd.DataFrame) -> list[str]:
             print(f"[WARN] skip malformed history {path.name}: {exc}")
             continue
         changed = enrich_payload_forward_returns(payload, rolling)
+        changed = enrich_payload_display_prices(payload) or changed
         if changed:
             path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
             updated.append(payload.get("date") or path.stem)
@@ -470,29 +664,106 @@ def refresh_history_forward_returns(rolling: pd.DataFrame) -> list[str]:
     return updated
 
 
-def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.DataFrame | None = None) -> dict[str, Any]:
-    latest_date = pd.Timestamp(scored["date"].iloc[0]).strftime("%Y-%m-%d")
-    top = scored.head(TOP_N).copy()
-    items = []
-    for i, r in enumerate(top.itertuples(index=False), start=1):
-        items.append(
+def finite_float(value: Any) -> float | None:
+    try:
+        f = float(value)
+    except Exception:
+        return None
+    return f if np.isfinite(f) else None
+
+
+def round_or_none(value: Any, digits: int = 6) -> float | None:
+    f = finite_float(value)
+    return round(f, digits) if f is not None else None
+
+
+def row_price_fields(r: Any) -> dict[str, Any]:
+    raw_close = finite_float(getattr(r, "raw_close", np.nan))
+    raw_open = finite_float(getattr(r, "raw_open", np.nan))
+    raw_high = finite_float(getattr(r, "raw_high", np.nan))
+    raw_low = finite_float(getattr(r, "raw_low", np.nan))
+    adjusted_close = finite_float(getattr(r, "close", np.nan))
+    display_close = raw_close if raw_close is not None and raw_close > 0 else adjusted_close
+    price_type = "raw_unadjusted" if raw_close is not None and raw_close > 0 else "adjusted_fallback"
+    return {
+        # `close` is intentionally the market-software display price. The adjusted
+        # continuous price remains available for audits as `adjusted_close`.
+        "close": round(display_close, 4) if display_close is not None else None,
+        "display_close": round(display_close, 4) if display_close is not None else None,
+        "price_type": price_type,
+        "raw_open": round(raw_open, 4) if raw_open is not None else None,
+        "raw_high": round(raw_high, 4) if raw_high is not None else None,
+        "raw_low": round(raw_low, 4) if raw_low is not None else None,
+        "raw_close": round(raw_close, 4) if raw_close is not None else None,
+        "adjusted_close": round(adjusted_close, 4) if adjusted_close is not None else None,
+    }
+
+
+def build_strategy_items(scored: pd.DataFrame, strategy: dict[str, Any]) -> list[dict[str, Any]]:
+    score_col = strategy["score_col"]
+    pred_win_col = strategy.get("pred_win_col")
+    pred_ret_col = strategy.get("pred_ret_col")
+    top_n = int(strategy.get("top_n") or TOP_N)
+    threshold = strategy.get("threshold")
+
+    df = scored.dropna(subset=[score_col]).copy()
+    if threshold is not None:
+        df = df[df[score_col] >= float(threshold)].copy()
+    df = df.sort_values(score_col, ascending=False).head(top_n)
+
+    items: list[dict[str, Any]] = []
+    for i, r in enumerate(df.itertuples(index=False), start=1):
+        pred_win = getattr(r, pred_win_col) if pred_win_col else np.nan
+        pred_ret = getattr(r, pred_ret_col) if pred_ret_col else np.nan
+        item = {
+            "rank": i,
+            "code": str(r.code).zfill(6),
+            "name": str(getattr(r, "name", "") or ""),
+            "score": round(float(getattr(r, score_col)), 6),
+            "pred_win": round_or_none(pred_win, 6),
+            "pred_ret": round_or_none(pred_ret, 6),
+            "amount": round(float(r.amount), 2),
+            "turnover": round(float(r.turnover), 6),
+            "daily_return": round(float(r.ret_1), 6) if pd.notna(r.ret_1) else None,
+            "next_1d_date": None,
+            "next_1d_return": None,
+        }
+        item.update(row_price_fields(r))
+        items.append(item)
+    return items
+
+
+def build_strategy_payloads(scored: pd.DataFrame) -> list[dict[str, Any]]:
+    strategies = []
+    for strategy in STRATEGY_DEFS:
+        items = build_strategy_items(scored, strategy)
+        strategies.append(
             {
-                "rank": i,
-                "code": str(r.code).zfill(6),
-                "name": str(getattr(r, "name", "") or ""),
-                "score": round(float(r.score), 6),
-                "pred_win": round(float(r.pred_win), 6),
-                "pred_ret": round(float(r.pred_ret), 6),
-                "close": round(float(r.close), 4),
-                "amount": round(float(r.amount), 2),
-                "turnover": round(float(r.turnover), 6),
-                "daily_return": round(float(r.ret_1), 6) if pd.notna(r.ret_1) else None,
-                "next_1d_date": None,
-                "next_1d_return": None,
+                "id": strategy["id"],
+                "name": strategy["name"],
+                "short_name": strategy["short_name"],
+                "profile": strategy["profile"],
+                "model_family": strategy["model_family"],
+                "score_column": strategy["score_col"],
+                "score_threshold": strategy.get("threshold"),
+                "top_n": strategy.get("top_n", TOP_N),
+                "trade_rule": strategy["trade_rule"],
+                "selection_note": strategy["selection_note"],
+                "backtest": strategy["backtest"],
+                "reports": strategy["reports"],
+                "items": items,
             }
         )
+    return strategies
+
+
+def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.DataFrame | None = None) -> dict[str, Any]:
+    latest_date = pd.Timestamp(scored["date"].iloc[0]).strftime("%Y-%m-%d")
+    strategies = build_strategy_payloads(scored)
+    primary = strategies[0]
+    items = primary["items"]
     payload = {
-        "strategy": STRATEGY_NAME,
+        "strategy": primary["name"],
         "date": latest_date,
         "generated_at": now_cn().isoformat(),
         "source": source,
@@ -500,31 +771,50 @@ def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.D
         "alpha": ALPHA,
         "top_n": TOP_N,
         "universe": "A股主板 00/60，剔除 ST/退，停牌/零成交过滤",
-        "trade_rule": "T日收盘打分；次日开盘按Top10顺序检查，若涨停无法买入则顺位递补；目标T+2收盘卖出，跌停顺延。",
-        "note": "收盘后无法提前知道次日开盘是否涨停，因此这里展示的是候选Top10，不是最终成交确认。",
+        "trade_rule": primary["trade_rule"],
+        "note": "收盘后无法提前知道次日开盘是否涨停，因此这里展示的是候选列表，不是最终成交确认。",
+        "price_note": "网页展示的 close/display_close/raw_close 均优先使用 AkShare 原始未复权行情价，与普通行情软件看到的价格一致；模型内部特征仍使用连续复权价。",
+        "primary_strategy_id": primary["id"],
         "items": items,
+        "strategies": strategies,
     }
     if rolling is not None:
         enrich_payload_forward_returns(payload, rolling)
+    enrich_payload_display_prices(payload)
     (PUBLIC_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     (HISTORY_DIR / f"{latest_date}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return payload
 
 
 def email_html(payload: dict[str, Any]) -> str:
-    rows = "".join(
-        f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{x['pred_win']:.4f}</td><td>{x['pred_ret']:.2%}</td><td>{x['daily_return'] if x['daily_return'] is not None else ''}</td><td>{x.get('next_1d_return') if x.get('next_1d_return') is not None else '待更新'}</td></tr>"
-        for x in payload["items"]
-    )
+    def pct(v: Any) -> str:
+        f = finite_float(v)
+        return "" if f is None else f"{f:.2%}"
+
+    sections = []
+    for strategy in payload.get("strategies", []) or [{"name": payload["strategy"], "items": payload["items"]}]:
+        rows = "".join(
+            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{pct(x.get('pred_win'))}</td><td>{pct(x.get('pred_ret'))}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td></tr>"
+            for x in strategy.get("items", [])
+        )
+        if not rows:
+            rows = "<tr><td colspan='9' style='color:#64748b'>今日无股票达到该策略阈值</td></tr>"
+        sections.append(
+            f"""
+            <h3>{strategy['name']}</h3>
+            <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px;margin-bottom:18px'>
+              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>胜率分</th><th>收益预测</th><th>行情价</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
+              <tbody>{rows}</tbody>
+            </table>
+            """
+        )
     return f"""
     <div style='font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;color:#111827'>
       <h2>{payload['strategy']} - {payload['date']}</h2>
       <p>{payload['trade_rule']}</p>
       <p style='color:#64748b'>{payload['note']}</p>
-      <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px'>
-        <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>综合分</th><th>胜率分</th><th>收益预测</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <p style='color:#64748b'>{payload.get('price_note', '')}</p>
+      {''.join(sections)}
       <p><a href='{SITE_URL}'>打开网站查看</a></p>
     </div>
     """

@@ -17,12 +17,16 @@
       "score": 1.011627,
       "pred_win": 0.317363,
       "pred_ret": 0.043391,
-      "close": 116.8,
+      "close": 18.52,
       "amount": 1060857664.0,
       "turnover": 0.090672,
       "daily_return": 0.013097,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.023758
+      "next_1d_return": -0.023758,
+      "adjusted_close": 116.8,
+      "raw_close": 18.52,
+      "display_close": 18.52,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 2,
@@ -31,12 +35,16 @@
       "score": 0.533954,
       "pred_win": 0.229365,
       "pred_ret": 0.019037,
-      "close": 15.0,
+      "close": 11.38,
       "amount": 79085312.0,
       "turnover": 0.032516,
       "daily_return": -0.021526,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.027241
+      "next_1d_return": -0.027241,
+      "adjusted_close": 15.0,
+      "raw_close": 11.38,
+      "display_close": 11.38,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 3,
@@ -45,12 +53,16 @@
       "score": 0.089946,
       "pred_win": 0.133241,
       "pred_ret": -0.002706,
-      "close": 6.78,
+      "close": 4.98,
       "amount": 562370304.0,
       "turnover": 0.001556,
       "daily_return": -0.005865,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.01004
+      "next_1d_return": -0.01004,
+      "adjusted_close": 6.78,
+      "raw_close": 4.98,
+      "display_close": 4.98,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 4,
@@ -59,12 +71,16 @@
       "score": 0.076564,
       "pred_win": 0.139939,
       "pred_ret": -0.003961,
-      "close": 107.82,
+      "close": 18.49,
       "amount": 1867745792.0,
       "turnover": 0.004766,
       "daily_return": -0.00645,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.010817
+      "next_1d_return": -0.010817,
+      "adjusted_close": 107.82,
+      "raw_close": 18.49,
+      "display_close": 18.49,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 5,
@@ -73,12 +89,16 @@
       "score": 0.068241,
       "pred_win": 0.136295,
       "pred_ret": -0.004253,
-      "close": 252.64,
+      "close": 38.5,
       "amount": 3392945664.0,
       "turnover": 0.004272,
       "daily_return": -0.007737,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.01039
+      "next_1d_return": -0.01039,
+      "adjusted_close": 252.64,
+      "raw_close": 38.5,
+      "display_close": 38.5,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 6,
@@ -87,12 +107,16 @@
       "score": 0.067272,
       "pred_win": 0.139287,
       "pred_ret": -0.004501,
-      "close": 18.69,
+      "close": 7.28,
       "amount": 1780364800.0,
       "turnover": 0.000907,
       "daily_return": -0.007962,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.006868
+      "next_1d_return": -0.006868,
+      "adjusted_close": 18.69,
+      "raw_close": 7.28,
+      "display_close": 7.28,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 7,
@@ -101,12 +125,16 @@
       "score": 0.066898,
       "pred_win": 0.139564,
       "pred_ret": -0.004542,
-      "close": 5.47,
+      "close": 5.06,
       "amount": 898133696.0,
       "turnover": 0.003618,
       "daily_return": -0.00726,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.021739
+      "next_1d_return": -0.021739,
+      "adjusted_close": 5.47,
+      "raw_close": 5.06,
+      "display_close": 5.06,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 8,
@@ -115,12 +143,16 @@
       "score": 0.066718,
       "pred_win": 0.139379,
       "pred_ret": -0.004541,
-      "close": 4.23,
+      "close": 3.06,
       "amount": 469019680.0,
       "turnover": 0.007105,
       "daily_return": -0.004706,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": 0.0
+      "next_1d_return": 0.0,
+      "adjusted_close": 4.23,
+      "raw_close": 3.06,
+      "display_close": 3.06,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 9,
@@ -129,12 +161,16 @@
       "score": 0.06592,
       "pred_win": 0.144862,
       "pred_ret": -0.004934,
-      "close": 14.49,
+      "close": 6.36,
       "amount": 1767124352.0,
       "turnover": 0.000869,
       "daily_return": -0.014286,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.009434
+      "next_1d_return": -0.009434,
+      "adjusted_close": 14.49,
+      "raw_close": 6.36,
+      "display_close": 6.36,
+      "price_type": "raw_unadjusted"
     },
     {
       "rank": 10,
@@ -143,13 +179,19 @@
       "score": 0.065851,
       "pred_win": 0.152722,
       "pred_ret": -0.005429,
-      "close": 42.62,
+      "close": 6.85,
       "amount": 516247904.0,
       "turnover": 0.004903,
       "daily_return": -0.009988,
       "next_1d_date": "2026-06-04",
-      "next_1d_return": -0.018978
+      "next_1d_return": -0.018978,
+      "adjusted_close": 42.62,
+      "raw_close": 6.85,
+      "display_close": 6.85,
+      "price_type": "raw_unadjusted"
     }
   ],
-  "performance_updated_at": "2026-06-07T20:36:09.382702+08:00"
+  "performance_updated_at": "2026-06-07T20:36:09.382702+08:00",
+  "price_updated_at": "2026-06-07T21:49:41.984513+08:00",
+  "price_note": "网页展示的 close/display_close/raw_close 均优先使用 AkShare 原始未复权行情价，与普通行情软件看到的价格一致；模型内部特征仍使用连续复权价。"
 }
