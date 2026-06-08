@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T22:10:38.807209+08:00",
+  "generated_at": "2026-06-08T22:22:15.439926+08:00",
   "latest_date": "2026-06-08",
   "dates": [
     {
@@ -7,7 +7,7 @@
       "is_latest": true,
       "strategy_count": 5,
       "candidate_count": 45,
-      "generated_at": "2026-06-08T20:59:45.205513+08:00",
+      "generated_at": "2026-06-08T22:22:15.318941+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,
@@ -2638,7 +2638,7 @@
         "count": 29,
         "hit_rate": 0.275862,
         "avg_peak_net_return": 0.065464,
-        "avg_end_net_return": -0.109153,
+        "avg_end_net_return": -0.116979,
         "best_peak_net_return": 0.327265,
         "best_code": "603360",
         "best_name": "百傲化学",
@@ -2668,7 +2668,7 @@
             "count": 4,
             "hit_rate": 0.5,
             "avg_peak_net_return": 0.150346,
-            "avg_end_net_return": -0.048748,
+            "avg_end_net_return": -0.050385,
             "best_peak_net_return": 0.327265,
             "best_code": "603360",
             "best_name": "百傲化学",
@@ -2698,7 +2698,7 @@
             "count": 10,
             "hit_rate": 0.0,
             "avg_peak_net_return": 0.01668,
-            "avg_end_net_return": -0.062895,
+            "avg_end_net_return": -0.065966,
             "best_peak_net_return": 0.065741,
             "best_code": "603596",
             "best_name": "伯特利",
@@ -2764,7 +2764,7 @@
             "count": 15,
             "hit_rate": 0.4,
             "avg_peak_net_return": 0.075351,
-            "avg_end_net_return": -0.1561,
+            "avg_end_net_return": -0.168746,
             "best_peak_net_return": 0.189747,
             "best_code": "002733",
             "best_name": "雄韬股份",
