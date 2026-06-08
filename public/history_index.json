@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-07T23:38:39.441453+08:00",
+  "generated_at": "2026-06-08T12:52:16.371295+08:00",
   "latest_date": "2026-06-04",
   "dates": [
     {
       "date": "2026-06-04",
       "is_latest": true,
-      "strategy_count": 4,
-      "candidate_count": 30,
-      "generated_at": "2026-06-07T23:12:42.175259+08:00",
+      "strategy_count": 5,
+      "candidate_count": 40,
+      "generated_at": "2026-06-08T12:52:16.342941+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,
@@ -15,6 +15,17 @@
         "next_dates": []
       },
       "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
         {
           "id": "dualhigh_daily_top1_slots2",
           "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
@@ -64,23 +75,38 @@
     {
       "date": "2026-06-03",
       "is_latest": false,
-      "strategy_count": 1,
-      "candidate_count": 10,
-      "generated_at": "2026-06-07T20:12:10.017139+08:00",
+      "strategy_count": 5,
+      "candidate_count": 38,
+      "generated_at": "2026-06-08T12:41:29.031810+08:00",
       "one_day": {
-        "count": 10,
-        "avg_return": -0.013926,
-        "win_rate": 0.0,
-        "best_return": 0.0,
-        "worst_return": -0.027241,
+        "count": 38,
+        "avg_return": -0.000162,
+        "win_rate": 0.315789,
+        "best_return": 0.1,
+        "worst_return": -0.049815,
         "next_dates": [
           "2026-06-04"
         ]
       },
       "strategies": [
         {
-          "id": "legacy",
-          "name": "主板双高猎手 T2 V1 - 每日Top1版",
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.006002,
+            "win_rate": 0.3,
+            "best_return": 0.1,
+            "worst_return": -0.047914,
+            "next_dates": [
+              "2026-06-04"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
           "candidate_count": 10,
           "one_day": {
             "count": 10,
@@ -90,6 +116,1827 @@
             "worst_return": -0.027241,
             "next_dates": [
               "2026-06-04"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.0255,
+            "win_rate": 0.0,
+            "best_return": -0.023758,
+            "worst_return": -0.027241,
+            "next_dates": [
+              "2026-06-04"
+            ]
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": -0.027241,
+            "win_rate": 0.0,
+            "best_return": -0.027241,
+            "worst_return": -0.027241,
+            "next_dates": [
+              "2026-06-04"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.018092,
+            "win_rate": 0.6,
+            "best_return": 0.1,
+            "worst_return": -0.049815,
+            "next_dates": [
+              "2026-06-04"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 39,
+      "generated_at": "2026-06-08T12:41:21.890351+08:00",
+      "one_day": {
+        "count": 39,
+        "avg_return": -0.003078,
+        "win_rate": 0.358974,
+        "best_return": 0.099884,
+        "worst_return": -0.099973,
+        "next_dates": [
+          "2026-06-03"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.001939,
+            "win_rate": 0.5,
+            "best_return": 0.099884,
+            "worst_return": -0.099973,
+            "next_dates": [
+              "2026-06-03"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.005087,
+            "win_rate": 0.2,
+            "best_return": 0.013097,
+            "worst_return": -0.021526,
+            "next_dates": [
+              "2026-06-03"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.004215,
+            "win_rate": 0.5,
+            "best_return": 0.013097,
+            "worst_return": -0.021526,
+            "next_dates": [
+              "2026-06-03"
+            ]
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.031161,
+            "win_rate": 0.0,
+            "best_return": -0.021526,
+            "worst_return": -0.040795,
+            "next_dates": [
+              "2026-06-03"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.001188,
+            "win_rate": 0.4,
+            "best_return": 0.070331,
+            "worst_return": -0.067247,
+            "next_dates": [
+              "2026-06-03"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 36,
+      "generated_at": "2026-06-08T12:41:14.626146+08:00",
+      "one_day": {
+        "count": 36,
+        "avg_return": -0.003972,
+        "win_rate": 0.444444,
+        "best_return": 0.090989,
+        "worst_return": -0.099856,
+        "next_dates": [
+          "2026-06-02"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.003958,
+            "win_rate": 0.6,
+            "best_return": 0.090989,
+            "worst_return": -0.099856,
+            "next_dates": [
+              "2026-06-02"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.006662,
+            "win_rate": 0.2,
+            "best_return": 0.005336,
+            "worst_return": -0.026624,
+            "next_dates": [
+              "2026-06-02"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.004469,
+            "win_rate": 1.0,
+            "best_return": 0.004469,
+            "worst_return": 0.004469,
+            "next_dates": [
+              "2026-06-02"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.002751,
+            "win_rate": 0.466667,
+            "best_return": 0.057198,
+            "worst_return": -0.058096,
+            "next_dates": [
+              "2026-06-02"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 45,
+      "generated_at": "2026-06-08T12:41:07.556370+08:00",
+      "one_day": {
+        "count": 45,
+        "avg_return": 0.013897,
+        "win_rate": 0.622222,
+        "best_return": 0.10052,
+        "worst_return": -0.100095,
+        "next_dates": [
+          "2026-06-01"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.013259,
+            "win_rate": 0.6,
+            "best_return": 0.079436,
+            "worst_return": -0.018416,
+            "next_dates": [
+              "2026-06-01"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.028217,
+            "win_rate": 0.6,
+            "best_return": 0.10052,
+            "worst_return": -0.019516,
+            "next_dates": [
+              "2026-06-01"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.021584,
+            "win_rate": 1.0,
+            "best_return": 0.041555,
+            "worst_return": 0.006721,
+            "next_dates": [
+              "2026-06-01"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.000349,
+            "win_rate": 0.4,
+            "best_return": 0.100096,
+            "worst_return": -0.100095,
+            "next_dates": [
+              "2026-06-01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 35,
+      "generated_at": "2026-06-08T12:41:00.364084+08:00",
+      "one_day": {
+        "count": 35,
+        "avg_return": -0.010739,
+        "win_rate": 0.514286,
+        "best_return": 0.099091,
+        "worst_return": -0.100018,
+        "next_dates": [
+          "2026-05-29"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.029651,
+            "win_rate": 0.3,
+            "best_return": 0.053241,
+            "worst_return": -0.100018,
+            "next_dates": [
+              "2026-05-29"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.019522,
+            "win_rate": 1.0,
+            "best_return": 0.029488,
+            "worst_return": 0.007429,
+            "next_dates": [
+              "2026-05-29"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.018304,
+            "win_rate": 0.333333,
+            "best_return": 0.099091,
+            "worst_return": -0.091603,
+            "next_dates": [
+              "2026-05-29"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 41,
+      "generated_at": "2026-06-08T12:40:53.324586+08:00",
+      "one_day": {
+        "count": 41,
+        "avg_return": -0.000301,
+        "win_rate": 0.682927,
+        "best_return": 0.099955,
+        "worst_return": -0.1,
+        "next_dates": [
+          "2026-05-28"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.000557,
+            "win_rate": 0.7,
+            "best_return": 0.043073,
+            "worst_return": -0.1,
+            "next_dates": [
+              "2026-05-28"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.003739,
+            "win_rate": 0.7,
+            "best_return": 0.014674,
+            "worst_return": -0.020123,
+            "next_dates": [
+              "2026-05-28"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 6,
+          "one_day": {
+            "count": 6,
+            "avg_return": 0.006149,
+            "win_rate": 0.833333,
+            "best_return": 0.014258,
+            "worst_return": -0.000387,
+            "next_dates": [
+              "2026-05-28"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.006146,
+            "win_rate": 0.6,
+            "best_return": 0.099955,
+            "worst_return": -0.09996,
+            "next_dates": [
+              "2026-05-28"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 35,
+      "generated_at": "2026-06-08T12:40:46.402350+08:00",
+      "one_day": {
+        "count": 35,
+        "avg_return": -0.009893,
+        "win_rate": 0.285714,
+        "best_return": 0.100343,
+        "worst_return": -0.099981,
+        "next_dates": [
+          "2026-05-27"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 9,
+          "one_day": {
+            "count": 9,
+            "avg_return": -0.020307,
+            "win_rate": 0.333333,
+            "best_return": 0.028007,
+            "worst_return": -0.099981,
+            "next_dates": [
+              "2026-05-27"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.011883,
+            "win_rate": 0.1,
+            "best_return": 0.006524,
+            "worst_return": -0.030805,
+            "next_dates": [
+              "2026-05-27"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": -0.015903,
+            "win_rate": 0.0,
+            "best_return": -0.015903,
+            "worst_return": -0.015903,
+            "next_dates": [
+              "2026-05-27"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.001917,
+            "win_rate": 0.4,
+            "best_return": 0.100343,
+            "worst_return": -0.084881,
+            "next_dates": [
+              "2026-05-27"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-25",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 32,
+      "generated_at": "2026-06-08T12:40:38.861656+08:00",
+      "one_day": {
+        "count": 32,
+        "avg_return": -0.008508,
+        "win_rate": 0.40625,
+        "best_return": 0.100116,
+        "worst_return": -0.1,
+        "next_dates": [
+          "2026-05-26"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 4,
+          "one_day": {
+            "count": 4,
+            "avg_return": 0.038135,
+            "win_rate": 0.75,
+            "best_return": 0.100116,
+            "worst_return": -0.077063,
+            "next_dates": [
+              "2026-05-26"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.000842,
+            "win_rate": 0.4,
+            "best_return": 0.010299,
+            "worst_return": -0.015605,
+            "next_dates": [
+              "2026-05-26"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 3,
+          "one_day": {
+            "count": 3,
+            "avg_return": -0.009073,
+            "win_rate": 0.666667,
+            "best_return": 0.005348,
+            "worst_return": -0.034226,
+            "next_dates": [
+              "2026-05-26"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.025944,
+            "win_rate": 0.266667,
+            "best_return": 0.029855,
+            "worst_return": -0.1,
+            "next_dates": [
+              "2026-05-26"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 31,
+      "generated_at": "2026-06-08T12:40:31.562841+08:00",
+      "one_day": {
+        "count": 31,
+        "avg_return": -0.017811,
+        "win_rate": 0.225806,
+        "best_return": 0.052707,
+        "worst_return": -0.100063,
+        "next_dates": [
+          "2026-05-25"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 4,
+          "one_day": {
+            "count": 4,
+            "avg_return": -0.041858,
+            "win_rate": 0.0,
+            "best_return": -0.007695,
+            "worst_return": -0.099963,
+            "next_dates": [
+              "2026-05-25"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.001859,
+            "win_rate": 0.2,
+            "best_return": 0.03239,
+            "worst_return": -0.021865,
+            "next_dates": [
+              "2026-05-25"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.000399,
+            "win_rate": 0.5,
+            "best_return": 0.007499,
+            "worst_return": -0.008297,
+            "next_dates": [
+              "2026-05-25"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.024355,
+            "win_rate": 0.266667,
+            "best_return": 0.052707,
+            "worst_return": -0.100063,
+            "next_dates": [
+              "2026-05-25"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 42,
+      "generated_at": "2026-06-08T12:40:24.671104+08:00",
+      "one_day": {
+        "count": 42,
+        "avg_return": 0.021058,
+        "win_rate": 0.666667,
+        "best_return": 0.101003,
+        "worst_return": -0.021021,
+        "next_dates": [
+          "2026-05-22"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 8,
+          "one_day": {
+            "count": 8,
+            "avg_return": 0.01889,
+            "win_rate": 0.75,
+            "best_return": 0.1,
+            "worst_return": -0.021021,
+            "next_dates": [
+              "2026-05-22"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.012813,
+            "win_rate": 0.5,
+            "best_return": 0.099642,
+            "worst_return": -0.020926,
+            "next_dates": [
+              "2026-05-22"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 9,
+          "one_day": {
+            "count": 9,
+            "avg_return": 0.011374,
+            "win_rate": 0.555556,
+            "best_return": 0.03632,
+            "worst_return": -0.009394,
+            "next_dates": [
+              "2026-05-22"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.033521,
+            "win_rate": 0.8,
+            "best_return": 0.101003,
+            "worst_return": -0.018683,
+            "next_dates": [
+              "2026-05-22"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 29,
+      "generated_at": "2026-06-08T12:40:17.691153+08:00",
+      "one_day": {
+        "count": 29,
+        "avg_return": -0.026078,
+        "win_rate": 0.172414,
+        "best_return": 0.10024,
+        "worst_return": -0.101281,
+        "next_dates": [
+          "2026-05-21"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 3,
+          "one_day": {
+            "count": 3,
+            "avg_return": -0.086454,
+            "win_rate": 0.0,
+            "best_return": -0.077281,
+            "worst_return": -0.101281,
+            "next_dates": [
+              "2026-05-21"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.013227,
+            "win_rate": 0.2,
+            "best_return": 0.001495,
+            "worst_return": -0.042747,
+            "next_dates": [
+              "2026-05-21"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.098909,
+            "win_rate": 1.0,
+            "best_return": 0.098909,
+            "worst_return": 0.098909,
+            "next_dates": [
+              "2026-05-21"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.030903,
+            "win_rate": 0.133333,
+            "best_return": 0.10024,
+            "worst_return": -0.099915,
+            "next_dates": [
+              "2026-05-21"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 28,
+      "generated_at": "2026-06-08T12:40:10.820035+08:00",
+      "one_day": {
+        "count": 28,
+        "avg_return": -0.009363,
+        "win_rate": 0.357143,
+        "best_return": 0.041584,
+        "worst_return": -0.099885,
+        "next_dates": [
+          "2026-05-20"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.004106,
+            "win_rate": 0.5,
+            "best_return": 0.023866,
+            "worst_return": -0.032078,
+            "next_dates": [
+              "2026-05-20"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.001405,
+            "win_rate": 0.4,
+            "best_return": 0.032345,
+            "worst_return": -0.019796,
+            "next_dates": [
+              "2026-05-20"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": -0.026792,
+            "win_rate": 0.0,
+            "best_return": -0.026792,
+            "worst_return": -0.026792,
+            "next_dates": [
+              "2026-05-20"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.016082,
+            "win_rate": 0.333333,
+            "best_return": 0.041584,
+            "worst_return": -0.099885,
+            "next_dates": [
+              "2026-05-20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 29,
+      "generated_at": "2026-06-08T12:40:03.912125+08:00",
+      "one_day": {
+        "count": 29,
+        "avg_return": -0.001326,
+        "win_rate": 0.551724,
+        "best_return": 0.099997,
+        "worst_return": -0.073244,
+        "next_dates": [
+          "2026-05-19"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 3,
+          "one_day": {
+            "count": 3,
+            "avg_return": -0.007353,
+            "win_rate": 0.333333,
+            "best_return": 0.099997,
+            "worst_return": -0.073244,
+            "next_dates": [
+              "2026-05-19"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.003296,
+            "win_rate": 0.5,
+            "best_return": 0.01357,
+            "worst_return": -0.002684,
+            "next_dates": [
+              "2026-05-19"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.008118,
+            "win_rate": 1.0,
+            "best_return": 0.008118,
+            "worst_return": 0.008118,
+            "next_dates": [
+              "2026-05-19"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.003831,
+            "win_rate": 0.6,
+            "best_return": 0.031538,
+            "worst_return": -0.066927,
+            "next_dates": [
+              "2026-05-19"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 32,
+      "generated_at": "2026-06-08T12:39:57.000275+08:00",
+      "one_day": {
+        "count": 32,
+        "avg_return": -0.001104,
+        "win_rate": 0.25,
+        "best_return": 0.100784,
+        "worst_return": -0.072342,
+        "next_dates": [
+          "2026-05-18"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 6,
+          "one_day": {
+            "count": 6,
+            "avg_return": 0.019165,
+            "win_rate": 0.5,
+            "best_return": 0.099942,
+            "worst_return": -0.033287,
+            "next_dates": [
+              "2026-05-18"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.007654,
+            "win_rate": 0.1,
+            "best_return": 0.009217,
+            "worst_return": -0.013583,
+            "next_dates": [
+              "2026-05-18"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": -0.005358,
+            "win_rate": 0.0,
+            "best_return": -0.005358,
+            "worst_return": -0.005358,
+            "next_dates": [
+              "2026-05-18"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.004562,
+            "win_rate": 0.266667,
+            "best_return": 0.100784,
+            "worst_return": -0.072342,
+            "next_dates": [
+              "2026-05-18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 29,
+      "generated_at": "2026-06-08T12:39:50.166666+08:00",
+      "one_day": {
+        "count": 29,
+        "avg_return": -0.013579,
+        "win_rate": 0.241379,
+        "best_return": 0.084927,
+        "worst_return": -0.070673,
+        "next_dates": [
+          "2026-05-15"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 3,
+          "one_day": {
+            "count": 3,
+            "avg_return": -0.048758,
+            "win_rate": 0.0,
+            "best_return": -0.035867,
+            "worst_return": -0.070673,
+            "next_dates": [
+              "2026-05-15"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.009219,
+            "win_rate": 0.1,
+            "best_return": 0.010782,
+            "worst_return": -0.028848,
+            "next_dates": [
+              "2026-05-15"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": -0.031148,
+            "win_rate": 0.0,
+            "best_return": -0.031148,
+            "worst_return": -0.031148,
+            "next_dates": [
+              "2026-05-15"
+            ]
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.008277,
+            "win_rate": 0.4,
+            "best_return": 0.084927,
+            "worst_return": -0.057409,
+            "next_dates": [
+              "2026-05-15"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 26,
+      "generated_at": "2026-06-08T12:39:43.460081+08:00",
+      "one_day": {
+        "count": 26,
+        "avg_return": -0.002137,
+        "win_rate": 0.423077,
+        "best_return": 0.099983,
+        "worst_return": -0.099832,
+        "next_dates": [
+          "2026-05-14"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.029452,
+            "win_rate": 1.0,
+            "best_return": 0.029452,
+            "worst_return": 0.029452,
+            "next_dates": [
+              "2026-05-14"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -3.6e-05,
+            "win_rate": 0.4,
+            "best_return": 0.011517,
+            "worst_return": -0.022222,
+            "next_dates": [
+              "2026-05-14"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.005644,
+            "win_rate": 0.4,
+            "best_return": 0.099983,
+            "worst_return": -0.099832,
+            "next_dates": [
+              "2026-05-14"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 28,
+      "generated_at": "2026-06-08T12:39:36.624460+08:00",
+      "one_day": {
+        "count": 28,
+        "avg_return": 0.007298,
+        "win_rate": 0.392857,
+        "best_return": 0.100796,
+        "worst_return": -0.089717,
+        "next_dates": [
+          "2026-05-13"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 3,
+          "one_day": {
+            "count": 3,
+            "avg_return": 0.029463,
+            "win_rate": 0.666667,
+            "best_return": 0.100029,
+            "worst_return": -0.01752,
+            "next_dates": [
+              "2026-05-13"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.002878,
+            "win_rate": 0.1,
+            "best_return": 0.013514,
+            "worst_return": -0.008194,
+            "next_dates": [
+              "2026-05-13"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.00965,
+            "win_rate": 0.533333,
+            "best_return": 0.100796,
+            "worst_return": -0.089717,
+            "next_dates": [
+              "2026-05-13"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 29,
+      "generated_at": "2026-06-08T12:39:29.868517+08:00",
+      "one_day": {
+        "count": 29,
+        "avg_return": -0.004481,
+        "win_rate": 0.413793,
+        "best_return": 0.083754,
+        "worst_return": -0.058019,
+        "next_dates": [
+          "2026-05-12"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 4,
+          "one_day": {
+            "count": 4,
+            "avg_return": -0.005102,
+            "win_rate": 0.75,
+            "best_return": 0.013644,
+            "worst_return": -0.042377,
+            "next_dates": [
+              "2026-05-12"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.003274,
+            "win_rate": 0.5,
+            "best_return": 0.034156,
+            "worst_return": -0.011791,
+            "next_dates": [
+              "2026-05-12"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.009486,
+            "win_rate": 0.266667,
+            "best_return": 0.083754,
+            "worst_return": -0.058019,
+            "next_dates": [
+              "2026-05-12"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 26,
+      "generated_at": "2026-06-08T12:39:23.033054+08:00",
+      "one_day": {
+        "count": 26,
+        "avg_return": 0.012038,
+        "win_rate": 0.615385,
+        "best_return": 0.100799,
+        "worst_return": -0.036175,
+        "next_dates": [
+          "2026-05-11"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.041927,
+            "win_rate": 1.0,
+            "best_return": 0.041927,
+            "worst_return": 0.041927,
+            "next_dates": [
+              "2026-05-11"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.003728,
+            "win_rate": 0.6,
+            "best_return": 0.019621,
+            "worst_return": -0.004388,
+            "next_dates": [
+              "2026-05-11"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.015585,
+            "win_rate": 0.6,
+            "best_return": 0.100799,
+            "worst_return": -0.036175,
+            "next_dates": [
+              "2026-05-11"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 26,
+      "generated_at": "2026-06-08T12:39:16.018260+08:00",
+      "one_day": {
+        "count": 26,
+        "avg_return": -0.003324,
+        "win_rate": 0.269231,
+        "best_return": 0.039948,
+        "worst_return": -0.040362,
+        "next_dates": [
+          "2026-05-08"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.03135,
+            "win_rate": 1.0,
+            "best_return": 0.03135,
+            "worst_return": 0.03135,
+            "next_dates": [
+              "2026-05-08"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.000686,
+            "win_rate": 0.2,
+            "best_return": 0.006647,
+            "worst_return": -0.006238,
+            "next_dates": [
+              "2026-05-08"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.007393,
+            "win_rate": 0.266667,
+            "best_return": 0.039948,
+            "worst_return": -0.040362,
+            "next_dates": [
+              "2026-05-08"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 26,
+      "generated_at": "2026-06-08T12:39:08.805579+08:00",
+      "one_day": {
+        "count": 26,
+        "avg_return": 0.016252,
+        "win_rate": 0.615385,
+        "best_return": 0.089328,
+        "worst_return": -0.055956,
+        "next_dates": [
+          "2026-05-07"
+        ]
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 1,
+          "one_day": {
+            "count": 1,
+            "avg_return": 0.089328,
+            "win_rate": 1.0,
+            "best_return": 0.089328,
+            "worst_return": 0.089328,
+            "next_dates": [
+              "2026-05-07"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": -0.002072,
+            "win_rate": 0.3,
+            "best_return": 0.006912,
+            "worst_return": -0.019943,
+            "next_dates": [
+              "2026-05-07"
+            ]
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.023595,
+            "win_rate": 0.8,
+            "best_return": 0.075646,
+            "worst_return": -0.055956,
+            "next_dates": [
+              "2026-05-07"
             ]
           }
         }

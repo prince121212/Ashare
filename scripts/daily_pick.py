@@ -45,8 +45,41 @@ V12_SKIP_TOP_RANKS = 3
 V12_RANGE_FILTER_RANK_LOW = 16
 V12_RANGE_FILTER_RANK_HIGH = 30
 V12_RANGE_FILTER_GT = 0.085
+PEAK20_ALPHA = 5.0
+PEAK20_THRESHOLD = 1.7010531667057818
+PEAK20_HIT_MODEL_PATH = MODELS_DIR / "peak20_hit_classifier.txt"
+PEAK20_PEAK_MODEL_PATH = MODELS_DIR / "peak20_peak_return_regressor.txt"
 
 STRATEGY_DEFS: list[dict[str, Any]] = [
+    {
+        "id": "qlib_peak20_tp10_trail8",
+        "name": "QLIB-Peak20 高收益潜力选股",
+        "short_name": "Peak20主策略",
+        "model_family": "qlib_peak20",
+        "score_col": "peak20_score",
+        "pred_win_col": "peak20_pred_hit",
+        "pred_ret_col": "peak20_pred_peak",
+        "metric1_label": "20日8%概率",
+        "metric1_col": "peak20_pred_hit",
+        "metric1_format": "pct",
+        "metric2_label": "峰值收益预测",
+        "metric2_col": "peak20_pred_peak",
+        "metric2_format": "pct",
+        "threshold": PEAK20_THRESHOLD,
+        "top_n": 10,
+        "profile": "peak20_alpha5_q975_tp10_or_trail8",
+        "trade_rule": "T日收盘按Peak20模型打分；T+1开盘按Top10顺序检查，避开开盘涨停后买入。建议卖出规则：若收盘浮盈≥10%，次日开盘止盈；或曾浮盈≥8%且较高点回撤≥3个百分点，次日开盘卖出；跌停无法卖出则顺延。",
+        "selection_note": "当前网站主策略。目标是未来20个交易日内出现较大收益机会；从2026-05-06开始纳入网站每日选股。V3动作价值模型仅作辅助参考，主卖出采用TP10或Trail8简单规则。",
+        "backtest": {
+            "2025": {"cum_return": 25.690861, "annual_return": None, "max_drawdown": -0.951975, "trade_win_rate": 0.670659, "trades": 167},
+            "2026_ytd_to_0603": {"cum_return": 6.684822, "annual_return": None, "max_drawdown": -0.570971, "trade_win_rate": 0.681818, "trades": 66},
+            "note": "回测口径来自统一模型家族对比：QLIB-Peak20买入 + TP10或Trail8次日开盘卖出。累计收益为每日等权复利研究口径，重点参考交易胜率和单笔表现。",
+        },
+        "reports": [
+            {"label": "模型家族对比", "href": "./reports/akquant_qlib_model_comparison_report.html"},
+            {"label": "V3卖出模型研究", "href": "./reports/exit_v3_action_value_report.html"},
+        ],
+    },
     {
         "id": "dualhigh_daily_top1_slots2",
         "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
@@ -585,6 +618,18 @@ def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.D
         print(f"[WARN] optional high-winrate model missing: {WINRATE_H4_MODEL_PATH}")
         latest["pred_win_h4"] = np.nan
 
+    if PEAK20_HIT_MODEL_PATH.exists() and PEAK20_PEAK_MODEL_PATH.exists():
+        peak20_hit_model = lgb.Booster(model_file=str(PEAK20_HIT_MODEL_PATH))
+        peak20_peak_model = lgb.Booster(model_file=str(PEAK20_PEAK_MODEL_PATH))
+        latest["peak20_pred_hit"] = peak20_hit_model.predict(x)
+        latest["peak20_pred_peak"] = peak20_peak_model.predict(x)
+        latest["peak20_score"] = latest["peak20_pred_hit"] + PEAK20_ALPHA * latest["peak20_pred_peak"].clip(-0.05, 0.30)
+    else:
+        print(f"[WARN] optional QLIB-Peak20 models missing: {PEAK20_HIT_MODEL_PATH}, {PEAK20_PEAK_MODEL_PATH}")
+        latest["peak20_pred_hit"] = np.nan
+        latest["peak20_pred_peak"] = np.nan
+        latest["peak20_score"] = np.nan
+
     # V1.2 close-only rule strategy: use the deterministic V03A score computed
     # from same-day OHLCV.  Original V1.2 was an event strategy with T+1 open-gap
     # entry timing; this close-only adaptation deliberately removes the open-gap
@@ -690,7 +735,10 @@ def enrich_payload_display_prices(payload: dict[str, Any]) -> bool:
             for c in ["raw_open", "raw_high", "raw_low"]:
                 v = finite_float(info.get(c))
                 if v is not None:
-                    item[c] = round(v, 4)
+                    new_v = round(v, 4)
+                    if item.get(c) != new_v:
+                        changed = True
+                    item[c] = new_v
             new_close = round(raw_close, 4)
             if item.get("close") != new_close or item.get("price_type") != "raw_unadjusted":
                 changed = True
@@ -907,6 +955,15 @@ def build_strategy_items(scored: pd.DataFrame, strategy: dict[str, Any]) -> list
                     "v12_score": round(float(getattr(r, "v12_score")), 6),
                     "daily_range": round(float(getattr(r, "daily_range")), 6),
                     "v12_rule": "close_only: rank_v03a>3; exclude 16<=rank<=30 & daily_range>8.5%; no T+1 open-gap trigger",
+                }
+            )
+        if strategy.get("model_family") == "qlib_peak20":
+            item.update(
+                {
+                    "peak20_pred_hit": round_or_none(getattr(r, "peak20_pred_hit", None), 6),
+                    "peak20_pred_peak": round_or_none(getattr(r, "peak20_pred_peak", None), 6),
+                    "peak20_score": round_or_none(getattr(r, "peak20_score", None), 6),
+                    "suggested_exit": "TP10或Trail8：收盘浮盈≥10%次日开盘止盈；或曾浮盈≥8%且从高点回撤≥3个百分点次日开盘卖出。",
                 }
             )
         item.update(row_price_fields(r))
