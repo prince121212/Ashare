@@ -17,6 +17,10 @@ on:
         description: 'Deploy existing public files without fetching/scoring'
         required: false
         default: 'false'
+      email_only:
+        description: 'Send current public/latest.json email without fetching/scoring'
+        required: false
+        default: 'false'
 
 permissions:
   contents: write
@@ -55,6 +59,19 @@ jobs:
           # endpoint. After the close, Sina daily bars are slower but reliable.
           AKSHARE_USE_HIST_DAILY: 'true'
         run: |
+          if [ "${{ github.event.inputs.email_only }}" = "true" ]; then
+            echo "Email-only mode: send current public/latest.json."
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.daily_pick import send_email
+
+          payload = json.loads(Path("public/latest.json").read_text(encoding="utf-8"))
+          if not send_email(payload):
+              raise SystemExit("email send failed")
+          PY
+            exit 0
+          fi
           if [ "${{ github.event.inputs.deploy_only }}" = "true" ]; then
             echo "Deploy-only mode: skip AkShare fetch, scoring, and email."
             exit 0

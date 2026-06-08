@@ -8,6 +8,7 @@ import os
 import sys
 import time
 from datetime import datetime
+from html import escape
 from pathlib import Path
 from typing import Any
 
@@ -1289,10 +1290,14 @@ def email_html(payload: dict[str, Any]) -> str:
         f = finite_float(v)
         return "" if f is None else f"{f:.2%}"
 
+    def fmt_score(v: Any) -> str:
+        f = finite_float(v)
+        return "—" if f is None else f"{f:.4f}"
+
     def fmt_metric(v: Any, kind: str | None) -> str:
         f = finite_float(v)
         if f is None:
-            return ""
+            return "—"
         if kind == "pct":
             return f"{f:.2%}"
         if kind == "int":
@@ -1301,37 +1306,136 @@ def email_html(payload: dict[str, Any]) -> str:
             return f"{f:.2f}"
         return f"{f:.6f}"
 
-    sections = []
-    for strategy in payload.get("strategies", []) or [{"name": payload["strategy"], "items": payload["items"]}]:
-        metric1_label = strategy.get("metric1_label", "胜率分")
-        metric2_label = strategy.get("metric2_label", "收益预测")
+    strategies = payload.get("strategies", []) or [{"name": payload["strategy"], "items": payload["items"]}]
+    primary = strategies[0] if strategies else {"name": payload.get("strategy", "主策略"), "items": payload.get("items", [])}
+
+    def stock_card(item: dict[str, Any], strategy: dict[str, Any], show_strategy: bool = False) -> str:
+        metric1_label = escape(str(strategy.get("metric1_label", "指标1")))
+        metric2_label = escape(str(strategy.get("metric2_label", "指标2")))
         metric1_format = strategy.get("metric1_format", "pct")
         metric2_format = strategy.get("metric2_format", "pct")
-        rows = "".join(
-            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{fmt_metric(x.get('metric1', x.get('pred_win')), metric1_format)}</td><td>{fmt_metric(x.get('metric2', x.get('pred_ret')), metric2_format)}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td><td>{pct(x.get('forward20_peak_net_return')) or '待完整'}</td><td>{pct(x.get('forward20_end_net_return')) or '待完整'}</td><td>{'命中' if x.get('forward20_hit8') else ('未命中' if x.get('forward20_complete') else '待完整')}</td></tr>"
-            for x in strategy.get("items", [])
+        rank = escape(str(item.get("rank", "")))
+        code = escape(str(item.get("code", "")))
+        name = escape(str(item.get("name", "")))
+        score = fmt_score(item.get("score"))
+        close = finite_float(item.get("close"))
+        close_text = "—" if close is None else f"{close:.2f}"
+        metric1 = fmt_metric(item.get("metric1", item.get("pred_win")), metric1_format)
+        metric2 = fmt_metric(item.get("metric2", item.get("pred_ret")), metric2_format)
+        daily_return = pct(item.get("daily_return")) or "—"
+        strategy_line = (
+            f"<div style='font-size:12px;color:#64748b;margin-bottom:4px'>{escape(str(strategy.get('short_name') or strategy.get('name') or '策略'))}</div>"
+            if show_strategy
+            else ""
         )
-        if not rows:
-            rows = "<tr><td colspan='12' style='color:#64748b'>今日无股票达到该策略阈值</td></tr>"
-        sections.append(
-            f"""
-            <h3>{strategy['name']}</h3>
-            <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px;margin-bottom:18px'>
-              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>买入后1日</th><th>20日峰值</th><th>20日期末</th><th>20日成绩</th></tr></thead>
-              <tbody>{rows}</tbody>
-            </table>
-            """
-        )
+        return f"""
+        <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:12px 12px;margin:10px 0;">
+          {strategy_line}
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="width:34px;vertical-align:top;">
+                <div style="width:28px;height:28px;line-height:28px;text-align:center;border-radius:999px;background:#111827;color:#ffffff;font-size:13px;font-weight:700;">{rank}</div>
+              </td>
+              <td style="vertical-align:top;">
+                <div style="font-size:17px;font-weight:700;color:#111827;line-height:1.25;">{name}</div>
+                <div style="font-size:13px;color:#64748b;line-height:1.5;">{code} · 价格 {close_text} · 当日 {daily_return}</div>
+              </td>
+              <td style="width:86px;text-align:right;vertical-align:top;">
+                <div style="font-size:12px;color:#64748b;">分数</div>
+                <div style="font-size:18px;font-weight:800;color:#2563eb;line-height:1.2;">{score}</div>
+              </td>
+            </tr>
+          </table>
+          <div style="margin-top:10px;padding-top:9px;border-top:1px solid #f1f5f9;font-size:13px;color:#334155;line-height:1.6;">
+            {metric1_label}：<b>{metric1}</b>　{metric2_label}：<b>{metric2}</b>
+          </div>
+        </div>
+        """
+
+    primary_items = primary.get("items", []) or []
+    primary_cards = "".join(
+        stock_card(x, primary)
+        for x in primary_items[:10]
+        if isinstance(x, dict)
+    ) or "<div style='color:#64748b;background:#ffffff;border-radius:12px;padding:14px;'>今日主策略无候选。</div>"
+
+    other_cards = []
+    for strategy in strategies[1:]:
+        items = strategy.get("items", []) if isinstance(strategy, dict) else []
+        if items:
+            other_cards.append(stock_card(items[0], strategy, show_strategy=True))
+        else:
+            other_cards.append(
+                f"""
+                <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:12px;margin:10px 0;">
+                  <div style="font-size:15px;font-weight:700;color:#111827;">{escape(str(strategy.get('short_name') or strategy.get('name') or '策略'))}</div>
+                  <div style="font-size:13px;color:#64748b;margin-top:4px;">今日无候选</div>
+                </div>
+                """
+            )
+
+    date_str = escape(str(payload.get("date", "")))
+    primary_name = escape(str(primary.get("name") or payload.get("strategy") or "主策略"))
+    site_url = escape(SITE_URL)
     return f"""
-    <div style='font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;color:#111827'>
-      <h2>{payload['strategy']} - {payload['date']}</h2>
-      <p>{payload['trade_rule']}</p>
-      <p style='color:#64748b'>{payload['note']} 买入后1日按T+1开盘买入、T+1收盘计价；若T+1开盘涨停则实盘无法买入，需要顺位递补。</p>
-      <p style='color:#64748b'>{payload.get('price_note', '')}</p>
-      {''.join(sections)}
-      <p><a href='{SITE_URL}'>打开网站查看</a></p>
+    <div style="margin:0;padding:0;background:#f8fafc;">
+      <div style="max-width:640px;margin:0 auto;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111827;">
+        <div style="background:#111827;border-radius:18px;padding:18px 16px;color:#ffffff;">
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.5;">{date_str}</div>
+          <div style="font-size:22px;font-weight:800;line-height:1.25;margin-top:4px;">A股每日选股结果</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.6;margin-top:8px;">主策略：{primary_name}</div>
+        </div>
+
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px;margin:12px 0;color:#1e3a8a;font-size:13px;line-height:1.7;">
+          只展示候选股票、模型分数和核心指标；分数越高代表模型排序越靠前。内容仅供策略跟踪与研究，不构成投资建议。
+        </div>
+
+        <div style="font-size:18px;font-weight:800;color:#111827;margin:18px 0 8px;">主策略 Top10</div>
+        {primary_cards}
+
+        <div style="font-size:18px;font-weight:800;color:#111827;margin:22px 0 8px;">其他策略首选</div>
+        {''.join(other_cards)}
+
+        <div style="text-align:center;margin:22px 0 8px;">
+          <a href="{site_url}" style="display:inline-block;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:999px;padding:11px 18px;font-size:15px;font-weight:700;">打开网站查看完整结果</a>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;line-height:1.6;text-align:center;margin-top:12px;">
+          若手机邮箱显示异常，可点击上方按钮查看网页版。
+        </div>
+      </div>
     </div>
     """
+
+
+def email_text(payload: dict[str, Any]) -> str:
+    def fmt(v: Any, digits: int = 4) -> str:
+        f = finite_float(v)
+        return "—" if f is None else f"{f:.{digits}f}"
+
+    strategies = payload.get("strategies", []) or [{"name": payload.get("strategy"), "items": payload.get("items", [])}]
+    primary = strategies[0] if strategies else {"name": payload.get("strategy"), "items": []}
+    lines = [
+        f"{payload.get('date')} A股每日选股结果",
+        f"主策略：{primary.get('name')}",
+        "",
+        "主策略 Top10：",
+    ]
+    for item in (primary.get("items") or [])[:10]:
+        lines.append(
+            f"{item.get('rank')}. {item.get('code')} {item.get('name')} 分数 {fmt(item.get('score'))} 价格 {fmt(item.get('close'), 2)}"
+        )
+    lines.extend(["", "其他策略首选："])
+    for strategy in strategies[1:]:
+        items = strategy.get("items") or []
+        if not items:
+            lines.append(f"- {strategy.get('short_name') or strategy.get('name')}：今日无候选")
+            continue
+        item = items[0]
+        lines.append(
+            f"- {strategy.get('short_name') or strategy.get('name')}：{item.get('code')} {item.get('name')} 分数 {fmt(item.get('score'))}"
+        )
+    lines.extend(["", f"完整结果：{SITE_URL}", "仅供策略跟踪与研究，不构成投资建议。"])
+    return "\n".join(lines)
 
 
 def send_email(payload: dict[str, Any]) -> bool:
@@ -1352,8 +1456,9 @@ def send_email(payload: dict[str, Any]) -> bool:
         json={
             "from": f"{from_name} <{from_email}>",
             "to": [to_email],
-            "subject": f"{payload['date']} A股每日Top10选股",
+            "subject": f"{payload['date']} A股选股结果与分数",
             "html": email_html(payload),
+            "text": email_text(payload),
         },
         timeout=30,
     )
