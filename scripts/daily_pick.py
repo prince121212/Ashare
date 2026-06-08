@@ -614,9 +614,15 @@ def trade_net_return(exit_price: Any, buy_price: Any) -> float | None:
     return sell * (1.0 - CLOSE_COST) / (buy * (1.0 + OPEN_COST)) - 1.0
 
 
-def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.DataFrame:
-    latest_date = panel["date"].max()
+def score_latest(
+    panel: pd.DataFrame,
+    names: pd.DataFrame | None = None,
+    target_date: str | pd.Timestamp | None = None,
+) -> pd.DataFrame:
+    latest_date = pd.Timestamp(target_date).normalize() if target_date is not None else panel["date"].max()
     latest = panel[panel["date"].eq(latest_date)].dropna(subset=FEATURE_COLS).copy()
+    if latest.empty:
+        raise RuntimeError(f"no scorable rows for {pd.Timestamp(latest_date).strftime('%Y-%m-%d')}")
     latest = latest[latest["code"].str.startswith(("00", "60"))]
     latest = latest[(latest["open"] > 0) & (latest["close"] > 0) & (latest["amount"] > 0)]
     win_model = lgb.Booster(model_file=str(MODELS_DIR / "win_classifier.txt"))
@@ -1239,7 +1245,13 @@ def build_strategy_payloads(scored: pd.DataFrame) -> list[dict[str, Any]]:
     return strategies
 
 
-def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.DataFrame | None = None) -> dict[str, Any]:
+def write_public(
+    scored: pd.DataFrame,
+    source: str,
+    fetched: bool,
+    rolling: pd.DataFrame | None = None,
+    update_latest: bool = True,
+) -> dict[str, Any]:
     latest_date = pd.Timestamp(scored["date"].iloc[0]).strftime("%Y-%m-%d")
     strategies = build_strategy_payloads(scored)
     primary = strategies[0]
@@ -1263,7 +1275,10 @@ def write_public(scored: pd.DataFrame, source: str, fetched: bool, rolling: pd.D
     if rolling is not None:
         enrich_payload_forward_returns(payload, rolling)
     enrich_payload_display_prices(payload)
-    (PUBLIC_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    if update_latest:
+        (PUBLIC_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    else:
+        print(f"[INFO] backfill mode: wrote history for {latest_date}, preserved existing public/latest.json")
     (HISTORY_DIR / f"{latest_date}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     write_history_index()
     return payload
@@ -1375,10 +1390,22 @@ def main() -> None:
     else:
         source = "cached rolling_ohlcv.parquet"
 
+    score_date = args.date if fetched else None
+    update_latest = True
+    if score_date is not None:
+        target_ts = pd.Timestamp(score_date).normalize()
+        max_ts = pd.Timestamp(rolling["date"].max()).normalize()
+        update_latest = target_ts >= max_ts
+        if not update_latest:
+            print(
+                f"[INFO] backfill target {target_ts.strftime('%Y-%m-%d')} is older than "
+                f"rolling latest {max_ts.strftime('%Y-%m-%d')}; public/latest.json will be preserved"
+            )
+
     refresh_history_forward_returns(rolling)
     panel = compute_features(rolling)
-    scored = score_latest(panel, names=names)
-    payload = write_public(scored, source=source, fetched=fetched, rolling=rolling)
+    scored = score_latest(panel, names=names, target_date=score_date)
+    payload = write_public(scored, source=source, fetched=fetched, rolling=rolling, update_latest=update_latest)
     print(json.dumps({"date": payload["date"], "top1": payload["items"][0], "count": len(scored)}, ensure_ascii=False, indent=2))
 
     if args.send_email and not args.no_email:
