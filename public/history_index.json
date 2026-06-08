@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T12:52:16.371295+08:00",
+  "generated_at": "2026-06-08T13:05:18.349577+08:00",
   "latest_date": "2026-06-04",
   "dates": [
     {
@@ -7,7 +7,7 @@
       "is_latest": true,
       "strategy_count": 5,
       "candidate_count": 40,
-      "generated_at": "2026-06-08T12:52:16.342941+08:00",
+      "generated_at": "2026-06-08T13:05:18.318480+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,
@@ -80,10 +80,10 @@
       "generated_at": "2026-06-08T12:41:29.031810+08:00",
       "one_day": {
         "count": 38,
-        "avg_return": -0.000162,
-        "win_rate": 0.315789,
-        "best_return": 0.1,
-        "worst_return": -0.049815,
+        "avg_return": 0.007895,
+        "win_rate": 0.394737,
+        "best_return": 0.121569,
+        "worst_return": -0.056718,
         "next_dates": [
           "2026-06-04"
         ]
@@ -95,10 +95,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.006002,
-            "win_rate": 0.3,
-            "best_return": 0.1,
-            "worst_return": -0.047914,
+            "avg_return": 0.000824,
+            "win_rate": 0.4,
+            "best_return": 0.104831,
+            "worst_return": -0.056718,
             "next_dates": [
               "2026-06-04"
             ]
@@ -110,10 +110,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.013926,
+            "avg_return": -0.016982,
             "win_rate": 0.0,
-            "best_return": 0.0,
-            "worst_return": -0.027241,
+            "best_return": -0.003257,
+            "worst_return": -0.040849,
             "next_dates": [
               "2026-06-04"
             ]
@@ -125,10 +125,10 @@
           "candidate_count": 2,
           "one_day": {
             "count": 2,
-            "avg_return": -0.0255,
+            "avg_return": -0.038701,
             "win_rate": 0.0,
-            "best_return": -0.023758,
-            "worst_return": -0.027241,
+            "best_return": -0.036554,
+            "worst_return": -0.040849,
             "next_dates": [
               "2026-06-04"
             ]
@@ -140,10 +140,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": -0.027241,
+            "avg_return": -0.036554,
             "win_rate": 0.0,
-            "best_return": -0.027241,
-            "worst_return": -0.027241,
+            "best_return": -0.036554,
+            "worst_return": -0.036554,
             "next_dates": [
               "2026-06-04"
             ]
@@ -155,10 +155,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": 0.018092,
-            "win_rate": 0.6,
-            "best_return": 0.1,
-            "worst_return": -0.049815,
+            "avg_return": 0.038371,
+            "win_rate": 0.733333,
+            "best_return": 0.121569,
+            "worst_return": -0.028559,
             "next_dates": [
               "2026-06-04"
             ]
@@ -174,10 +174,10 @@
       "generated_at": "2026-06-08T12:41:21.890351+08:00",
       "one_day": {
         "count": 39,
-        "avg_return": -0.003078,
-        "win_rate": 0.358974,
-        "best_return": 0.099884,
-        "worst_return": -0.099973,
+        "avg_return": 0.005092,
+        "win_rate": 0.410256,
+        "best_return": 0.101675,
+        "worst_return": -0.06343,
         "next_dates": [
           "2026-06-03"
         ]
@@ -189,10 +189,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.001939,
+            "avg_return": 0.016677,
             "win_rate": 0.5,
-            "best_return": 0.099884,
-            "worst_return": -0.099973,
+            "best_return": 0.101675,
+            "worst_return": -0.032028,
             "next_dates": [
               "2026-06-03"
             ]
@@ -204,10 +204,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.005087,
+            "avg_return": -0.004965,
             "win_rate": 0.2,
             "best_return": 0.013097,
-            "worst_return": -0.021526,
+            "worst_return": -0.03537,
             "next_dates": [
               "2026-06-03"
             ]
@@ -219,10 +219,10 @@
           "candidate_count": 2,
           "one_day": {
             "count": 2,
-            "avg_return": -0.004215,
+            "avg_return": -0.011137,
             "win_rate": 0.5,
             "best_return": 0.013097,
-            "worst_return": -0.021526,
+            "worst_return": -0.03537,
             "next_dates": [
               "2026-06-03"
             ]
@@ -234,10 +234,10 @@
           "candidate_count": 2,
           "one_day": {
             "count": 2,
-            "avg_return": -0.031161,
+            "avg_return": -0.041568,
             "win_rate": 0.0,
-            "best_return": -0.021526,
-            "worst_return": -0.040795,
+            "best_return": -0.03537,
+            "worst_return": -0.047767,
             "next_dates": [
               "2026-06-03"
             ]
@@ -249,10 +249,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.001188,
-            "win_rate": 0.4,
-            "best_return": 0.070331,
-            "worst_return": -0.067247,
+            "avg_return": 0.012458,
+            "win_rate": 0.533333,
+            "best_return": 0.083401,
+            "worst_return": -0.06343,
             "next_dates": [
               "2026-06-03"
             ]
@@ -268,10 +268,10 @@
       "generated_at": "2026-06-08T12:41:14.626146+08:00",
       "one_day": {
         "count": 36,
-        "avg_return": -0.003972,
-        "win_rate": 0.444444,
-        "best_return": 0.090989,
-        "worst_return": -0.099856,
+        "avg_return": -0.000378,
+        "win_rate": 0.416667,
+        "best_return": 0.100409,
+        "worst_return": -0.072296,
         "next_dates": [
           "2026-06-02"
         ]
@@ -283,10 +283,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.003958,
-            "win_rate": 0.6,
-            "best_return": 0.090989,
-            "worst_return": -0.099856,
+            "avg_return": 0.00214,
+            "win_rate": 0.5,
+            "best_return": 0.089318,
+            "worst_return": -0.072296,
             "next_dates": [
               "2026-06-02"
             ]
@@ -298,10 +298,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.006662,
-            "win_rate": 0.2,
+            "avg_return": -0.005196,
+            "win_rate": 0.3,
             "best_return": 0.005336,
-            "worst_return": -0.026624,
+            "worst_return": -0.029724,
             "next_dates": [
               "2026-06-02"
             ]
@@ -324,10 +324,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.004469,
+            "avg_return": 0.046562,
             "win_rate": 1.0,
-            "best_return": 0.004469,
-            "worst_return": 0.004469,
+            "best_return": 0.046562,
+            "worst_return": 0.046562,
             "next_dates": [
               "2026-06-02"
             ]
@@ -339,10 +339,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.002751,
-            "win_rate": 0.466667,
-            "best_return": 0.057198,
-            "worst_return": -0.058096,
+            "avg_return": -0.001975,
+            "win_rate": 0.4,
+            "best_return": 0.100409,
+            "worst_return": -0.056234,
             "next_dates": [
               "2026-06-02"
             ]
@@ -358,10 +358,10 @@
       "generated_at": "2026-06-08T12:41:07.556370+08:00",
       "one_day": {
         "count": 45,
-        "avg_return": 0.013897,
-        "win_rate": 0.622222,
-        "best_return": 0.10052,
-        "worst_return": -0.100095,
+        "avg_return": 0.018873,
+        "win_rate": 0.644444,
+        "best_return": 0.130564,
+        "worst_return": -0.062087,
         "next_dates": [
           "2026-06-01"
         ]
@@ -373,10 +373,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.013259,
-            "win_rate": 0.6,
-            "best_return": 0.079436,
-            "worst_return": -0.018416,
+            "avg_return": 0.016698,
+            "win_rate": 0.7,
+            "best_return": 0.091827,
+            "worst_return": -0.020032,
             "next_dates": [
               "2026-06-01"
             ]
@@ -388,9 +388,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.028217,
+            "avg_return": 0.024768,
             "win_rate": 0.6,
-            "best_return": 0.10052,
+            "best_return": 0.099877,
             "worst_return": -0.019516,
             "next_dates": [
               "2026-06-01"
@@ -414,10 +414,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.021584,
+            "avg_return": 0.021354,
             "win_rate": 1.0,
-            "best_return": 0.041555,
-            "worst_return": 0.006721,
+            "best_return": 0.044355,
+            "worst_return": 0.008077,
             "next_dates": [
               "2026-06-01"
             ]
@@ -429,10 +429,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.000349,
+            "avg_return": 0.014739,
             "win_rate": 0.4,
-            "best_return": 0.100096,
-            "worst_return": -0.100095,
+            "best_return": 0.130564,
+            "worst_return": -0.062087,
             "next_dates": [
               "2026-06-01"
             ]
@@ -448,10 +448,10 @@
       "generated_at": "2026-06-08T12:41:00.364084+08:00",
       "one_day": {
         "count": 35,
-        "avg_return": -0.010739,
-        "win_rate": 0.514286,
-        "best_return": 0.099091,
-        "worst_return": -0.100018,
+        "avg_return": -0.008363,
+        "win_rate": 0.485714,
+        "best_return": 0.096599,
+        "worst_return": -0.096379,
         "next_dates": [
           "2026-05-29"
         ]
@@ -463,10 +463,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.029651,
+            "avg_return": -0.022885,
             "win_rate": 0.3,
-            "best_return": 0.053241,
-            "worst_return": -0.100018,
+            "best_return": 0.085088,
+            "worst_return": -0.090471,
             "next_dates": [
               "2026-05-29"
             ]
@@ -478,9 +478,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.019522,
+            "avg_return": 0.020941,
             "win_rate": 1.0,
-            "best_return": 0.029488,
+            "best_return": 0.039306,
             "worst_return": 0.007429,
             "next_dates": [
               "2026-05-29"
@@ -515,10 +515,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.018304,
-            "win_rate": 0.333333,
-            "best_return": 0.099091,
-            "worst_return": -0.091603,
+            "avg_return": -0.018218,
+            "win_rate": 0.266667,
+            "best_return": 0.096599,
+            "worst_return": -0.096379,
             "next_dates": [
               "2026-05-29"
             ]
@@ -534,10 +534,10 @@
       "generated_at": "2026-06-08T12:40:53.324586+08:00",
       "one_day": {
         "count": 41,
-        "avg_return": -0.000301,
-        "win_rate": 0.682927,
+        "avg_return": 0.005838,
+        "win_rate": 0.658537,
         "best_return": 0.099955,
-        "worst_return": -0.1,
+        "worst_return": -0.082561,
         "next_dates": [
           "2026-05-28"
         ]
@@ -549,10 +549,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.000557,
+            "avg_return": 0.017535,
             "win_rate": 0.7,
-            "best_return": 0.043073,
-            "worst_return": -0.1,
+            "best_return": 0.070338,
+            "worst_return": -0.042435,
             "next_dates": [
               "2026-05-28"
             ]
@@ -564,9 +564,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.003739,
-            "win_rate": 0.7,
-            "best_return": 0.014674,
+            "avg_return": 0.003489,
+            "win_rate": 0.6,
+            "best_return": 0.019102,
             "worst_return": -0.020123,
             "next_dates": [
               "2026-05-28"
@@ -590,10 +590,10 @@
           "candidate_count": 6,
           "one_day": {
             "count": 6,
-            "avg_return": 0.006149,
+            "avg_return": 0.006212,
             "win_rate": 0.833333,
-            "best_return": 0.014258,
-            "worst_return": -0.000387,
+            "best_return": 0.019102,
+            "worst_return": -0.00149,
             "next_dates": [
               "2026-05-28"
             ]
@@ -605,10 +605,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.006146,
+            "avg_return": -0.000544,
             "win_rate": 0.6,
             "best_return": 0.099955,
-            "worst_return": -0.09996,
+            "worst_return": -0.082561,
             "next_dates": [
               "2026-05-28"
             ]
@@ -624,10 +624,10 @@
       "generated_at": "2026-06-08T12:40:46.402350+08:00",
       "one_day": {
         "count": 35,
-        "avg_return": -0.009893,
-        "win_rate": 0.285714,
-        "best_return": 0.100343,
-        "worst_return": -0.099981,
+        "avg_return": -0.004904,
+        "win_rate": 0.314286,
+        "best_return": 0.122239,
+        "worst_return": -0.070722,
         "next_dates": [
           "2026-05-27"
         ]
@@ -639,10 +639,10 @@
           "candidate_count": 9,
           "one_day": {
             "count": 9,
-            "avg_return": -0.020307,
+            "avg_return": -0.016234,
             "win_rate": 0.333333,
-            "best_return": 0.028007,
-            "worst_return": -0.099981,
+            "best_return": 0.053188,
+            "worst_return": -0.070722,
             "next_dates": [
               "2026-05-27"
             ]
@@ -654,10 +654,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.011883,
+            "avg_return": -0.009031,
             "win_rate": 0.1,
-            "best_return": 0.006524,
-            "worst_return": -0.030805,
+            "best_return": 0.019831,
+            "worst_return": -0.032337,
             "next_dates": [
               "2026-05-27"
             ]
@@ -680,10 +680,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": -0.015903,
+            "avg_return": -0.003316,
             "win_rate": 0.0,
-            "best_return": -0.015903,
-            "worst_return": -0.015903,
+            "best_return": -0.003316,
+            "worst_return": -0.003316,
             "next_dates": [
               "2026-05-27"
             ]
@@ -695,10 +695,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.001917,
-            "win_rate": 0.4,
-            "best_return": 0.100343,
-            "worst_return": -0.084881,
+            "avg_return": 0.00454,
+            "win_rate": 0.466667,
+            "best_return": 0.122239,
+            "worst_return": -0.064026,
             "next_dates": [
               "2026-05-27"
             ]
@@ -714,10 +714,10 @@
       "generated_at": "2026-06-08T12:40:38.861656+08:00",
       "one_day": {
         "count": 32,
-        "avg_return": -0.008508,
-        "win_rate": 0.40625,
-        "best_return": 0.100116,
-        "worst_return": -0.1,
+        "avg_return": -0.001381,
+        "win_rate": 0.46875,
+        "best_return": 0.110241,
+        "worst_return": -0.071528,
         "next_dates": [
           "2026-05-26"
         ]
@@ -729,10 +729,10 @@
           "candidate_count": 4,
           "one_day": {
             "count": 4,
-            "avg_return": 0.038135,
+            "avg_return": 0.049516,
             "win_rate": 0.75,
-            "best_return": 0.100116,
-            "worst_return": -0.077063,
+            "best_return": 0.110241,
+            "worst_return": -0.052524,
             "next_dates": [
               "2026-05-26"
             ]
@@ -744,10 +744,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.000842,
-            "win_rate": 0.4,
-            "best_return": 0.010299,
-            "worst_return": -0.015605,
+            "avg_return": -0.000283,
+            "win_rate": 0.5,
+            "best_return": 0.007852,
+            "worst_return": -0.010739,
             "next_dates": [
               "2026-05-26"
             ]
@@ -770,9 +770,9 @@
           "candidate_count": 3,
           "one_day": {
             "count": 3,
-            "avg_return": -0.009073,
+            "avg_return": -0.005816,
             "win_rate": 0.666667,
-            "best_return": 0.005348,
+            "best_return": 0.010753,
             "worst_return": -0.034226,
             "next_dates": [
               "2026-05-26"
@@ -785,10 +785,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.025944,
-            "win_rate": 0.266667,
-            "best_return": 0.029855,
-            "worst_return": -0.1,
+            "avg_return": -0.014798,
+            "win_rate": 0.333333,
+            "best_return": 0.035821,
+            "worst_return": -0.071528,
             "next_dates": [
               "2026-05-26"
             ]
@@ -804,10 +804,10 @@
       "generated_at": "2026-06-08T12:40:31.562841+08:00",
       "one_day": {
         "count": 31,
-        "avg_return": -0.017811,
+        "avg_return": -0.012634,
         "win_rate": 0.225806,
-        "best_return": 0.052707,
-        "worst_return": -0.100063,
+        "best_return": 0.029429,
+        "worst_return": -0.073131,
         "next_dates": [
           "2026-05-25"
         ]
@@ -819,10 +819,10 @@
           "candidate_count": 4,
           "one_day": {
             "count": 4,
-            "avg_return": -0.041858,
+            "avg_return": -0.027118,
             "win_rate": 0.0,
-            "best_return": -0.007695,
-            "worst_return": -0.099963,
+            "best_return": -0.007348,
+            "worst_return": -0.039297,
             "next_dates": [
               "2026-05-25"
             ]
@@ -834,10 +834,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.001859,
+            "avg_return": -0.002192,
             "win_rate": 0.2,
-            "best_return": 0.03239,
-            "worst_return": -0.021865,
+            "best_return": 0.027003,
+            "worst_return": -0.019678,
             "next_dates": [
               "2026-05-25"
             ]
@@ -860,10 +860,10 @@
           "candidate_count": 2,
           "one_day": {
             "count": 2,
-            "avg_return": -0.000399,
+            "avg_return": -0.001504,
             "win_rate": 0.5,
-            "best_return": 0.007499,
-            "worst_return": -0.008297,
+            "best_return": 0.006463,
+            "worst_return": -0.009472,
             "next_dates": [
               "2026-05-25"
             ]
@@ -875,10 +875,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.024355,
+            "avg_return": -0.017216,
             "win_rate": 0.266667,
-            "best_return": 0.052707,
-            "worst_return": -0.100063,
+            "best_return": 0.029429,
+            "worst_return": -0.073131,
             "next_dates": [
               "2026-05-25"
             ]
@@ -894,10 +894,10 @@
       "generated_at": "2026-06-08T12:40:24.671104+08:00",
       "one_day": {
         "count": 42,
-        "avg_return": 0.021058,
+        "avg_return": 0.0193,
         "win_rate": 0.666667,
-        "best_return": 0.101003,
-        "worst_return": -0.021021,
+        "best_return": 0.129643,
+        "worst_return": -0.028664,
         "next_dates": [
           "2026-05-22"
         ]
@@ -909,9 +909,9 @@
           "candidate_count": 8,
           "one_day": {
             "count": 8,
-            "avg_return": 0.01889,
-            "win_rate": 0.75,
-            "best_return": 0.1,
+            "avg_return": 0.02548,
+            "win_rate": 0.875,
+            "best_return": 0.082638,
             "worst_return": -0.021021,
             "next_dates": [
               "2026-05-22"
@@ -924,10 +924,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.012813,
+            "avg_return": 0.006996,
             "win_rate": 0.5,
-            "best_return": 0.099642,
-            "worst_return": -0.020926,
+            "best_return": 0.086551,
+            "worst_return": -0.027829,
             "next_dates": [
               "2026-05-22"
             ]
@@ -950,10 +950,10 @@
           "candidate_count": 9,
           "one_day": {
             "count": 9,
-            "avg_return": 0.011374,
+            "avg_return": 0.008822,
             "win_rate": 0.555556,
-            "best_return": 0.03632,
-            "worst_return": -0.009394,
+            "best_return": 0.03497,
+            "worst_return": -0.012871,
             "next_dates": [
               "2026-05-22"
             ]
@@ -965,10 +965,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": 0.033521,
-            "win_rate": 0.8,
-            "best_return": 0.101003,
-            "worst_return": -0.018683,
+            "avg_return": 0.030495,
+            "win_rate": 0.733333,
+            "best_return": 0.129643,
+            "worst_return": -0.028664,
             "next_dates": [
               "2026-05-22"
             ]
@@ -984,10 +984,10 @@
       "generated_at": "2026-06-08T12:40:17.691153+08:00",
       "one_day": {
         "count": 29,
-        "avg_return": -0.026078,
-        "win_rate": 0.172414,
-        "best_return": 0.10024,
-        "worst_return": -0.101281,
+        "avg_return": -0.018093,
+        "win_rate": 0.137931,
+        "best_return": 0.107336,
+        "worst_return": -0.08274,
         "next_dates": [
           "2026-05-21"
         ]
@@ -999,10 +999,10 @@
           "candidate_count": 3,
           "one_day": {
             "count": 3,
-            "avg_return": -0.086454,
+            "avg_return": -0.054557,
             "win_rate": 0.0,
-            "best_return": -0.077281,
-            "worst_return": -0.101281,
+            "best_return": -0.038955,
+            "worst_return": -0.068883,
             "next_dates": [
               "2026-05-21"
             ]
@@ -1014,10 +1014,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.013227,
-            "win_rate": 0.2,
-            "best_return": 0.001495,
-            "worst_return": -0.042747,
+            "avg_return": -0.013623,
+            "win_rate": 0.0,
+            "best_return": 0.0,
+            "worst_return": -0.042287,
             "next_dates": [
               "2026-05-21"
             ]
@@ -1040,10 +1040,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.098909,
+            "avg_return": 0.083989,
             "win_rate": 1.0,
-            "best_return": 0.098909,
-            "worst_return": 0.098909,
+            "best_return": 0.083989,
+            "worst_return": 0.083989,
             "next_dates": [
               "2026-05-21"
             ]
@@ -1055,10 +1055,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.030903,
-            "win_rate": 0.133333,
-            "best_return": 0.10024,
-            "worst_return": -0.099915,
+            "avg_return": -0.020586,
+            "win_rate": 0.2,
+            "best_return": 0.107336,
+            "worst_return": -0.08274,
             "next_dates": [
               "2026-05-21"
             ]
@@ -1074,10 +1074,10 @@
       "generated_at": "2026-06-08T12:40:10.820035+08:00",
       "one_day": {
         "count": 28,
-        "avg_return": -0.009363,
-        "win_rate": 0.357143,
-        "best_return": 0.041584,
-        "worst_return": -0.099885,
+        "avg_return": -0.003899,
+        "win_rate": 0.464286,
+        "best_return": 0.046151,
+        "worst_return": -0.093498,
         "next_dates": [
           "2026-05-20"
         ]
@@ -1089,10 +1089,10 @@
           "candidate_count": 2,
           "one_day": {
             "count": 2,
-            "avg_return": -0.004106,
+            "avg_return": 0.010912,
             "win_rate": 0.5,
-            "best_return": 0.023866,
-            "worst_return": -0.032078,
+            "best_return": 0.032281,
+            "worst_return": -0.010456,
             "next_dates": [
               "2026-05-20"
             ]
@@ -1104,9 +1104,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.001405,
+            "avg_return": 0.00023,
             "win_rate": 0.4,
-            "best_return": 0.032345,
+            "best_return": 0.032838,
             "worst_return": -0.019796,
             "next_dates": [
               "2026-05-20"
@@ -1130,10 +1130,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": -0.026792,
+            "avg_return": -0.021491,
             "win_rate": 0.0,
-            "best_return": -0.026792,
-            "worst_return": -0.026792,
+            "best_return": -0.021491,
+            "worst_return": -0.021491,
             "next_dates": [
               "2026-05-20"
             ]
@@ -1145,10 +1145,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.016082,
-            "win_rate": 0.333333,
-            "best_return": 0.041584,
-            "worst_return": -0.099885,
+            "avg_return": -0.007454,
+            "win_rate": 0.533333,
+            "best_return": 0.046151,
+            "worst_return": -0.093498,
             "next_dates": [
               "2026-05-20"
             ]
@@ -1164,10 +1164,10 @@
       "generated_at": "2026-06-08T12:40:03.912125+08:00",
       "one_day": {
         "count": 29,
-        "avg_return": -0.001326,
-        "win_rate": 0.551724,
-        "best_return": 0.099997,
-        "worst_return": -0.073244,
+        "avg_return": 0.005829,
+        "win_rate": 0.689655,
+        "best_return": 0.102098,
+        "worst_return": -0.074978,
         "next_dates": [
           "2026-05-19"
         ]
@@ -1179,10 +1179,10 @@
           "candidate_count": 3,
           "one_day": {
             "count": 3,
-            "avg_return": -0.007353,
+            "avg_return": 0.008749,
             "win_rate": 0.333333,
-            "best_return": 0.099997,
-            "worst_return": -0.073244,
+            "best_return": 0.102098,
+            "worst_return": -0.057819,
             "next_dates": [
               "2026-05-19"
             ]
@@ -1194,10 +1194,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.003296,
-            "win_rate": 0.5,
-            "best_return": 0.01357,
-            "worst_return": -0.002684,
+            "avg_return": 0.002573,
+            "win_rate": 0.6,
+            "best_return": 0.009709,
+            "worst_return": -0.006204,
             "next_dates": [
               "2026-05-19"
             ]
@@ -1220,10 +1220,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.008118,
+            "avg_return": 0.010878,
             "win_rate": 1.0,
-            "best_return": 0.008118,
-            "worst_return": 0.008118,
+            "best_return": 0.010878,
+            "worst_return": 0.010878,
             "next_dates": [
               "2026-05-19"
             ]
@@ -1235,10 +1235,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.003831,
-            "win_rate": 0.6,
-            "best_return": 0.031538,
-            "worst_return": -0.066927,
+            "avg_return": 0.007078,
+            "win_rate": 0.8,
+            "best_return": 0.056773,
+            "worst_return": -0.074978,
             "next_dates": [
               "2026-05-19"
             ]
@@ -1254,10 +1254,10 @@
       "generated_at": "2026-06-08T12:39:57.000275+08:00",
       "one_day": {
         "count": 32,
-        "avg_return": -0.001104,
-        "win_rate": 0.25,
-        "best_return": 0.100784,
-        "worst_return": -0.072342,
+        "avg_return": 0.004146,
+        "win_rate": 0.375,
+        "best_return": 0.104683,
+        "worst_return": -0.056048,
         "next_dates": [
           "2026-05-18"
         ]
@@ -1269,10 +1269,10 @@
           "candidate_count": 6,
           "one_day": {
             "count": 6,
-            "avg_return": 0.019165,
-            "win_rate": 0.5,
-            "best_return": 0.099942,
-            "worst_return": -0.033287,
+            "avg_return": 0.018955,
+            "win_rate": 0.666667,
+            "best_return": 0.076416,
+            "worst_return": -0.022604,
             "next_dates": [
               "2026-05-18"
             ]
@@ -1284,10 +1284,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.007654,
+            "avg_return": -0.005698,
             "win_rate": 0.1,
             "best_return": 0.009217,
-            "worst_return": -0.013583,
+            "worst_return": -0.011847,
             "next_dates": [
               "2026-05-18"
             ]
@@ -1310,10 +1310,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": -0.005358,
+            "avg_return": -0.00265,
             "win_rate": 0.0,
-            "best_return": -0.005358,
-            "worst_return": -0.005358,
+            "best_return": -0.00265,
+            "worst_return": -0.00265,
             "next_dates": [
               "2026-05-18"
             ]
@@ -1325,10 +1325,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.004562,
-            "win_rate": 0.266667,
-            "best_return": 0.100784,
-            "worst_return": -0.072342,
+            "avg_return": 0.005238,
+            "win_rate": 0.466667,
+            "best_return": 0.104683,
+            "worst_return": -0.056048,
             "next_dates": [
               "2026-05-18"
             ]
@@ -1344,10 +1344,10 @@
       "generated_at": "2026-06-08T12:39:50.166666+08:00",
       "one_day": {
         "count": 29,
-        "avg_return": -0.013579,
-        "win_rate": 0.241379,
-        "best_return": 0.084927,
-        "worst_return": -0.070673,
+        "avg_return": -0.010661,
+        "win_rate": 0.206897,
+        "best_return": 0.092299,
+        "worst_return": -0.059261,
         "next_dates": [
           "2026-05-15"
         ]
@@ -1359,10 +1359,10 @@
           "candidate_count": 3,
           "one_day": {
             "count": 3,
-            "avg_return": -0.048758,
+            "avg_return": -0.03887,
             "win_rate": 0.0,
-            "best_return": -0.035867,
-            "worst_return": -0.070673,
+            "best_return": -0.017548,
+            "worst_return": -0.059261,
             "next_dates": [
               "2026-05-15"
             ]
@@ -1374,10 +1374,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.009219,
+            "avg_return": -0.009697,
             "win_rate": 0.1,
-            "best_return": 0.010782,
-            "worst_return": -0.028848,
+            "best_return": 0.011691,
+            "worst_return": -0.032784,
             "next_dates": [
               "2026-05-15"
             ]
@@ -1400,10 +1400,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": -0.031148,
+            "avg_return": -0.023579,
             "win_rate": 0.0,
-            "best_return": -0.031148,
-            "worst_return": -0.031148,
+            "best_return": -0.023579,
+            "worst_return": -0.023579,
             "next_dates": [
               "2026-05-15"
             ]
@@ -1415,10 +1415,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.008277,
-            "win_rate": 0.4,
-            "best_return": 0.084927,
-            "worst_return": -0.057409,
+            "avg_return": -0.0048,
+            "win_rate": 0.333333,
+            "best_return": 0.092299,
+            "worst_return": -0.051776,
             "next_dates": [
               "2026-05-15"
             ]
@@ -1434,10 +1434,10 @@
       "generated_at": "2026-06-08T12:39:43.460081+08:00",
       "one_day": {
         "count": 26,
-        "avg_return": -0.002137,
+        "avg_return": 0.002086,
         "win_rate": 0.423077,
         "best_return": 0.099983,
-        "worst_return": -0.099832,
+        "worst_return": -0.059475,
         "next_dates": [
           "2026-05-14"
         ]
@@ -1449,10 +1449,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.029452,
+            "avg_return": 0.024329,
             "win_rate": 1.0,
-            "best_return": 0.029452,
-            "worst_return": 0.029452,
+            "best_return": 0.024329,
+            "worst_return": 0.024329,
             "next_dates": [
               "2026-05-14"
             ]
@@ -1464,9 +1464,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -3.6e-05,
+            "avg_return": 6.4e-05,
             "win_rate": 0.4,
-            "best_return": 0.011517,
+            "best_return": 0.012531,
             "worst_return": -0.022222,
             "next_dates": [
               "2026-05-14"
@@ -1501,10 +1501,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.005644,
+            "avg_return": 0.001952,
             "win_rate": 0.4,
             "best_return": 0.099983,
-            "worst_return": -0.099832,
+            "worst_return": -0.059475,
             "next_dates": [
               "2026-05-14"
             ]
@@ -1520,10 +1520,10 @@
       "generated_at": "2026-06-08T12:39:36.624460+08:00",
       "one_day": {
         "count": 28,
-        "avg_return": 0.007298,
-        "win_rate": 0.392857,
-        "best_return": 0.100796,
-        "worst_return": -0.089717,
+        "avg_return": 0.010997,
+        "win_rate": 0.464286,
+        "best_return": 0.11888,
+        "worst_return": -0.080453,
         "next_dates": [
           "2026-05-13"
         ]
@@ -1535,10 +1535,10 @@
           "candidate_count": 3,
           "one_day": {
             "count": 3,
-            "avg_return": 0.029463,
-            "win_rate": 0.666667,
-            "best_return": 0.100029,
-            "worst_return": -0.01752,
+            "avg_return": 0.0391,
+            "win_rate": 1.0,
+            "best_return": 0.070922,
+            "worst_return": 0.009996,
             "next_dates": [
               "2026-05-13"
             ]
@@ -1550,9 +1550,9 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.002878,
+            "avg_return": -0.002694,
             "win_rate": 0.1,
-            "best_return": 0.013514,
+            "best_return": 0.015801,
             "worst_return": -0.008194,
             "next_dates": [
               "2026-05-13"
@@ -1587,10 +1587,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": 0.00965,
-            "win_rate": 0.533333,
-            "best_return": 0.100796,
-            "worst_return": -0.089717,
+            "avg_return": 0.014504,
+            "win_rate": 0.6,
+            "best_return": 0.11888,
+            "worst_return": -0.080453,
             "next_dates": [
               "2026-05-13"
             ]
@@ -1606,10 +1606,10 @@
       "generated_at": "2026-06-08T12:39:29.868517+08:00",
       "one_day": {
         "count": 29,
-        "avg_return": -0.004481,
-        "win_rate": 0.413793,
-        "best_return": 0.083754,
-        "worst_return": -0.058019,
+        "avg_return": -0.006905,
+        "win_rate": 0.344828,
+        "best_return": 0.078227,
+        "worst_return": -0.067035,
         "next_dates": [
           "2026-05-12"
         ]
@@ -1621,10 +1621,10 @@
           "candidate_count": 4,
           "one_day": {
             "count": 4,
-            "avg_return": -0.005102,
-            "win_rate": 0.75,
-            "best_return": 0.013644,
-            "worst_return": -0.042377,
+            "avg_return": -0.01948,
+            "win_rate": 0.25,
+            "best_return": 0.007499,
+            "worst_return": -0.067035,
             "next_dates": [
               "2026-05-12"
             ]
@@ -1636,10 +1636,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.003274,
-            "win_rate": 0.5,
-            "best_return": 0.034156,
-            "worst_return": -0.011791,
+            "avg_return": -0.002671,
+            "win_rate": 0.4,
+            "best_return": 0.010738,
+            "worst_return": -0.019784,
             "next_dates": [
               "2026-05-12"
             ]
@@ -1673,10 +1673,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.009486,
-            "win_rate": 0.266667,
-            "best_return": 0.083754,
-            "worst_return": -0.058019,
+            "avg_return": -0.006374,
+            "win_rate": 0.333333,
+            "best_return": 0.078227,
+            "worst_return": -0.06289,
             "next_dates": [
               "2026-05-12"
             ]
@@ -1692,10 +1692,10 @@
       "generated_at": "2026-06-08T12:39:23.033054+08:00",
       "one_day": {
         "count": 26,
-        "avg_return": 0.012038,
-        "win_rate": 0.615385,
-        "best_return": 0.100799,
-        "worst_return": -0.036175,
+        "avg_return": 0.005114,
+        "win_rate": 0.538462,
+        "best_return": 0.096676,
+        "worst_return": -0.045683,
         "next_dates": [
           "2026-05-11"
         ]
@@ -1707,10 +1707,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.041927,
+            "avg_return": 0.046686,
             "win_rate": 1.0,
-            "best_return": 0.041927,
-            "worst_return": 0.041927,
+            "best_return": 0.046686,
+            "worst_return": 0.046686,
             "next_dates": [
               "2026-05-11"
             ]
@@ -1722,10 +1722,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": 0.003728,
-            "win_rate": 0.6,
-            "best_return": 0.019621,
-            "worst_return": -0.004388,
+            "avg_return": 0.001332,
+            "win_rate": 0.5,
+            "best_return": 0.012996,
+            "worst_return": -0.008942,
             "next_dates": [
               "2026-05-11"
             ]
@@ -1759,10 +1759,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": 0.015585,
-            "win_rate": 0.6,
-            "best_return": 0.100799,
-            "worst_return": -0.036175,
+            "avg_return": 0.004863,
+            "win_rate": 0.533333,
+            "best_return": 0.096676,
+            "worst_return": -0.045683,
             "next_dates": [
               "2026-05-11"
             ]
@@ -1778,10 +1778,10 @@
       "generated_at": "2026-06-08T12:39:16.018260+08:00",
       "one_day": {
         "count": 26,
-        "avg_return": -0.003324,
-        "win_rate": 0.269231,
-        "best_return": 0.039948,
-        "worst_return": -0.040362,
+        "avg_return": -0.000447,
+        "win_rate": 0.307692,
+        "best_return": 0.060574,
+        "worst_return": -0.027384,
         "next_dates": [
           "2026-05-08"
         ]
@@ -1793,10 +1793,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.03135,
+            "avg_return": 0.060574,
             "win_rate": 1.0,
-            "best_return": 0.03135,
-            "worst_return": 0.03135,
+            "best_return": 0.060574,
+            "worst_return": 0.060574,
             "next_dates": [
               "2026-05-08"
             ]
@@ -1808,10 +1808,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.000686,
-            "win_rate": 0.2,
-            "best_return": 0.006647,
-            "worst_return": -0.006238,
+            "avg_return": 0.0004,
+            "win_rate": 0.3,
+            "best_return": 0.009228,
+            "worst_return": -0.005674,
             "next_dates": [
               "2026-05-08"
             ]
@@ -1845,10 +1845,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": -0.007393,
+            "avg_return": -0.00508,
             "win_rate": 0.266667,
-            "best_return": 0.039948,
-            "worst_return": -0.040362,
+            "best_return": 0.042679,
+            "worst_return": -0.027384,
             "next_dates": [
               "2026-05-08"
             ]
@@ -1864,10 +1864,10 @@
       "generated_at": "2026-06-08T12:39:08.805579+08:00",
       "one_day": {
         "count": 26,
-        "avg_return": 0.016252,
-        "win_rate": 0.615385,
-        "best_return": 0.089328,
-        "worst_return": -0.055956,
+        "avg_return": 0.012487,
+        "win_rate": 0.653846,
+        "best_return": 0.0759,
+        "worst_return": -0.04947,
         "next_dates": [
           "2026-05-07"
         ]
@@ -1879,10 +1879,10 @@
           "candidate_count": 1,
           "one_day": {
             "count": 1,
-            "avg_return": 0.089328,
+            "avg_return": 0.0759,
             "win_rate": 1.0,
-            "best_return": 0.089328,
-            "worst_return": 0.089328,
+            "best_return": 0.0759,
+            "worst_return": 0.0759,
             "next_dates": [
               "2026-05-07"
             ]
@@ -1894,10 +1894,10 @@
           "candidate_count": 10,
           "one_day": {
             "count": 10,
-            "avg_return": -0.002072,
-            "win_rate": 0.3,
+            "avg_return": -0.001778,
+            "win_rate": 0.4,
             "best_return": 0.006912,
-            "worst_return": -0.019943,
+            "worst_return": -0.017881,
             "next_dates": [
               "2026-05-07"
             ]
@@ -1931,10 +1931,10 @@
           "candidate_count": 15,
           "one_day": {
             "count": 15,
-            "avg_return": 0.023595,
+            "avg_return": 0.01777,
             "win_rate": 0.8,
-            "best_return": 0.075646,
-            "worst_return": -0.055956,
+            "best_return": 0.072053,
+            "worst_return": -0.04947,
             "next_dates": [
               "2026-05-07"
             ]

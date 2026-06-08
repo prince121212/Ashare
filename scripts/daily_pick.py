@@ -669,7 +669,13 @@ def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.D
 
 
 def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFrame) -> bool:
-    """Add next-trading-day close-to-close returns to a public payload when available."""
+    """Add next-trading-day executable one-day returns to a public payload.
+
+    The stock list is produced after the T-day close, so a realistic one-day
+    holding result should use T+1 open as the buy price and T+1 close as the
+    mark/sell price.  The old close-to-close signal move is still retained as
+    `next_1d_close_to_close_return` for audit/comparison.
+    """
     if not payload.get("date"):
         return False
     signal_date = pd.Timestamp(payload["date"]).normalize()
@@ -684,26 +690,71 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
             for item in items:
                 item.setdefault("next_1d_date", None)
                 item.setdefault("next_1d_return", None)
+                item.setdefault("next_1d_close_to_close_return", None)
+                item.setdefault("next_1d_open_gap", None)
+                item.setdefault("next_1d_buyable", None)
         return False
 
     next_date = next_dates[0]
+    next_date_str = next_date.strftime("%Y-%m-%d")
     signal_close = rolling[rolling["date"].eq(signal_date)].set_index("code")["close"]
-    next_close = rolling[rolling["date"].eq(next_date)].set_index("code")["close"]
+    next_bar = rolling[rolling["date"].eq(next_date)].set_index("code")[["open", "close"]]
+    next_raw = load_raw_prices(next_date_str)
+    next_raw_map = next_raw.set_index("code").to_dict(orient="index") if not next_raw.empty else {}
     changed = False
     for items in item_groups:
         for item in items:
             code = str(item.get("code", "")).zfill(6)
             base = signal_close.get(code, item.get("adjusted_close", item.get("close")))
-            nxt = next_close.get(code, np.nan)
-            if pd.notna(base) and pd.notna(nxt) and float(base) > 0:
-                value = round(float(nxt) / float(base) - 1.0, 6)
-                if item.get("next_1d_return") != value or item.get("next_1d_date") != next_date.strftime("%Y-%m-%d"):
+            next_open = next_bar["open"].get(code, np.nan) if not next_bar.empty else np.nan
+            next_close = next_bar["close"].get(code, np.nan) if not next_bar.empty else np.nan
+            raw_info = next_raw_map.get(code, {})
+            next_raw_open = finite_float(raw_info.get("raw_open"))
+            next_raw_high = finite_float(raw_info.get("raw_high"))
+            next_raw_low = finite_float(raw_info.get("raw_low"))
+            next_raw_close = finite_float(raw_info.get("raw_close"))
+
+            if pd.notna(base) and pd.notna(next_close) and float(base) > 0:
+                close_to_close = round(float(next_close) / float(base) - 1.0, 6)
+                open_gap = None
+                trade_return = None
+                buyable = None
+                if pd.notna(next_open) and float(next_open) > 0:
+                    trade_return = round(float(next_close) / float(next_open) - 1.0, 6)
+                    open_gap = round(float(next_open) / float(base) - 1.0, 6)
+                    # A-share limit-up rules vary for special boards/ST; this
+                    # mainboard site uses the same 9.8% conservative threshold
+                    # as the picker to identify likely open-limit-up, not buyable.
+                    buyable = bool(open_gap < LIMIT_UP_OPEN)
+
+                updates = {
+                    "next_1d_date": next_date_str,
+                    # Executable one-day result: T+1 open buy -> T+1 close.
+                    "next_1d_return": trade_return,
+                    "next_1d_return_basis": "next_open_to_next_close",
+                    # Audit-only signal move: T close -> T+1 close.
+                    "next_1d_close_to_close_return": close_to_close,
+                    "next_1d_open_gap": open_gap,
+                    "next_1d_buyable": buyable,
+                }
+                if next_raw_open is not None:
+                    updates["next_1d_open"] = round(next_raw_open, 4)
+                if next_raw_high is not None:
+                    updates["next_1d_high"] = round(next_raw_high, 4)
+                if next_raw_low is not None:
+                    updates["next_1d_low"] = round(next_raw_low, 4)
+                if next_raw_close is not None:
+                    updates["next_1d_close"] = round(next_raw_close, 4)
+
+                if any(item.get(k) != v for k, v in updates.items()):
                     changed = True
-                item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
-                item["next_1d_return"] = value
+                item.update(updates)
             else:
-                item["next_1d_date"] = next_date.strftime("%Y-%m-%d")
+                item["next_1d_date"] = next_date_str
                 item["next_1d_return"] = None
+                item["next_1d_close_to_close_return"] = None
+                item["next_1d_open_gap"] = None
+                item["next_1d_buyable"] = None
     if changed:
         payload["performance_updated_at"] = now_cn().isoformat()
     return changed
@@ -1062,7 +1113,7 @@ def email_html(payload: dict[str, Any]) -> str:
             f"""
             <h3>{strategy['name']}</h3>
             <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px;margin-bottom:18px'>
-              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>1日涨跌</th></tr></thead>
+              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>买入后1日</th></tr></thead>
               <tbody>{rows}</tbody>
             </table>
             """
@@ -1071,7 +1122,7 @@ def email_html(payload: dict[str, Any]) -> str:
     <div style='font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;color:#111827'>
       <h2>{payload['strategy']} - {payload['date']}</h2>
       <p>{payload['trade_rule']}</p>
-      <p style='color:#64748b'>{payload['note']}</p>
+      <p style='color:#64748b'>{payload['note']} 买入后1日按T+1开盘买入、T+1收盘计价；若T+1开盘涨停则实盘无法买入，需要顺位递补。</p>
       <p style='color:#64748b'>{payload.get('price_note', '')}</p>
       {''.join(sections)}
       <p><a href='{SITE_URL}'>打开网站查看</a></p>
