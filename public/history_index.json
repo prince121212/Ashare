@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T13:34:37.176966+08:00",
+  "generated_at": "2026-06-08T14:16:26.362917+08:00",
   "latest_date": "2026-06-04",
   "dates": [
     {
@@ -7,7 +7,7 @@
       "is_latest": true,
       "strategy_count": 5,
       "candidate_count": 40,
-      "generated_at": "2026-06-08T13:34:37.140342+08:00",
+      "generated_at": "2026-06-08T14:16:26.307731+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,

@@ -372,7 +372,9 @@
           "amount": 20594563072.0,
           "turnover": 0.116177
         }
-      ]
+      ],
+      "forward20_hit8_so_far": true,
+      "forward20_grade_so_far": "S"
     }
   ],
   "strategies": [
@@ -779,7 +781,9 @@
               "amount": 20594563072.0,
               "turnover": 0.116177
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "S"
         }
       ]
     },
@@ -1181,7 +1185,9 @@
               "amount": 619150784.0,
               "turnover": 0.005128
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 2,
@@ -1539,7 +1545,9 @@
               "amount": 921115264.0,
               "turnover": 0.007314
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "C"
         },
         {
           "rank": 3,
@@ -1897,7 +1905,9 @@
               "amount": 100181320.0,
               "turnover": 0.014897
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 4,
@@ -2255,7 +2265,9 @@
               "amount": 36772840.0,
               "turnover": 0.005987
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 5,
@@ -2613,7 +2625,9 @@
               "amount": 1689005056.0,
               "turnover": 0.010088
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 6,
@@ -2971,7 +2985,9 @@
               "amount": 500640640.0,
               "turnover": 0.003461
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 7,
@@ -3329,7 +3345,9 @@
               "amount": 3168757504.0,
               "turnover": 0.004671
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 8,
@@ -3687,7 +3705,9 @@
               "amount": 1311305600.0,
               "turnover": 0.010744
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 9,
@@ -4045,7 +4065,9 @@
               "amount": 514251328.0,
               "turnover": 0.004752
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "C"
         },
         {
           "rank": 10,
@@ -4403,7 +4425,9 @@
               "amount": 1247478144.0,
               "turnover": 0.006303
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         }
       ]
     },
@@ -4880,7 +4904,9 @@
               "amount": 283118528.0,
               "turnover": 0.021524
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 2,
@@ -5242,7 +5268,9 @@
               "amount": 1035311040.0,
               "turnover": 0.09283
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 3,
@@ -5604,7 +5632,9 @@
               "amount": 2080023936.0,
               "turnover": 0.172077
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "S"
         },
         {
           "rank": 4,
@@ -5966,7 +5996,9 @@
               "amount": 57852224.0,
               "turnover": 0.021667
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 5,
@@ -6328,7 +6360,9 @@
               "amount": 284821088.0,
               "turnover": 0.041149
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "S"
         },
         {
           "rank": 6,
@@ -6690,7 +6724,9 @@
               "amount": 43589968.0,
               "turnover": 0.009943
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "C"
         },
         {
           "rank": 7,
@@ -7052,7 +7088,9 @@
               "amount": 20073822208.0,
               "turnover": 0.036263
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 8,
@@ -7414,7 +7452,9 @@
               "amount": 89086616.0,
               "turnover": 0.010243
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 9,
@@ -7776,7 +7816,9 @@
               "amount": 250015952.0,
               "turnover": 0.079859
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 10,
@@ -8138,7 +8180,9 @@
               "amount": 1287113216.0,
               "turnover": 0.1126
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 11,
@@ -8500,7 +8544,9 @@
               "amount": 238388416.0,
               "turnover": 0.039681
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "A"
         },
         {
           "rank": 12,
@@ -8862,7 +8908,9 @@
               "amount": 105596968.0,
               "turnover": 0.01631
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "C"
         },
         {
           "rank": 13,
@@ -9224,7 +9272,9 @@
               "amount": 29634768.0,
               "turnover": 0.009169
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 14,
@@ -9586,7 +9636,9 @@
               "amount": 40987112.0,
               "turnover": 0.006281
             }
-          ]
+          ],
+          "forward20_hit8_so_far": false,
+          "forward20_grade_so_far": "B"
         },
         {
           "rank": 15,
@@ -9948,11 +10000,13 @@
               "amount": 4878955008.0,
               "turnover": 0.152786
             }
-          ]
+          ],
+          "forward20_hit8_so_far": true,
+          "forward20_grade_so_far": "S"
         }
       ]
     }
   ],
-  "performance_updated_at": "2026-06-08T13:34:23.200247+08:00",
+  "performance_updated_at": "2026-06-08T14:16:11.298203+08:00",
   "price_updated_at": "2026-06-08T12:52:08.702578+08:00"
 }

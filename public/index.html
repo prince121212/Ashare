@@ -199,7 +199,8 @@ function tableRows(items,s){
 }
 function forward20PathTable(item){
   const path=item?.forward20_path || [];
-  if(!path.length) return `<div class="table-card" style="margin-top:16px"><div class="table-tools"><div class="title">Top1 20日轨迹</div><div class="legend">暂未满20个交易日</div></div><div class="empty">还没有完整的未来20日数据。</div></div>`;
+  if(!path.length) return `<div class="table-card" style="margin-top:16px"><div class="table-tools"><div class="title">Top1 20日轨迹</div><div class="legend">已更新 0/20</div></div><div class="empty">还没有未来交易日数据；有多少天数据后会先展示多少天。</div></div>`;
+  const pathNote = item.forward20_complete ? `完整20日 · 期末 ${plainPct(item.forward20_end_net_return)}` : `已更新 ${path.length}/20 · 最新 ${plainPct(path[path.length-1]?.close_net_return)}`;
   const rows=path.map(x=>`<tr>
     <td>${x.h}</td><td>${esc(x.date)}</td>
     <td>${fmtNum(x.raw_open,2)}</td><td>${fmtNum(x.raw_high,2)}</td><td>${fmtNum(x.raw_low,2)}</td><td>${fmtNum(x.raw_close,2)}</td>
@@ -208,7 +209,7 @@ function forward20PathTable(item){
     <td>${fmtNum((num(x.amount)||0)/1e8,2)} 亿</td>
   </tr>`).join('');
   return `<div class="table-card" style="margin-top:16px">
-    <div class="table-tools"><div class="title">Top1 20日轨迹 · ${esc(item.code)} ${esc(item.name||'')}</div><div class="legend">买入价 ${fmtNum(item.forward20_buy_open,2)} · 峰值 ${plainPct(item.forward20_peak_net_return)} · 期末 ${plainPct(item.forward20_end_net_return)}</div></div>
+    <div class="table-tools"><div class="title">Top1 20日轨迹 · ${esc(item.code)} ${esc(item.name||'')}</div><div class="legend">买入价 ${fmtNum(item.forward20_buy_open,2)} · 已知峰值 ${plainPct(item.forward20_peak_net_return)} · ${pathNote}</div></div>
     <div class="table-wrap"><table><thead><tr><th>持有日</th><th>日期</th><th>开盘</th><th>最高</th><th>最低</th><th>收盘</th><th>当日涨跌</th><th>收盘净收益</th><th>成交额</th></tr></thead><tbody>${rows}</tbody></table></div>
   </div>`;
 }

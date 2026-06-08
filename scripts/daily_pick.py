@@ -803,15 +803,17 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
             updates20: dict[str, Any] = {
                 "forward20_horizon": FORWARD_HORIZON,
                 "forward20_target": PEAK20_TARGET,
-                "forward20_available_days": int(min(len(next_dates), FORWARD_HORIZON)),
+                "forward20_available_days": 0,
                 "forward20_complete": False,
                 "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+                "forward20_path": [],
+                "forward20_hit8": None,
+                "forward20_grade": None,
             }
             g20 = forward_by_code.get(code)
             if (
-                forward_complete
-                and g20 is not None
-                and len(g20) >= FORWARD_HORIZON
+                g20 is not None
+                and len(g20) >= 1
                 and pd.notna(base)
                 and float(base) > 0
                 and pd.notna(g20.loc[0, "open"])
@@ -856,13 +858,16 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
                 if valid_close_net:
                     peak = max(valid_close_net, key=lambda x: finite_float(x.get("close_net_return")) or -999.0)
                     trough = min(valid_close_net, key=lambda x: finite_float(x.get("close_net_return")) or 999.0)
-                    end = path[FORWARD_HORIZON - 1]
+                    end = path[-1]
                     buy_raw = finite_float(forward_raw_maps.get(path[0]["date"], {}).get(code, {}).get("raw_open"))
                     end_raw_close = finite_float(end.get("raw_close"))
                     peak_raw_close = finite_float(peak.get("raw_close"))
+                    complete_item20 = len(path) >= FORWARD_HORIZON
+                    peak_net_value = finite_float(peak.get("close_net_return")) or -999.0
                     updates20.update(
                         {
-                            "forward20_complete": True,
+                            "forward20_available_days": int(len(path)),
+                            "forward20_complete": bool(complete_item20),
                             "forward20_start_date": path[0]["date"],
                             "forward20_end_date": path[-1]["date"],
                             "forward20_buy_date": path[0]["date"],
@@ -881,20 +886,30 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
                             "forward20_end_net_return": round(float(finite_float(end.get("close_net_return")) or 0.0), 6),
                             "forward20_min_date": trough["date"],
                             "forward20_min_net_return": round(float(finite_float(trough.get("close_net_return")) or 0.0), 6),
-                            "forward20_hit8": bool((finite_float(peak.get("close_net_return")) or -999.0) >= PEAK20_TARGET),
+                            "forward20_hit8": bool(peak_net_value >= PEAK20_TARGET) if complete_item20 else None,
+                            "forward20_hit8_so_far": bool(peak_net_value >= PEAK20_TARGET),
                             "forward20_grade": (
-                                "S" if (finite_float(peak.get("close_net_return")) or -999.0) >= 0.20
-                                else "A" if (finite_float(peak.get("close_net_return")) or -999.0) >= PEAK20_TARGET
-                                else "B" if (finite_float(peak.get("close_net_return")) or -999.0) > 0
+                                (
+                                    "S" if peak_net_value >= 0.20
+                                    else "A" if peak_net_value >= PEAK20_TARGET
+                                    else "B" if peak_net_value > 0
+                                    else "C"
+                                )
+                                if complete_item20
+                                else None
+                            ),
+                            "forward20_grade_so_far": (
+                                "S" if peak_net_value >= 0.20
+                                else "A" if peak_net_value >= PEAK20_TARGET
+                                else "B" if peak_net_value > 0
                                 else "C"
                             ),
                             "forward20_path": path,
                         }
                     )
                 elif valid_close_ret:
+                    updates20["forward20_available_days"] = int(len(path))
                     updates20["forward20_path"] = path
-            else:
-                updates20.setdefault("forward20_path", [])
 
             if any(item.get(k) != v for k, v in updates20.items()):
                 changed = True

@@ -1,7 +1,7 @@
 {
   "strategy": "QLIB-Peak20 高收益潜力选股",
   "date": "2026-06-04",
-  "generated_at": "2026-06-08T13:34:37.140342+08:00",
+  "generated_at": "2026-06-08T14:16:26.307731+08:00",
   "source": "cached rolling_ohlcv.parquet",
   "fetched_today": false,
   "alpha": 16.0,
@@ -1760,5 +1760,5 @@
       ]
     }
   ],
-  "performance_updated_at": "2026-06-08T13:34:37.150767+08:00"
+  "performance_updated_at": "2026-06-08T14:16:26.318091+08:00"
 }
