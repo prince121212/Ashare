@@ -45,7 +45,13 @@
       "next_1d_open": 19.4433,
       "next_1d_high": 19.4988,
       "next_1d_low": 19.1106,
-      "next_1d_close": 19.24
+      "next_1d_close": 19.24,
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 12,
+      "forward20_complete": false,
+      "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+      "forward20_path": []
     },
     {
       "rank": 2,
@@ -80,7 +86,13 @@
       "next_1d_open": 229.0073,
       "next_1d_high": 246.7984,
       "next_1d_low": 226.2388,
-      "next_1d_close": 236.4
+      "next_1d_close": 236.4,
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 12,
+      "forward20_complete": false,
+      "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+      "forward20_path": []
     }
   ],
   "strategies": [
@@ -160,7 +172,13 @@
           "next_1d_open": 19.4433,
           "next_1d_high": 19.4988,
           "next_1d_low": 19.1106,
-          "next_1d_close": 19.24
+          "next_1d_close": 19.24,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -195,7 +213,13 @@
           "next_1d_open": 229.0073,
           "next_1d_high": 246.7984,
           "next_1d_low": 226.2388,
-          "next_1d_close": 236.4
+          "next_1d_close": 236.4,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         }
       ]
     },
@@ -270,7 +294,13 @@
           "next_1d_open": 37.4696,
           "next_1d_high": 39.1499,
           "next_1d_low": 37.0793,
-          "next_1d_close": 38.7
+          "next_1d_close": 38.7,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -301,7 +331,13 @@
           "next_1d_open": 3.0044,
           "next_1d_high": 3.0189,
           "next_1d_low": 2.99,
-          "next_1d_close": 2.99
+          "next_1d_close": 2.99,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -332,7 +368,13 @@
           "next_1d_open": 5.1603,
           "next_1d_high": 5.1806,
           "next_1d_low": 5.1298,
-          "next_1d_close": 5.14
+          "next_1d_close": 5.14,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -363,7 +405,13 @@
           "next_1d_open": 7.9279,
           "next_1d_high": 8.0783,
           "next_1d_low": 7.8115,
-          "next_1d_close": 7.86
+          "next_1d_close": 7.86,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -394,7 +442,13 @@
           "next_1d_open": 35.3502,
           "next_1d_high": 35.9613,
           "next_1d_low": 35.0014,
-          "next_1d_close": 35.72
+          "next_1d_close": 35.72,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 6,
@@ -425,7 +479,13 @@
           "next_1d_open": 3.1204,
           "next_1d_high": 3.1587,
           "next_1d_low": 3.1109,
-          "next_1d_close": 3.13
+          "next_1d_close": 3.13,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 7,
@@ -456,7 +516,13 @@
           "next_1d_open": 5.1796,
           "next_1d_high": 5.2295,
           "next_1d_low": 5.1194,
-          "next_1d_close": 5.2
+          "next_1d_close": 5.2,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 8,
@@ -487,7 +553,13 @@
           "next_1d_open": 37.3696,
           "next_1d_high": 37.4397,
           "next_1d_low": 37.17,
-          "next_1d_close": 37.17
+          "next_1d_close": 37.17,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 9,
@@ -518,7 +590,13 @@
           "next_1d_open": 12.6402,
           "next_1d_high": 12.6402,
           "next_1d_low": 12.3503,
-          "next_1d_close": 12.39
+          "next_1d_close": 12.39,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 10,
@@ -549,7 +627,13 @@
           "next_1d_open": 3.5799,
           "next_1d_high": 3.5799,
           "next_1d_low": 3.55,
-          "next_1d_close": 3.56
+          "next_1d_close": 3.56,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         }
       ]
     },
@@ -667,7 +751,13 @@
           "next_1d_open": 3.7199,
           "next_1d_high": 3.7402,
           "next_1d_low": 3.62,
-          "next_1d_close": 3.64
+          "next_1d_close": 3.64,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         }
       ]
     },
@@ -731,7 +821,13 @@
           "next_1d_open": 45.1015,
           "next_1d_high": 47.6116,
           "next_1d_low": 45.1015,
-          "next_1d_close": 46.34
+          "next_1d_close": 46.34,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -766,7 +862,13 @@
           "next_1d_open": 7.9097,
           "next_1d_high": 7.92,
           "next_1d_low": 7.4696,
-          "next_1d_close": 7.63
+          "next_1d_close": 7.63,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -801,7 +903,13 @@
           "next_1d_open": 14.0605,
           "next_1d_high": 14.2407,
           "next_1d_low": 13.2802,
-          "next_1d_close": 13.4
+          "next_1d_close": 13.4,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -836,7 +944,13 @@
           "next_1d_open": 6.13,
           "next_1d_high": 6.4596,
           "next_1d_low": 6.0302,
-          "next_1d_close": 6.15
+          "next_1d_close": 6.15,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -871,7 +985,13 @@
           "next_1d_open": 24.3125,
           "next_1d_high": 25.1901,
           "next_1d_low": 24.0612,
-          "next_1d_close": 24.73
+          "next_1d_close": 24.73,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 6,
@@ -906,7 +1026,13 @@
           "next_1d_open": 53.3746,
           "next_1d_high": 53.6637,
           "next_1d_low": 51.5042,
-          "next_1d_close": 53.59
+          "next_1d_close": 53.59,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 7,
@@ -941,7 +1067,13 @@
           "next_1d_open": 25.5952,
           "next_1d_high": 25.9888,
           "next_1d_low": 24.7292,
-          "next_1d_close": 25.3
+          "next_1d_close": 25.3,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 8,
@@ -976,7 +1108,13 @@
           "next_1d_open": 17.3684,
           "next_1d_high": 18.351,
           "next_1d_low": 17.1985,
-          "next_1d_close": 18.17
+          "next_1d_close": 18.17,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 9,
@@ -1011,7 +1149,13 @@
           "next_1d_open": 8.802,
           "next_1d_high": 9.1327,
           "next_1d_low": 8.6742,
-          "next_1d_close": 9.02
+          "next_1d_close": 9.02,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 10,
@@ -1046,7 +1190,13 @@
           "next_1d_open": 21.2904,
           "next_1d_high": 22.4502,
           "next_1d_low": 21.0,
-          "next_1d_close": 21.0
+          "next_1d_close": 21.0,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 11,
@@ -1081,7 +1231,13 @@
           "next_1d_open": 7.8387,
           "next_1d_high": 8.0491,
           "next_1d_low": 7.6792,
-          "next_1d_close": 7.91
+          "next_1d_close": 7.91,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 12,
@@ -1116,7 +1272,13 @@
           "next_1d_open": 15.3337,
           "next_1d_high": 15.3996,
           "next_1d_low": 13.9,
-          "next_1d_close": 13.9
+          "next_1d_close": 13.9,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 13,
@@ -1151,7 +1313,13 @@
           "next_1d_open": 31.5712,
           "next_1d_high": 31.5712,
           "next_1d_low": 29.8291,
-          "next_1d_close": 30.21
+          "next_1d_close": 30.21,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 14,
@@ -1186,7 +1354,13 @@
           "next_1d_open": 29.1496,
           "next_1d_high": 30.0597,
           "next_1d_low": 28.6417,
-          "next_1d_close": 29.82
+          "next_1d_close": 29.82,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         },
         {
           "rank": 15,
@@ -1221,11 +1395,17 @@
           "next_1d_open": 15.1117,
           "next_1d_high": 15.1817,
           "next_1d_low": 14.6704,
-          "next_1d_close": 14.77
+          "next_1d_close": 14.77,
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 12,
+          "forward20_complete": false,
+          "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+          "forward20_path": []
         }
       ]
     }
   ],
-  "performance_updated_at": "2026-06-08T13:05:10.690516+08:00",
+  "performance_updated_at": "2026-06-08T13:16:14.144766+08:00",
   "price_updated_at": "2026-06-08T12:52:08.943956+08:00"
 }

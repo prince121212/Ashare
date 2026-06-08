@@ -30,6 +30,13 @@ ALPHA = 16.0
 TOP_N = 10
 KEEP_TRADING_DAYS = 220
 LIMIT_UP_OPEN = 0.098
+FORWARD_HORIZON = 20
+PEAK20_TARGET = 0.08
+BROKER_COMMISSION = 0.00012
+TRANSFER_FEE = 0.00001
+STAMP_TAX = 0.00050
+OPEN_COST = BROKER_COMMISSION + TRANSFER_FEE
+CLOSE_COST = BROKER_COMMISSION + TRANSFER_FEE + STAMP_TAX
 SITE_URL = os.getenv("SITE_URL", "https://a.292828.xyz")
 AKSHARE_HIST_WORKERS = int(os.getenv("AKSHARE_HIST_WORKERS", "6"))
 AKSHARE_HIST_RETRIES = int(os.getenv("AKSHARE_HIST_RETRIES", "3"))
@@ -595,6 +602,14 @@ def payload_item_groups(payload: dict[str, Any]) -> list[list[dict[str, Any]]]:
     return item_groups
 
 
+def trade_net_return(exit_price: Any, buy_price: Any) -> float | None:
+    buy = finite_float(buy_price)
+    sell = finite_float(exit_price)
+    if buy is None or sell is None or buy <= 0 or sell <= 0:
+        return None
+    return sell * (1.0 - CLOSE_COST) / (buy * (1.0 + OPEN_COST)) - 1.0
+
+
 def score_latest(panel: pd.DataFrame, names: pd.DataFrame | None = None) -> pd.DataFrame:
     latest_date = panel["date"].max()
     latest = panel[panel["date"].eq(latest_date)].dropna(subset=FEATURE_COLS).copy()
@@ -686,14 +701,28 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
     dates = sorted(pd.to_datetime(rolling["date"]).dt.normalize().unique())
     next_dates = [pd.Timestamp(d).normalize() for d in dates if pd.Timestamp(d).normalize() > signal_date]
     if not next_dates:
+        changed = False
+        defaults = {
+            "next_1d_date": None,
+            "next_1d_return": None,
+            "next_1d_close_to_close_return": None,
+            "next_1d_open_gap": None,
+            "next_1d_buyable": None,
+            "forward20_horizon": FORWARD_HORIZON,
+            "forward20_target": PEAK20_TARGET,
+            "forward20_available_days": 0,
+            "forward20_complete": False,
+            "forward20_path": [],
+        }
         for items in item_groups:
             for item in items:
-                item.setdefault("next_1d_date", None)
-                item.setdefault("next_1d_return", None)
-                item.setdefault("next_1d_close_to_close_return", None)
-                item.setdefault("next_1d_open_gap", None)
-                item.setdefault("next_1d_buyable", None)
-        return False
+                for k, v in defaults.items():
+                    if item.get(k) != v:
+                        item[k] = v
+                        changed = True
+        if changed:
+            payload["performance_updated_at"] = now_cn().isoformat()
+        return changed
 
     next_date = next_dates[0]
     next_date_str = next_date.strftime("%Y-%m-%d")
@@ -701,6 +730,21 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
     next_bar = rolling[rolling["date"].eq(next_date)].set_index("code")[["open", "close"]]
     next_raw = load_raw_prices(next_date_str)
     next_raw_map = next_raw.set_index("code").to_dict(orient="index") if not next_raw.empty else {}
+    forward_dates = next_dates[:FORWARD_HORIZON]
+    forward_complete = len(forward_dates) >= FORWARD_HORIZON
+    forward_panel = rolling[rolling["date"].isin(forward_dates)][
+        ["code", "date", "open", "high", "low", "close", "amount", "turnover"]
+    ].copy()
+    forward_by_code = {
+        str(code).zfill(6): g.sort_values("date").head(FORWARD_HORIZON).reset_index(drop=True)
+        for code, g in forward_panel.groupby("code", sort=False)
+    }
+    forward_raw_maps: dict[str, dict[str, dict[str, Any]]] = {}
+    for d in forward_dates:
+        dstr = pd.Timestamp(d).strftime("%Y-%m-%d")
+        raw_d = load_raw_prices(dstr)
+        forward_raw_maps[dstr] = raw_d.set_index("code").to_dict(orient="index") if not raw_d.empty else {}
+
     changed = False
     for items in item_groups:
         for item in items:
@@ -755,6 +799,104 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
                 item["next_1d_close_to_close_return"] = None
                 item["next_1d_open_gap"] = None
                 item["next_1d_buyable"] = None
+
+            updates20: dict[str, Any] = {
+                "forward20_horizon": FORWARD_HORIZON,
+                "forward20_target": PEAK20_TARGET,
+                "forward20_available_days": int(min(len(next_dates), FORWARD_HORIZON)),
+                "forward20_complete": False,
+                "forward20_return_basis": "T+1 open buy; future max close/end close; net return deducts commission, transfer fee and stamp tax",
+            }
+            g20 = forward_by_code.get(code)
+            if (
+                forward_complete
+                and g20 is not None
+                and len(g20) >= FORWARD_HORIZON
+                and pd.notna(base)
+                and float(base) > 0
+                and pd.notna(g20.loc[0, "open"])
+                and float(g20.loc[0, "open"]) > 0
+            ):
+                buy_open_adj = float(g20.loc[0, "open"])
+                buy_gap20 = buy_open_adj / float(base) - 1.0
+                path: list[dict[str, Any]] = []
+                for h, rr in enumerate(g20.itertuples(index=False), start=1):
+                    dstr = pd.Timestamp(rr.date).strftime("%Y-%m-%d")
+                    raw_info = forward_raw_maps.get(dstr, {}).get(code, {})
+                    raw_open = finite_float(raw_info.get("raw_open"))
+                    raw_high = finite_float(raw_info.get("raw_high"))
+                    raw_low = finite_float(raw_info.get("raw_low"))
+                    raw_close = finite_float(raw_info.get("raw_close"))
+                    close_ret = float(rr.close) / buy_open_adj - 1.0 if pd.notna(rr.close) else np.nan
+                    high_ret = float(rr.high) / buy_open_adj - 1.0 if pd.notna(rr.high) else np.nan
+                    low_ret = float(rr.low) / buy_open_adj - 1.0 if pd.notna(rr.low) else np.nan
+                    close_net = trade_net_return(rr.close, buy_open_adj)
+                    path.append(
+                        {
+                            "h": h,
+                            "date": dstr,
+                            "raw_open": round(raw_open, 4) if raw_open is not None else None,
+                            "raw_high": round(raw_high, 4) if raw_high is not None else None,
+                            "raw_low": round(raw_low, 4) if raw_low is not None else None,
+                            "raw_close": round(raw_close, 4) if raw_close is not None else None,
+                            "close_return": round(float(close_ret), 6) if np.isfinite(close_ret) else None,
+                            "close_net_return": round(float(close_net), 6) if close_net is not None else None,
+                            "high_return": round(float(high_ret), 6) if np.isfinite(high_ret) else None,
+                            "low_return": round(float(low_ret), 6) if np.isfinite(low_ret) else None,
+                            "amount": round(float(rr.amount), 2) if pd.notna(rr.amount) else None,
+                            "turnover": round(float(rr.turnover), 6) if pd.notna(rr.turnover) else None,
+                        }
+                    )
+
+                valid_close_net = [x for x in path if finite_float(x.get("close_net_return")) is not None]
+                valid_close_ret = [x for x in path if finite_float(x.get("close_return")) is not None]
+                if valid_close_net:
+                    peak = max(valid_close_net, key=lambda x: finite_float(x.get("close_net_return")) or -999.0)
+                    trough = min(valid_close_net, key=lambda x: finite_float(x.get("close_net_return")) or 999.0)
+                    end = path[FORWARD_HORIZON - 1]
+                    buy_raw = finite_float(forward_raw_maps.get(path[0]["date"], {}).get(code, {}).get("raw_open"))
+                    end_raw_close = finite_float(end.get("raw_close"))
+                    peak_raw_close = finite_float(peak.get("raw_close"))
+                    updates20.update(
+                        {
+                            "forward20_complete": True,
+                            "forward20_start_date": path[0]["date"],
+                            "forward20_end_date": path[-1]["date"],
+                            "forward20_buy_date": path[0]["date"],
+                            "forward20_buy_open": round(buy_raw, 4) if buy_raw is not None else None,
+                            "forward20_buy_open_adjusted": round(buy_open_adj, 4),
+                            "forward20_buy_gap": round(float(buy_gap20), 6),
+                            "forward20_buyable": bool(buy_gap20 < LIMIT_UP_OPEN),
+                            "forward20_peak_date": peak["date"],
+                            "forward20_peak_holding_day": int(peak["h"]),
+                            "forward20_peak_close": round(peak_raw_close, 4) if peak_raw_close is not None else None,
+                            "forward20_peak_return": round(float(finite_float(peak.get("close_return")) or 0.0), 6),
+                            "forward20_peak_net_return": round(float(finite_float(peak.get("close_net_return")) or 0.0), 6),
+                            "forward20_end_date_actual": end["date"],
+                            "forward20_end_close": round(end_raw_close, 4) if end_raw_close is not None else None,
+                            "forward20_end_return": round(float(finite_float(end.get("close_return")) or 0.0), 6),
+                            "forward20_end_net_return": round(float(finite_float(end.get("close_net_return")) or 0.0), 6),
+                            "forward20_min_date": trough["date"],
+                            "forward20_min_net_return": round(float(finite_float(trough.get("close_net_return")) or 0.0), 6),
+                            "forward20_hit8": bool((finite_float(peak.get("close_net_return")) or -999.0) >= PEAK20_TARGET),
+                            "forward20_grade": (
+                                "S" if (finite_float(peak.get("close_net_return")) or -999.0) >= 0.20
+                                else "A" if (finite_float(peak.get("close_net_return")) or -999.0) >= PEAK20_TARGET
+                                else "B" if (finite_float(peak.get("close_net_return")) or -999.0) > 0
+                                else "C"
+                            ),
+                            "forward20_path": path,
+                        }
+                    )
+                elif valid_close_ret:
+                    updates20["forward20_path"] = path
+            else:
+                updates20.setdefault("forward20_path", [])
+
+            if any(item.get(k) != v for k, v in updates20.items()):
+                changed = True
+            item.update(updates20)
+
     if changed:
         payload["performance_updated_at"] = now_cn().isoformat()
     return changed
@@ -870,6 +1012,29 @@ def one_day_stats_for_items(items: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def forward20_stats_for_items(items: list[dict[str, Any]]) -> dict[str, Any]:
+    rows = [x for x in items if x.get("forward20_complete") and finite_float(x.get("forward20_peak_net_return")) is not None]
+    if not rows:
+        return {"count": 0, "hit_rate": None, "avg_peak_net_return": None, "avg_end_net_return": None, "end_dates": []}
+    peaks = np.array([finite_float(x.get("forward20_peak_net_return")) for x in rows], dtype=float)
+    ends = np.array([finite_float(x.get("forward20_end_net_return")) for x in rows if finite_float(x.get("forward20_end_net_return")) is not None], dtype=float)
+    best = max(rows, key=lambda x: finite_float(x.get("forward20_peak_net_return")) or -999.0)
+    worst = min(rows, key=lambda x: finite_float(x.get("forward20_peak_net_return")) or 999.0)
+    return {
+        "count": int(len(rows)),
+        "hit_rate": round(float((peaks >= PEAK20_TARGET).mean()), 6),
+        "avg_peak_net_return": round(float(peaks.mean()), 6),
+        "avg_end_net_return": round(float(ends.mean()), 6) if len(ends) else None,
+        "best_peak_net_return": round(float(finite_float(best.get("forward20_peak_net_return")) or 0.0), 6),
+        "best_code": best.get("code"),
+        "best_name": best.get("name"),
+        "worst_peak_net_return": round(float(finite_float(worst.get("forward20_peak_net_return")) or 0.0), 6),
+        "worst_code": worst.get("code"),
+        "worst_name": worst.get("name"),
+        "end_dates": sorted({str(x.get("forward20_end_date")) for x in rows if x.get("forward20_end_date")}),
+    }
+
+
 def write_history_index() -> dict[str, Any]:
     """Write a static index so the website can offer a date selector."""
     entries: list[dict[str, Any]] = []
@@ -903,6 +1068,7 @@ def write_history_index() -> dict[str, Any]:
                     "name": group.get("name") or group.get("short_name") or "主策略",
                     "candidate_count": len(items) if isinstance(items, list) else 0,
                     "one_day": stats,
+                    "forward20": forward20_stats_for_items(items if isinstance(items, list) else []),
                 }
             )
         entries.append(
@@ -913,6 +1079,7 @@ def write_history_index() -> dict[str, Any]:
                 "candidate_count": len(all_items),
                 "generated_at": payload.get("generated_at"),
                 "one_day": one_day_stats_for_items(all_items),
+                "forward20": forward20_stats_for_items(all_items),
                 "strategies": strategy_summaries,
             }
         )
@@ -1104,16 +1271,16 @@ def email_html(payload: dict[str, Any]) -> str:
         metric1_format = strategy.get("metric1_format", "pct")
         metric2_format = strategy.get("metric2_format", "pct")
         rows = "".join(
-            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{fmt_metric(x.get('metric1', x.get('pred_win')), metric1_format)}</td><td>{fmt_metric(x.get('metric2', x.get('pred_ret')), metric2_format)}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td></tr>"
+            f"<tr><td>{x['rank']}</td><td>{x['code']}</td><td>{x['name']}</td><td>{x['score']:.6f}</td><td>{fmt_metric(x.get('metric1', x.get('pred_win')), metric1_format)}</td><td>{fmt_metric(x.get('metric2', x.get('pred_ret')), metric2_format)}</td><td>{x.get('close') or ''}</td><td>{pct(x.get('daily_return'))}</td><td>{pct(x.get('next_1d_return')) or '待更新'}</td><td>{pct(x.get('forward20_peak_net_return')) or '待完整'}</td><td>{pct(x.get('forward20_end_net_return')) or '待完整'}</td><td>{'命中' if x.get('forward20_hit8') else ('未命中' if x.get('forward20_complete') else '待完整')}</td></tr>"
             for x in strategy.get("items", [])
         )
         if not rows:
-            rows = "<tr><td colspan='9' style='color:#64748b'>今日无股票达到该策略阈值</td></tr>"
+            rows = "<tr><td colspan='12' style='color:#64748b'>今日无股票达到该策略阈值</td></tr>"
         sections.append(
             f"""
             <h3>{strategy['name']}</h3>
             <table cellpadding='8' cellspacing='0' border='0' style='border-collapse:collapse;width:100%;font-size:14px;margin-bottom:18px'>
-              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>买入后1日</th></tr></thead>
+              <thead><tr style='background:#f1f5f9'><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>{metric1_label}</th><th>{metric2_label}</th><th>行情价</th><th>当日涨跌</th><th>买入后1日</th><th>20日峰值</th><th>20日期末</th><th>20日成绩</th></tr></thead>
               <tbody>{rows}</tbody>
             </table>
             """

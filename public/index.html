@@ -127,6 +127,28 @@ function oneDaySummary(items){
     <div class="mini"><div class="t">最弱候选</div><div class="v ${st.worst?pctClass(st.worst.next_1d_return):'muted'}" style="font-size:14px">${esc(worst)}</div></div>
   </div>`;
 }
+function forward20Stats(items){
+  const rows=(items||[]).filter(x=>x.forward20_complete && num(x.forward20_peak_net_return)!==null);
+  if(!rows.length) return {count:0,total:(items||[]).length,hitRate:null,avgPeak:null,avgEnd:null,best:null,worst:null,endDates:[]};
+  const peaks=rows.map(x=>num(x.forward20_peak_net_return));
+  const ends=rows.map(x=>num(x.forward20_end_net_return)).filter(v=>v!==null);
+  const best=rows.reduce((a,b)=>num(b.forward20_peak_net_return)>num(a.forward20_peak_net_return)?b:a,rows[0]);
+  const worst=rows.reduce((a,b)=>num(b.forward20_peak_net_return)<num(a.forward20_peak_net_return)?b:a,rows[0]);
+  return {count:rows.length,total:(items||[]).length,hitRate:rows.filter(x=>x.forward20_hit8).length/rows.length,avgPeak:peaks.reduce((a,b)=>a+b,0)/peaks.length,avgEnd:ends.length?ends.reduce((a,b)=>a+b,0)/ends.length:null,best,worst,endDates:[...new Set(rows.map(x=>x.forward20_end_date).filter(Boolean))]};
+}
+function forward20Summary(items){
+  const st=forward20Stats(items); const top=(items||[])[0];
+  const dateText=st.endDates.length ? `完整窗口到 ${st.endDates.join(' / ')}` : `暂未满20个交易日，已更新 ${top?.forward20_available_days ?? 0}/20 天`;
+  const topResult=top?.forward20_complete ? `${top.forward20_grade || ''} ${top.forward20_hit8?'命中':'未命中'} · 峰值 ${plainPct(top.forward20_peak_net_return)}` : '待完整';
+  return `<div class="hold-summary">
+    <div class="caption">20日成绩单：T+1开盘买入，未来20个交易日按“最大收盘净收益”评估，净收益已扣佣金万1.2、过户费和印花税；峰值净收益≥8%算命中。${esc(dateText)}</div>
+    <div class="mini"><div class="t">完整/候选</div><div class="v">${st.count}/${st.total}</div></div>
+    <div class="mini"><div class="t">20日8%命中率</div><div class="v">${fmtPct(st.hitRate)}</div></div>
+    <div class="mini"><div class="t">平均峰值净收益</div><div class="v ${pctClass(st.avgPeak)}">${fmtSignedPct(st.avgPeak)}</div></div>
+    <div class="mini"><div class="t">平均期末净收益</div><div class="v ${pctClass(st.avgEnd)}">${fmtSignedPct(st.avgEnd)}</div></div>
+    <div class="mini"><div class="t">Top1期末成绩</div><div class="v ${top?.forward20_hit8?'pos':'muted'}" style="font-size:14px">${esc(topResult)}</div></div>
+  </div>`;
+}
 function barChart(items, opts){
   const xs=(items||[]).slice(0, opts.limit || 10);
   if(!xs.length) return '<div class="empty">暂无候选，无法生成图表。</div>';
@@ -147,8 +169,18 @@ function returnChart(items){
     <div class="bar-val ${pctClass(v)}">${plainPct(v)}</div>
   </div>`; }).join('');
 }
+function forward20Chart(items){
+  const xs=(items||[]).filter(x=>num(x.forward20_peak_net_return)!==null).sort((a,b)=>num(b.forward20_peak_net_return)-num(a.forward20_peak_net_return)).slice(0,10);
+  if(!xs.length) return '<div class="empty">暂未满20个交易日，20日成绩待更新。</div>';
+  const maxAbs=Math.max(...xs.map(x=>Math.abs(num(x.forward20_peak_net_return))), 1e-12);
+  return xs.map(x=>{ const v=num(x.forward20_peak_net_return); const w=Math.max(4, Math.min(100, Math.abs(v)/maxAbs*100)); return `<div class="bar-row">
+    <div class="bar-label" title="${esc(x.code)} ${esc(x.name)}">${esc(x.code)} ${esc(x.name||'')}</div>
+    <div class="bar-track"><div class="bar-fill ${v>=0?'ret-pos':'ret-neg'}" style="width:${w}%"></div></div>
+    <div class="bar-val ${pctClass(v)}">${plainPct(v)}</div>
+  </div>`; }).join('');
+}
 function tableRows(items,s){
-  if(!items?.length) return `<tr><td colspan="10" class="empty">今日无股票达到该策略阈值。</td></tr>`;
+  if(!items?.length) return `<tr><td colspan="13" class="empty">今日无股票达到该策略阈值。</td></tr>`;
   return items.map(x=>`<tr>
     <td class="rank">${x.rank}</td>
     <td><span class="code">${esc(x.code)}</span></td>
@@ -156,11 +188,29 @@ function tableRows(items,s){
     <td><div class="score-wrap"><span class="score">${fmtScore(x.score)}</span><span class="score-mini"><i style="width:${scorePct(x.score,items)}%"></i></span></div></td>
     <td class="price">${fmtNum(x.display_close ?? x.close,2)}</td>
     <td class="${pctClass(x.next_1d_return)}">${fmtSignedPct(x.next_1d_return)}</td>
+    <td class="${pctClass(x.forward20_peak_net_return)}">${fmtSignedPct(x.forward20_peak_net_return)}</td>
+    <td class="${pctClass(x.forward20_end_net_return)}">${fmtSignedPct(x.forward20_end_net_return)}</td>
+    <td>${x.forward20_complete ? `<b class="${x.forward20_hit8?'pos':'neg'}">${x.forward20_hit8?'命中':'未命中'}</b>` : '<span class="muted">待完整</span>'}</td>
     <td>${fmtNum((num(x.amount)||0)/1e8,2)} 亿</td>
     <td class="${pctClass(x.daily_return)}">${fmtSignedPct(x.daily_return)}</td>
     <td>${fmtMetric(metric1(x,s), s.metric1_format || 'pct')}</td>
     <td>${fmtMetric(metric2(x,s), s.metric2_format || 'pct')}</td>
   </tr>`).join('');
+}
+function forward20PathTable(item){
+  const path=item?.forward20_path || [];
+  if(!path.length) return `<div class="table-card" style="margin-top:16px"><div class="table-tools"><div class="title">Top1 20日轨迹</div><div class="legend">暂未满20个交易日</div></div><div class="empty">还没有完整的未来20日数据。</div></div>`;
+  const rows=path.map(x=>`<tr>
+    <td>${x.h}</td><td>${esc(x.date)}</td>
+    <td>${fmtNum(x.raw_open,2)}</td><td>${fmtNum(x.raw_high,2)}</td><td>${fmtNum(x.raw_low,2)}</td><td>${fmtNum(x.raw_close,2)}</td>
+    <td class="${pctClass(x.close_return)}">${fmtSignedPct(x.close_return)}</td>
+    <td class="${pctClass(x.close_net_return)}">${fmtSignedPct(x.close_net_return)}</td>
+    <td>${fmtNum((num(x.amount)||0)/1e8,2)} 亿</td>
+  </tr>`).join('');
+  return `<div class="table-card" style="margin-top:16px">
+    <div class="table-tools"><div class="title">Top1 20日轨迹 · ${esc(item.code)} ${esc(item.name||'')}</div><div class="legend">买入价 ${fmtNum(item.forward20_buy_open,2)} · 峰值 ${plainPct(item.forward20_peak_net_return)} · 期末 ${plainPct(item.forward20_end_net_return)}</div></div>
+    <div class="table-wrap"><table><thead><tr><th>持有日</th><th>日期</th><th>开盘</th><th>最高</th><th>最低</th><th>收盘</th><th>收盘收益</th><th>收盘净收益</th><th>成交额</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>`;
 }
 function mobileItems(items,s){
   if(!items?.length) return '<div class="empty">今日无股票达到该策略阈值。</div>';
@@ -168,6 +218,7 @@ function mobileItems(items,s){
     <div class="candidate-head"><div><span class="code">${esc(x.code)}</span> <span class="candidate-name">${esc(x.name||'')}</span></div><div class="rank">#${x.rank}</div></div>
     <div class="candidate-grid">
       <div><span>分数</span><b>${fmtScore(x.score)}</b></div><div><span>行情价</span><b>${fmtNum(x.display_close ?? x.close,2)}</b></div><div><span>买入后1日</span><b class="${pctClass(x.next_1d_return)}">${fmtSignedPct(x.next_1d_return)}</b></div>
+      <div><span>20日峰值</span><b class="${pctClass(x.forward20_peak_net_return)}">${fmtSignedPct(x.forward20_peak_net_return)}</b></div><div><span>20日期末</span><b class="${pctClass(x.forward20_end_net_return)}">${fmtSignedPct(x.forward20_end_net_return)}</b></div><div><span>20日成绩</span><b>${x.forward20_complete ? (x.forward20_hit8?'命中':'未命中') : '待完整'}</b></div>
       <div><span>成交额</span><b>${fmtNum((num(x.amount)||0)/1e8,2)} 亿</b></div><div><span>${esc(s.metric1_label||'指标1')}</span><b>${fmtMetric(metric1(x,s), s.metric1_format||'pct')}</b></div><div><span>${esc(s.metric2_label||'指标2')}</span><b>${fmtMetric(metric2(x,s), s.metric2_format||'pct')}</b></div>
     </div>
   </div>`).join('');
@@ -178,17 +229,20 @@ function renderPanel(s){
     <div class="panel-top"><div><h2>${esc(s.name)}</h2><p class="note">${esc(s.selection_note || '')}</p><span class="threshold">阈值：${thresholdText(s)}</span></div><div class="links">${reportsHtml(s.reports)}</div></div>
     ${miniMetrics(s.backtest)}
     ${oneDaySummary(items)}
+    ${forward20Summary(items)}
   </div>
   <div class="panel-body">
     <div class="chart-grid">
       <div class="chart-card"><div class="chart-title"><h3>分数排名</h3><span>Top ${Math.min(items.length,10)}</span></div>${barChart(items,{limit:10,value:x=>x.score,format:v=>v.toFixed(4)})}</div>
       <div class="chart-card"><div class="chart-title"><h3>买入后1日排名</h3><span>T+1开盘买入</span></div>${returnChart(items)}</div>
+      <div class="chart-card"><div class="chart-title"><h3>20日峰值排名</h3><span>最大收盘净收益</span></div>${forward20Chart(items)}</div>
     </div>
     <div class="table-card">
       <div class="table-tools"><div class="title">完整候选名单</div><div class="legend"><span><i style="background:#dc2626"></i>A股红涨</span><span><i style="background:#16a34a"></i>A股绿跌</span></div></div>
-      <div class="table-wrap"><table><thead><tr><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>行情价</th><th>买入后1日</th><th>成交额</th><th>当日涨跌</th><th>${esc(s.metric1_label || '胜率预测')}</th><th>${esc(s.metric2_label || '收益预测')}</th></tr></thead><tbody>${tableRows(items,s)}</tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>排名</th><th>代码</th><th>名称</th><th>分数</th><th>行情价</th><th>买入后1日</th><th>20日峰值</th><th>20日期末</th><th>20日成绩</th><th>成交额</th><th>当日涨跌</th><th>${esc(s.metric1_label || '胜率预测')}</th><th>${esc(s.metric2_label || '收益预测')}</th></tr></thead><tbody>${tableRows(items,s)}</tbody></table></div>
       <div class="mobile-list">${mobileItems(items,s)}</div>
     </div>
+    ${forward20PathTable(items[0])}
     <div class="info" style="margin-top:16px"><h3>交易规则</h3><p>${esc(s.trade_rule || '')}</p></div>
   </div>`;
 }

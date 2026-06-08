@@ -1,7 +1,7 @@
 {
   "strategy": "QLIB-Peak20 高收益潜力选股",
   "date": "2026-06-04",
-  "generated_at": "2026-06-08T13:05:18.318480+08:00",
+  "generated_at": "2026-06-08T13:17:22.967055+08:00",
   "source": "cached rolling_ohlcv.parquet",
   "fetched_today": false,
   "alpha": 16.0,
@@ -38,9 +38,11 @@
       "raw_low": 15.5,
       "raw_close": 15.92,
       "adjusted_close": 35.5116,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 2,
@@ -68,9 +70,11 @@
       "raw_low": 35.54,
       "raw_close": 35.91,
       "adjusted_close": 118.3862,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 3,
@@ -98,9 +102,11 @@
       "raw_low": 28.2,
       "raw_close": 28.37,
       "adjusted_close": 73.5752,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 4,
@@ -128,9 +134,11 @@
       "raw_low": 4.8,
       "raw_close": 4.97,
       "adjusted_close": 51.8054,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 5,
@@ -158,9 +166,11 @@
       "raw_low": 2.54,
       "raw_close": 2.6,
       "adjusted_close": 9.17,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 6,
@@ -188,9 +198,11 @@
       "raw_low": 26.92,
       "raw_close": 27.2,
       "adjusted_close": 37.4992,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 7,
@@ -218,9 +230,11 @@
       "raw_low": 15.54,
       "raw_close": 15.57,
       "adjusted_close": 86.8597,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 8,
@@ -248,9 +262,11 @@
       "raw_low": 9.58,
       "raw_close": 9.66,
       "adjusted_close": 18.3754,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 9,
@@ -278,9 +294,11 @@
       "raw_low": 11.01,
       "raw_close": 11.07,
       "adjusted_close": 14.5914,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     },
     {
       "rank": 10,
@@ -308,9 +326,11 @@
       "raw_low": 34.0,
       "raw_close": 34.25,
       "adjusted_close": 248.8538,
-      "next_1d_close_to_close_return": null,
-      "next_1d_open_gap": null,
-      "next_1d_buyable": null
+      "forward20_horizon": 20,
+      "forward20_target": 0.08,
+      "forward20_available_days": 0,
+      "forward20_complete": false,
+      "forward20_path": []
     }
   ],
   "strategies": [
@@ -383,9 +403,11 @@
           "raw_low": 15.5,
           "raw_close": 15.92,
           "adjusted_close": 35.5116,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -413,9 +435,11 @@
           "raw_low": 35.54,
           "raw_close": 35.91,
           "adjusted_close": 118.3862,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -443,9 +467,11 @@
           "raw_low": 28.2,
           "raw_close": 28.37,
           "adjusted_close": 73.5752,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -473,9 +499,11 @@
           "raw_low": 4.8,
           "raw_close": 4.97,
           "adjusted_close": 51.8054,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -503,9 +531,11 @@
           "raw_low": 2.54,
           "raw_close": 2.6,
           "adjusted_close": 9.17,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 6,
@@ -533,9 +563,11 @@
           "raw_low": 26.92,
           "raw_close": 27.2,
           "adjusted_close": 37.4992,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 7,
@@ -563,9 +595,11 @@
           "raw_low": 15.54,
           "raw_close": 15.57,
           "adjusted_close": 86.8597,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 8,
@@ -593,9 +627,11 @@
           "raw_low": 9.58,
           "raw_close": 9.66,
           "adjusted_close": 18.3754,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 9,
@@ -623,9 +659,11 @@
           "raw_low": 11.01,
           "raw_close": 11.07,
           "adjusted_close": 14.5914,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 10,
@@ -653,9 +691,11 @@
           "raw_low": 34.0,
           "raw_close": 34.25,
           "adjusted_close": 248.8538,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         }
       ]
     },
@@ -723,9 +763,11 @@
           "raw_low": 27.48,
           "raw_close": 27.62,
           "adjusted_close": 90.575,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -749,9 +791,11 @@
           "raw_low": 2.79,
           "raw_close": 2.8,
           "adjusted_close": 2.9375,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -775,9 +819,11 @@
           "raw_low": 7.61,
           "raw_close": 7.7,
           "adjusted_close": 59.2459,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -801,9 +847,11 @@
           "raw_low": 15.86,
           "raw_close": 15.98,
           "adjusted_close": 127.3164,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -827,9 +875,11 @@
           "raw_low": 4.92,
           "raw_close": 4.93,
           "adjusted_close": 6.7119,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 6,
@@ -853,9 +903,11 @@
           "raw_low": 5.88,
           "raw_close": 5.9,
           "adjusted_close": 15.2805,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 7,
@@ -879,9 +931,11 @@
           "raw_low": 18.23,
           "raw_close": 18.29,
           "adjusted_close": 106.6537,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 8,
@@ -905,9 +959,11 @@
           "raw_low": 7.22,
           "raw_close": 7.23,
           "adjusted_close": 18.5616,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 9,
@@ -931,9 +987,11 @@
           "raw_low": 3.04,
           "raw_close": 3.06,
           "adjusted_close": 4.23,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 10,
@@ -957,9 +1015,11 @@
           "raw_low": 37.99,
           "raw_close": 38.1,
           "adjusted_close": 250.0152,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         }
       ]
     },
@@ -1070,9 +1130,11 @@
           "raw_low": 4.8,
           "raw_close": 4.97,
           "adjusted_close": 51.8054,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -1096,9 +1158,11 @@
           "raw_low": 9.46,
           "raw_close": 9.5,
           "adjusted_close": 9.5294,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -1122,9 +1186,11 @@
           "raw_low": 2.54,
           "raw_close": 2.6,
           "adjusted_close": 9.17,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -1148,9 +1214,11 @@
           "raw_low": 15.86,
           "raw_close": 15.98,
           "adjusted_close": 127.3164,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -1174,9 +1242,11 @@
           "raw_low": 19.36,
           "raw_close": 19.36,
           "adjusted_close": 24.6544,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         }
       ]
     },
@@ -1233,9 +1303,11 @@
           "raw_low": 3.7,
           "raw_close": 3.72,
           "adjusted_close": 38.705,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 2,
@@ -1263,9 +1335,11 @@
           "raw_low": 4.84,
           "raw_close": 4.84,
           "adjusted_close": 22.0589,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 3,
@@ -1293,9 +1367,11 @@
           "raw_low": 12.02,
           "raw_close": 12.03,
           "adjusted_close": 20.2745,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 4,
@@ -1323,9 +1399,11 @@
           "raw_low": 14.15,
           "raw_close": 14.2,
           "adjusted_close": 47.8186,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 5,
@@ -1353,9 +1431,11 @@
           "raw_low": 9.59,
           "raw_close": 9.68,
           "adjusted_close": 14.4722,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 6,
@@ -1383,9 +1463,11 @@
           "raw_low": 71.45,
           "raw_close": 71.68,
           "adjusted_close": 73.5466,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 7,
@@ -1413,9 +1495,11 @@
           "raw_low": 7.97,
           "raw_close": 8.0,
           "adjusted_close": 86.3297,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 8,
@@ -1443,9 +1527,11 @@
           "raw_low": 4.4,
           "raw_close": 4.41,
           "adjusted_close": 67.3105,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 9,
@@ -1473,9 +1559,11 @@
           "raw_low": 7.77,
           "raw_close": 7.85,
           "adjusted_close": 40.133,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 10,
@@ -1503,9 +1591,11 @@
           "raw_low": 41.97,
           "raw_close": 42.22,
           "adjusted_close": 73.6191,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 11,
@@ -1533,9 +1623,11 @@
           "raw_low": 4.82,
           "raw_close": 4.84,
           "adjusted_close": 29.2207,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 12,
@@ -1563,9 +1655,11 @@
           "raw_low": 5.29,
           "raw_close": 5.33,
           "adjusted_close": 6.6337,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 13,
@@ -1593,9 +1687,11 @@
           "raw_low": 12.65,
           "raw_close": 12.75,
           "adjusted_close": 59.3376,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 14,
@@ -1623,9 +1719,11 @@
           "raw_low": 2.4,
           "raw_close": 2.41,
           "adjusted_close": 39.7506,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         },
         {
           "rank": 15,
@@ -1653,11 +1751,14 @@
           "raw_low": 14.92,
           "raw_close": 15.06,
           "adjusted_close": 97.9815,
-          "next_1d_close_to_close_return": null,
-          "next_1d_open_gap": null,
-          "next_1d_buyable": null
+          "forward20_horizon": 20,
+          "forward20_target": 0.08,
+          "forward20_available_days": 0,
+          "forward20_complete": false,
+          "forward20_path": []
         }
       ]
     }
-  ]
+  ],
+  "performance_updated_at": "2026-06-08T13:17:22.977388+08:00"
 }
