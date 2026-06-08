@@ -1,7 +1,7 @@
 {
   "strategy": "QLIB-Peak20 高收益潜力选股",
   "date": "2026-06-08",
-  "generated_at": "2026-06-08T22:22:15.318941+08:00",
+  "generated_at": "2026-06-08T22:41:17.205961+08:00",
   "source": "AkShare stock_zh_a_daily",
   "fetched_today": true,
   "alpha": 16.0,
@@ -1900,5 +1900,5 @@
       ]
     }
   ],
-  "performance_updated_at": "2026-06-08T22:22:15.338417+08:00"
+  "performance_updated_at": "2026-06-08T22:41:17.226443+08:00"
 }
