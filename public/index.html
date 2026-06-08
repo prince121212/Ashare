@@ -203,13 +203,13 @@ function forward20PathTable(item){
   const rows=path.map(x=>`<tr>
     <td>${x.h}</td><td>${esc(x.date)}</td>
     <td>${fmtNum(x.raw_open,2)}</td><td>${fmtNum(x.raw_high,2)}</td><td>${fmtNum(x.raw_low,2)}</td><td>${fmtNum(x.raw_close,2)}</td>
-    <td class="${pctClass(x.close_return)}">${fmtSignedPct(x.close_return)}</td>
+    <td class="${pctClass(x.daily_return)}">${fmtSignedPct(x.daily_return)}</td>
     <td class="${pctClass(x.close_net_return)}">${fmtSignedPct(x.close_net_return)}</td>
     <td>${fmtNum((num(x.amount)||0)/1e8,2)} 亿</td>
   </tr>`).join('');
   return `<div class="table-card" style="margin-top:16px">
     <div class="table-tools"><div class="title">Top1 20日轨迹 · ${esc(item.code)} ${esc(item.name||'')}</div><div class="legend">买入价 ${fmtNum(item.forward20_buy_open,2)} · 峰值 ${plainPct(item.forward20_peak_net_return)} · 期末 ${plainPct(item.forward20_end_net_return)}</div></div>
-    <div class="table-wrap"><table><thead><tr><th>持有日</th><th>日期</th><th>开盘</th><th>最高</th><th>最低</th><th>收盘</th><th>收盘收益</th><th>收盘净收益</th><th>成交额</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="table-wrap"><table><thead><tr><th>持有日</th><th>日期</th><th>开盘</th><th>最高</th><th>最低</th><th>收盘</th><th>当日涨跌</th><th>收盘净收益</th><th>成交额</th></tr></thead><tbody>${rows}</tbody></table></div>
   </div>`;
 }
 function mobileItems(items,s){

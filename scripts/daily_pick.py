@@ -827,6 +827,8 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
                     raw_high = finite_float(raw_info.get("raw_high"))
                     raw_low = finite_float(raw_info.get("raw_low"))
                     raw_close = finite_float(raw_info.get("raw_close"))
+                    prev_close = float(base) if h == 1 else float(g20.loc[h - 2, "close"])
+                    daily_ret = float(rr.close) / prev_close - 1.0 if pd.notna(rr.close) and prev_close > 0 else np.nan
                     close_ret = float(rr.close) / buy_open_adj - 1.0 if pd.notna(rr.close) else np.nan
                     high_ret = float(rr.high) / buy_open_adj - 1.0 if pd.notna(rr.high) else np.nan
                     low_ret = float(rr.low) / buy_open_adj - 1.0 if pd.notna(rr.low) else np.nan
@@ -839,6 +841,7 @@ def enrich_payload_forward_returns(payload: dict[str, Any], rolling: pd.DataFram
                             "raw_high": round(raw_high, 4) if raw_high is not None else None,
                             "raw_low": round(raw_low, 4) if raw_low is not None else None,
                             "raw_close": round(raw_close, 4) if raw_close is not None else None,
+                            "daily_return": round(float(daily_ret), 6) if np.isfinite(daily_ret) else None,
                             "close_return": round(float(close_ret), 6) if np.isfinite(close_ret) else None,
                             "close_net_return": round(float(close_net), 6) if close_net is not None else None,
                             "high_return": round(float(high_ret), 6) if np.isfinite(high_ret) else None,
