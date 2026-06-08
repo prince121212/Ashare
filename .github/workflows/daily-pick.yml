@@ -21,6 +21,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: daily-a-share-pick-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   pick:
     runs-on: ubuntu-latest
@@ -46,14 +50,18 @@ jobs:
           PICK_NOTIFY_EMAIL: ${{ secrets.PICK_NOTIFY_EMAIL }}
           SITE_URL: ${{ secrets.SITE_URL || 'https://a.292828.xyz' }}
           PICK_DATE: ${{ github.event.inputs.pick_date }}
+          PYTHONUNBUFFERED: '1'
+          # GitHub-hosted runners can hang on AkShare's realtime Eastmoney spot
+          # endpoint. After the close, Sina daily bars are slower but reliable.
+          AKSHARE_USE_HIST_DAILY: 'true'
         run: |
           if [ "${{ github.event.inputs.deploy_only }}" = "true" ]; then
             echo "Deploy-only mode: skip AkShare fetch, scoring, and email."
             exit 0
           fi
           FORCE=""
-          if [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
-          python scripts/daily_pick.py --fetch-akshare --send-email $FORCE
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
+          python -u scripts/daily_pick.py --fetch-akshare --send-email $FORCE
 
       - name: Validate generated site data
         run: |

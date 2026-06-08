@@ -40,6 +40,7 @@ CLOSE_COST = BROKER_COMMISSION + TRANSFER_FEE + STAMP_TAX
 SITE_URL = os.getenv("SITE_URL", "https://a.292828.xyz")
 AKSHARE_HIST_WORKERS = int(os.getenv("AKSHARE_HIST_WORKERS", "6"))
 AKSHARE_HIST_RETRIES = int(os.getenv("AKSHARE_HIST_RETRIES", "3"))
+AKSHARE_USE_HIST_DAILY = os.getenv("AKSHARE_USE_HIST_DAILY", "").strip().lower() in {"1", "true", "yes", "y"}
 
 FEATURE_COLS = json.loads((MODELS_DIR / "feature_cols.json").read_text(encoding="utf-8"))
 
@@ -445,6 +446,9 @@ def fetch_akshare_for_date(date_str: str, rolling: pd.DataFrame) -> tuple[pd.Dat
     2026-06-03), use AkShare's Sina daily endpoint because spot has no date
     parameter.
     """
+    if AKSHARE_USE_HIST_DAILY:
+        print("[INFO] AKSHARE_USE_HIST_DAILY enabled; use historical daily endpoint instead of realtime spot")
+        return fetch_akshare_hist_date(date_str, rolling), "AkShare stock_zh_a_daily"
     if date_str == today_str_cn():
         try:
             return fetch_akshare_spot(date_str, rolling), "AkShare stock_zh_a_spot_em"
