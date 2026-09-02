@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-01T21:58:37.908592+08:00",
-  "latest_date": "2026-09-01",
+  "generated_at": "2026-09-02T21:14:54.311408+08:00",
+  "latest_date": "2026-09-02",
   "dates": [
     {
-      "date": "2026-09-01",
+      "date": "2026-09-02",
       "is_latest": true,
       "strategy_count": 5,
-      "candidate_count": 44,
-      "generated_at": "2026-09-01T21:58:37.385852+08:00",
+      "candidate_count": 39,
+      "generated_at": "2026-09-02T21:14:53.777475+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,
@@ -61,7 +61,7 @@
         {
           "id": "dualhigh_alpha16_q975",
           "name": "主板双高猎手 T2 V1 - 高阈值版",
-          "candidate_count": 2,
+          "candidate_count": 0,
           "one_day": {
             "count": 0,
             "avg_return": null,
@@ -79,7 +79,7 @@
         {
           "id": "high_winrate_h4_q950",
           "name": "主板胜率猎手 V1 - H4高胜率版",
-          "candidate_count": 7,
+          "candidate_count": 4,
           "one_day": {
             "count": 0,
             "avg_return": null,
@@ -103,6 +103,142 @@
             "avg_return": null,
             "win_rate": null,
             "next_dates": []
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 44,
+      "generated_at": "2026-09-01T21:58:37.385852+08:00",
+      "one_day": {
+        "count": 44,
+        "avg_return": 0.014336,
+        "win_rate": 0.590909,
+        "best_return": 0.109423,
+        "worst_return": -0.038548,
+        "next_dates": [
+          "2026-09-02"
+        ]
+      },
+      "forward20": {
+        "count": 0,
+        "hit_rate": null,
+        "avg_peak_net_return": null,
+        "avg_end_net_return": null,
+        "end_dates": []
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.012171,
+            "win_rate": 0.7,
+            "best_return": 0.055071,
+            "worst_return": -0.028772,
+            "next_dates": [
+              "2026-09-02"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.016298,
+            "win_rate": 0.6,
+            "best_return": 0.098592,
+            "worst_return": -0.038548,
+            "next_dates": [
+              "2026-09-02"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": 0.050054,
+            "win_rate": 1.0,
+            "best_return": 0.098592,
+            "worst_return": 0.001515,
+            "next_dates": [
+              "2026-09-02"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 7,
+          "one_day": {
+            "count": 7,
+            "avg_return": 0.021993,
+            "win_rate": 0.714286,
+            "best_return": 0.098592,
+            "worst_return": -0.005816,
+            "next_dates": [
+              "2026-09-02"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": 0.006135,
+            "win_rate": 0.4,
+            "best_return": 0.109423,
+            "worst_return": -0.038196,
+            "next_dates": [
+              "2026-09-02"
+            ]
           },
           "forward20": {
             "count": 0,
@@ -2547,11 +2683,19 @@
         ]
       },
       "forward20": {
-        "count": 0,
-        "hit_rate": null,
-        "avg_peak_net_return": null,
-        "avg_end_net_return": null,
-        "end_dates": []
+        "count": 55,
+        "hit_rate": 1.0,
+        "avg_peak_net_return": 0.318773,
+        "avg_end_net_return": 0.125406,
+        "best_peak_net_return": 0.635217,
+        "best_code": "600330",
+        "best_name": "天通股份",
+        "worst_peak_net_return": 0.096881,
+        "worst_code": "605399",
+        "worst_name": "晨光新材",
+        "end_dates": [
+          "2026-09-02"
+        ]
       },
       "strategies": [
         {
@@ -2569,11 +2713,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.439747,
+            "avg_end_net_return": 0.193258,
+            "best_peak_net_return": 0.635217,
+            "best_code": "600330",
+            "best_name": "天通股份",
+            "worst_peak_net_return": 0.243177,
+            "worst_code": "603306",
+            "worst_name": "华懋科技",
+            "end_dates": [
+              "2026-09-02"
+            ]
           }
         },
         {
@@ -2591,11 +2743,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.35511,
+            "avg_end_net_return": 0.126903,
+            "best_peak_net_return": 0.572857,
+            "best_code": "600683",
+            "best_name": "京投发展",
+            "worst_peak_net_return": 0.180949,
+            "worst_code": "002830",
+            "worst_name": "名雕股份",
+            "end_dates": [
+              "2026-09-02"
+            ]
           }
         },
         {
@@ -2613,11 +2773,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.35511,
+            "avg_end_net_return": 0.126903,
+            "best_peak_net_return": 0.572857,
+            "best_code": "600683",
+            "best_name": "京投发展",
+            "worst_peak_net_return": 0.180949,
+            "worst_code": "002830",
+            "worst_name": "名雕股份",
+            "end_dates": [
+              "2026-09-02"
+            ]
           }
         },
         {
@@ -2635,11 +2803,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.21853,
+            "avg_end_net_return": 0.0715,
+            "best_peak_net_return": 0.572857,
+            "best_code": "600683",
+            "best_name": "京投发展",
+            "worst_peak_net_return": 0.096881,
+            "worst_code": "605399",
+            "worst_name": "晨光新材",
+            "end_dates": [
+              "2026-09-02"
+            ]
           }
         },
         {
@@ -2657,11 +2833,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 15,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.256504,
+            "avg_end_net_return": 0.114113,
+            "best_peak_net_return": 0.584067,
+            "best_code": "000593",
+            "best_name": "德龙汇能",
+            "worst_peak_net_return": 0.118504,
+            "worst_code": "600617",
+            "worst_name": "国新能源",
+            "end_dates": [
+              "2026-09-02"
+            ]
           }
         }
       ]
