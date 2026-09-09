@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-08T21:20:53.942822+08:00",
-  "latest_date": "2026-09-08",
+  "generated_at": "2026-09-09T21:26:41.452491+08:00",
+  "latest_date": "2026-09-09",
   "dates": [
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "is_latest": true,
       "strategy_count": 5,
-      "candidate_count": 37,
-      "generated_at": "2026-09-08T21:20:53.403574+08:00",
+      "candidate_count": 35,
+      "generated_at": "2026-09-09T21:26:40.863328+08:00",
       "one_day": {
         "count": 0,
         "avg_return": null,
@@ -79,7 +79,7 @@
         {
           "id": "high_winrate_h4_q950",
           "name": "主板胜率猎手 V1 - H4高胜率版",
-          "candidate_count": 2,
+          "candidate_count": 0,
           "one_day": {
             "count": 0,
             "avg_return": null,
@@ -103,6 +103,138 @@
             "avg_return": null,
             "win_rate": null,
             "next_dates": []
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "is_latest": false,
+      "strategy_count": 5,
+      "candidate_count": 37,
+      "generated_at": "2026-09-08T21:20:53.403574+08:00",
+      "one_day": {
+        "count": 37,
+        "avg_return": 0.000242,
+        "win_rate": 0.351351,
+        "best_return": 0.116435,
+        "worst_return": -0.069575,
+        "next_dates": [
+          "2026-09-09"
+        ]
+      },
+      "forward20": {
+        "count": 0,
+        "hit_rate": null,
+        "avg_peak_net_return": null,
+        "avg_end_net_return": null,
+        "end_dates": []
+      },
+      "strategies": [
+        {
+          "id": "qlib_peak20_tp10_trail8",
+          "name": "QLIB-Peak20 高收益潜力选股",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.007647,
+            "win_rate": 0.4,
+            "best_return": 0.116435,
+            "worst_return": -0.068326,
+            "next_dates": [
+              "2026-09-09"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "dualhigh_daily_top1_slots2",
+          "name": "主板双高猎手 T2 V1 - 每日Top1版（2仓位回测）",
+          "candidate_count": 10,
+          "one_day": {
+            "count": 10,
+            "avg_return": 0.000493,
+            "win_rate": 0.5,
+            "best_return": 0.032708,
+            "worst_return": -0.020162,
+            "next_dates": [
+              "2026-09-09"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "dualhigh_alpha16_q975",
+          "name": "主板双高猎手 T2 V1 - 高阈值版",
+          "candidate_count": 0,
+          "one_day": {
+            "count": 0,
+            "avg_return": null,
+            "win_rate": null,
+            "next_dates": []
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "high_winrate_h4_q950",
+          "name": "主板胜率猎手 V1 - H4高胜率版",
+          "candidate_count": 2,
+          "one_day": {
+            "count": 2,
+            "avg_return": -0.010762,
+            "win_rate": 0.0,
+            "best_return": -0.004193,
+            "worst_return": -0.01733,
+            "next_dates": [
+              "2026-09-09"
+            ]
+          },
+          "forward20": {
+            "count": 0,
+            "hit_rate": null,
+            "avg_peak_net_return": null,
+            "avg_end_net_return": null,
+            "end_dates": []
+          }
+        },
+        {
+          "id": "v12_close_only",
+          "name": "V1.2 收盘选股版",
+          "candidate_count": 15,
+          "one_day": {
+            "count": 15,
+            "avg_return": -0.003395,
+            "win_rate": 0.266667,
+            "best_return": 0.091301,
+            "worst_return": -0.069575,
+            "next_dates": [
+              "2026-09-09"
+            ]
           },
           "forward20": {
             "count": 0,
@@ -2539,11 +2671,19 @@
         ]
       },
       "forward20": {
-        "count": 0,
-        "hit_rate": null,
-        "avg_peak_net_return": null,
-        "avg_end_net_return": null,
-        "end_dates": []
+        "count": 54,
+        "hit_rate": 0.777778,
+        "avg_peak_net_return": 0.153048,
+        "avg_end_net_return": 0.012077,
+        "best_peak_net_return": 0.323503,
+        "best_code": "603800",
+        "best_name": "洪田股份",
+        "worst_peak_net_return": -0.011747,
+        "worst_code": "000766",
+        "worst_name": "通化金马",
+        "end_dates": [
+          "2026-09-09"
+        ]
       },
       "strategies": [
         {
@@ -2561,11 +2701,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 1.0,
+            "avg_peak_net_return": 0.198689,
+            "avg_end_net_return": 0.031466,
+            "best_peak_net_return": 0.286932,
+            "best_code": "603629",
+            "best_name": "利通电子",
+            "worst_peak_net_return": 0.08593,
+            "worst_code": "603306",
+            "worst_name": "华懋科技",
+            "end_dates": [
+              "2026-09-09"
+            ]
           }
         },
         {
@@ -2583,11 +2731,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 0.9,
+            "avg_peak_net_return": 0.189312,
+            "avg_end_net_return": -0.007134,
+            "best_peak_net_return": 0.323503,
+            "best_code": "603800",
+            "best_name": "洪田股份",
+            "worst_peak_net_return": 0.033863,
+            "worst_code": "605376",
+            "worst_name": "博迁新材",
+            "end_dates": [
+              "2026-09-09"
+            ]
           }
         },
         {
@@ -2605,11 +2761,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 0.9,
+            "avg_peak_net_return": 0.189312,
+            "avg_end_net_return": -0.007134,
+            "best_peak_net_return": 0.323503,
+            "best_code": "603800",
+            "best_name": "洪田股份",
+            "worst_peak_net_return": 0.033863,
+            "worst_code": "605376",
+            "worst_name": "博迁新材",
+            "end_dates": [
+              "2026-09-09"
+            ]
           }
         },
         {
@@ -2627,11 +2791,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 10,
+            "hit_rate": 0.7,
+            "avg_peak_net_return": 0.117521,
+            "avg_end_net_return": 0.032745,
+            "best_peak_net_return": 0.216354,
+            "best_code": "002837",
+            "best_name": "英维克",
+            "worst_peak_net_return": -0.006338,
+            "worst_code": "001395",
+            "worst_name": "亚联机械",
+            "end_dates": [
+              "2026-09-09"
+            ]
           }
         },
         {
@@ -2649,11 +2821,19 @@
             ]
           },
           "forward20": {
-            "count": 0,
-            "hit_rate": null,
-            "avg_peak_net_return": null,
-            "avg_end_net_return": null,
-            "end_dates": []
+            "count": 14,
+            "hit_rate": 0.5,
+            "avg_peak_net_return": 0.094019,
+            "avg_end_net_return": 0.01091,
+            "best_peak_net_return": 0.297471,
+            "best_code": "002652",
+            "best_name": "扬子新材",
+            "worst_peak_net_return": -0.011747,
+            "worst_code": "000766",
+            "worst_name": "通化金马",
+            "end_dates": [
+              "2026-09-09"
+            ]
           }
         }
       ]
